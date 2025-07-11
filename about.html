@@ -5,101 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>About | Leon Leng</title>
   <link rel="stylesheet" href="style.css" />
-  <style>
-    body {
-      font-family: sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #fff;
-      color: #333;
-    }
-    nav {
-      display: flex;
-      gap: 1rem;
-      padding: 1rem 2rem;
-      background: #f8f8f8;
-      font-weight: bold;
-    }
-    nav a {
-      color: #333;
-      text-decoration: none;
-    }
-    nav a:hover {
-      text-decoration: underline;
-    }
-    .container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 2rem;
-      max-width: 960px;
-      margin: 0 auto;
-    }
-    .links {
-      display: flex;
-      gap: 1.5rem;
-      margin-bottom: 1rem;
-    }
-    .profile {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      gap: 2rem;
-      margin-top: 2rem;
-      flex-wrap: wrap;
-    }
-    .profile img {
-      width: 180px;
-      height: 180px;
-      border-radius: 100px;
-      object-fit: cover;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-    .bio {
-      max-width: 600px;
-    }
-    .bio h1 {
-      margin-top: 0;
-      color: #2563eb;
-    }
-    .bio p {
-      line-height: 1.6;
-    }
-  </style>
 </head>
 <body>
-  <!-- 顶部导航 -->
   <nav>
     <a href="index.html">About</a>
     <a href="muses.html">Muses</a>
   </nav>
 
-  <div class="container">
-    <!-- Leon Leng 标题和链接 -->
-    <h1 style="font-size: 2.5rem; margin-bottom: 0.5rem;">Leon Leng</h1>
-    <div class="links">
-      <a href="https://github.com/yourusername" target="_blank">GitHub</a>
-      <a href="https://x.com/yourusername" target="_blank">X</a>
-      <a href="https://linkedin.com/in/yourusername" target="_blank">LinkedIn</a>
+  <main style="max-width: 720px; margin: 0 auto; text-align: center; padding: 4rem 1rem;">
+    <h1 style="font-size: 2.5rem; font-weight: 700;">Leon Leng</h1>
+    <div style="margin: 1rem 0;">
+      <a href="https://github.com/yourusername">GitHub</a> ·
+      <a href="https://x.com/yourusername">X</a> ·
+      <a href="https://linkedin.com/in/yourusername">LinkedIn</a> ·
       <a href="mailto:your@email.com">Email</a>
     </div>
 
-    <!-- 左图右文介绍 -->
-    <div class="profile">
-      <img src="images/leon.jpg" alt="Leon Leng" />
-      <div class="bio">
-        <h2>AI Systems · Distributed Intelligence · Governance</h2>
-        <p>
-          Leon Leng is a Ph.D. researcher working on distributed intelligence systems, programmable governance,
-          and the intersection of AI agents, blockchain economics, and energy infrastructure. He focuses on
-          how intelligent systems allocate resources, align incentives, and balance centralization with autonomy.
-        </p>
-        <p>
-          Leon collaborates with leading academic institutions and frontier companies to design operationally
-          intelligent systems that are efficient, resilient, and interpretable.
-        </p>
-      </div>
-    </div>
-  </div>
+    <img src="images/leon.jpg" alt="Leon Leng" style="width: 180px; height: 180px; border-radius: 9999px; object-fit: cover; margin: 2rem auto;" />
+
+    <h2 style="font-size: 1.25rem; font-weight: 600;">AI Systems · Distributed Intelligence · Governance</h2>
+
+    <p style="margin-top: 1.5rem; line-height: 1.75;">
+      Leon Leng is a Ph.D. researcher working on distributed intelligence systems, programmable governance, and the intersection of AI agents, blockchain economics, and energy infrastructure. He focuses on how intelligent systems allocate resources, align incentives, and balance centralization with autonomy.
+    </p>
+
+    <p style="margin-top: 1rem; line-height: 1.75;">
+      Leon collaborates with leading academic institutions and frontier companies to design operationally intelligent systems that are efficient, resilient, and interpretable.
+    </p>
+  </main>
 </body>
 </html>
