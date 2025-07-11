@@ -1,35 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>About | Leon Leng</title>
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <nav>
-      <a href="about.html"><strong>about</strong></a>
-      <a href="muses.html">muses</a>
-    </nav>
-    <div class="layout">
-      <aside class="sidebar">
-        <h1>Leon Leng</h1>
-        <p>Machine learning researcher passionate about AI and art.</p>
-      </aside>
-      <main class="content">
-        <h2>Gallery</h2>
-        <section class="grid">
-          <div class="card"><img src="images/conf1.jpg" alt="Conference 1"><div class="caption">ICML 2024</div></div>
-          <div class="card"><img src="images/conf2.jpg" alt="Conference 2"><div class="caption">NeurIPS 2023</div></div>
-          <div class="card"><img src="images/conf3.jpg" alt="Conference 3"><div class="caption">CVPR 2023</div></div>
-        </section>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>About | Leon Leng</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- ─── 顶部导航 ─── -->
+  <nav>
+    <a href="about.html"><strong>about</strong></a>
+    <a href="muses.html">muses</a>
+  </nav>
 
-        <h2>Videos</h2>
-        <section class="video-wrapper">
-          <video src="videos/int1.mp4" autoplay loop muted playsinline></video>
-          <video src="videos/int2.mp4" autoplay loop muted playsinline></video>
-        </section>
-      </main>
-    </div>
-  </body>
+  <!-- ─── 两栏布局 ─── -->
+  <div class="layout">
+    <!-- 左侧 sidebar -->
+    <aside class="sidebar">
+      <h1>Leon Leng</h1>
+      <p>Ph.D. student researching distributed intelligence systems, AI agents, blockchain economics, and programmable energy.</p>
+    </aside>
+
+    <!-- 右侧 content -->
+    <main class="content">
+
+      <!-- Gallery -->
+      <h2>Gallery</h2>
+      <section class="grid">
+        <div class="card">
+          <img src="images/conf1.jpg" alt="Conference 1">
+          <div class="caption">ICML 2024</div>
+        </div>
+        <div class="card">
+          <img src="images/conf2.jpg" alt="Conference 2">
+          <div class="caption">NeurIPS 2023</div>
+        </div>
+        <div class="card">
+          <img src="images/conf3.jpg" alt="Conference 3">
+          <div class="caption">CVPR 2023</div>
+        </div>
+      </section>
+
+      <!-- Videos -->
+      <h2>Videos</h2>
+      <section class="video-wrapper">
+        <!-- 本地 mp4：放到 /videos 目录 -->
+        <video src="videos/int1.mp4" autoplay loop muted playsinline></video>
+        <video src="videos/int2.mp4" autoplay loop muted playsinline></video>
+
+        <!-- 如改用 YouTube，注释掉上面 <video>，改用 iframe：
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID1?autoplay=1&mute=1&loop=1&playlist=VIDEO_ID1"
+                allow="autoplay" frameborder="0" loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID2?autoplay=1&mute=1&loop=1&playlist=VIDEO_ID2"
+                allow="autoplay" frameborder="0" loading="lazy"></iframe>
+        -->
+      </section>
+
+    </main>
+  </div>
+</body>
 </html>
