@@ -1,4 +1,4 @@
-/* ——基础排版—— */
+/* ─── 基础排版 ─── */
 body{
   background:#000;
   color:#fff;
@@ -7,21 +7,35 @@ body{
   margin:0 auto;
   padding:2rem 1rem;
 }
+h1,h2,h3{font-weight:600;line-height:1.3;margin:2.2rem 0 1rem}
+nav{margin-bottom:3rem}
+nav a{margin-right:1.2rem;color:#8ab4ff;text-decoration:none}
+nav a:hover{text-decoration:underline}
 
-h1, h2, h3 { font-weight: 600; line-height: 1.3; margin: 2.2rem 0 1rem; }
-nav { margin-bottom: 3rem; }
-a{color:#58a6ff;text-decoration:none}
-a:hover{text-decoration:underline}
+/* ─── 无序列表 ─── */
+ul{list-style:none;padding-left:0}
 
-/* unordered lists */
-ul { list-style: none; padding-left: 0; }
+/* ─── 图片卡片网格 ─── */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+  gap:1.5rem;
+  text-align:center;
+}
+.card img{
+  width:100%;height:222px;object-fit:cover;
+  border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,.5)
+}
+.caption{margin-top:.5rem;font-size:.9rem}
 
-/* ——图片方块—— */
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1.5rem}
-.card { text-align:center; }
-.card img{width:100%;height:220px;object-fit:cover;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,.5)}
-.caption { margin-top:.5rem; font-size:.9rem; }
-.video-wrapper{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
-.layout{display:flex;gap:2rem}
-.sidebar{flex-basis:200px;flex-shrink:0}
-.content{flex:1}
+/* ─── 视频双列 ─── */
+.video-wrapper{
+  display:grid;grid-template-columns:1fr 1fr;gap:1.5rem
+}
+video{width:100%;border-radius:6px}
+
+/* ─── 两栏布局 ─── */
+.layout{display:grid;grid-template-columns:200px 1fr;gap:3rem}
+.sidebar h1{font-size:1.8rem;margin:0 0 .5rem}
+.sidebar p{font-size:.95rem;line-height:1.5;color:#ccc}
+.content h2{margin-top:2.5rem}
