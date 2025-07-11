@@ -5,33 +5,88 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>About | Leon Leng</title>
   <link rel="stylesheet" href="style.css" />
+
+  <!-- 使用 greene.sh 网站字体：IBM Plex Sans -->
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'IBM Plex Sans', sans-serif;
+      margin: 0;
+      padding: 2rem;
+      text-align: center;
+      background-color: #ffffff;
+      color: #000000;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      font-weight: 500;
+      margin-bottom: 3rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #000;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      max-width: 700px;
+      margin: 1rem auto;
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    img {
+      width: 180px;
+      height: 180px;
+      border-radius: 9999px;
+      object-fit: cover;
+      margin-top: 2rem;
+    }
+
+    video {
+      width: 80%;
+      max-width: 720px;
+      margin-top: 2rem;
+      border-radius: 8px;
+    }
+  </style>
 </head>
 <body>
+  <!-- 顶部导航 -->
   <nav>
     <a href="index.html">About</a>
     <a href="muses.html">Muses</a>
   </nav>
 
-  <main style="max-width: 720px; margin: 0 auto; text-align: center; padding: 4rem 1rem;">
-    <h1 style="font-size: 2.5rem; font-weight: 700;">Leon Leng</h1>
-    <div style="margin: 1rem 0;">
-      <a href="https://github.com/yourusername">GitHub</a> ·
-      <a href="https://x.com/yourusername">X</a> ·
-      <a href="https://linkedin.com/in/yourusername">LinkedIn</a> ·
-      <a href="mailto:your@email.com">Email</a>
-    </div>
+  <!-- 标题 -->
+  <h1>Leon Leng</h1>
 
-    <img src="images/leon.jpg" alt="Leon Leng" style="width: 180px; height: 180px; border-radius: 9999px; object-fit: cover; margin: 2rem auto;" />
+  <!-- 正文介绍 -->
+  <p>
+    Leon Leng is a Ph.D. researcher working on distributed intelligence systems, programmable governance, and the intersection of AI agents, blockchain economics, and energy infrastructure.
+  </p>
+  <p>
+    He focuses on how intelligent systems allocate resources, align incentives, and balance centralization with autonomy. Leon collaborates with academic institutions and frontier companies to design operationally intelligent systems that are efficient, resilient, and interpretable.
+  </p>
 
-    <h2 style="font-size: 1.25rem; font-weight: 600;">AI Systems · Distributed Intelligence · Governance</h2>
+  <!-- 图片（头像） -->
+  <img src="images/leon.jpg" alt="Leon Leng" />
 
-    <p style="margin-top: 1.5rem; line-height: 1.75;">
-      Leon Leng is a Ph.D. researcher working on distributed intelligence systems, programmable governance, and the intersection of AI agents, blockchain economics, and energy infrastructure. He focuses on how intelligent systems allocate resources, align incentives, and balance centralization with autonomy.
-    </p>
-
-    <p style="margin-top: 1rem; line-height: 1.75;">
-      Leon collaborates with leading academic institutions and frontier companies to design operationally intelligent systems that are efficient, resilient, and interpretable.
-    </p>
-  </main>
+  <!-- 视频展示 -->
+  <video src="videos/int1.mp4" autoplay loop muted playsinline controls></video>
 </body>
 </html>
