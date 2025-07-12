@@ -1,4 +1,3 @@
-/* ─── 基础排版 ─── */
 body {
   background: #fff;
   color: #000;
@@ -14,12 +13,10 @@ h1, h2, h3 {
   margin: 2.2rem 0 1rem;
 }
 
-/* ─── 顶部导航 ─── */
 nav {
   display: flex;
   gap: 1.2rem;
   margin-bottom: 3rem;
-  margin-left: calc(200px + 3rem);
 }
 
 nav a {
@@ -37,13 +34,11 @@ nav a.active {
   text-decoration: underline;
 }
 
-/* ─── 无序列表 ─── */
 ul {
   list-style: none;
   padding-left: 0;
 }
 
-/* ─── 图片卡片网格 ─── */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -62,10 +57,8 @@ ul {
 .caption {
   margin-top: .5rem;
   font-size: .9rem;
-  color: #000;
 }
 
-/* ─── 视频布局 ─── */
 .video-wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -77,27 +70,23 @@ video {
   border-radius: 6px;
 }
 
-/* ─── 两栏布局 ─── */
 .layout {
   display: grid;
   grid-template-columns: 200px 1fr;
   gap: 3rem;
 }
 
-/* ─── 侧栏文字 ─── */
 .sidebar h1 {
   font-size: 1.8rem;
   margin: 0 0 .5rem;
-  color: #000;
 }
 
 .sidebar p {
   font-size: .95rem;
   line-height: 1.5;
-  color: #000;
+  color: #666;
 }
 
-/* ─── 主栏标题留白 ─── */
 .content h2 {
   margin-top: 2.5rem;
 }
