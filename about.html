@@ -16,29 +16,39 @@
   </head>
   <body class="bg-white text-black">
     <!-- Navigation -->
-    <nav class="flex justify-center space-x-6 py-6 text-lg font-medium">
+    <nav class="flex justify-start space-x-6 px-6 py-4 text-lg font-medium">
       <a href="index.html" class="hover:underline">About</a>
       <a href="muses.html" class="hover:underline">Muses</a>
     </nav>
 
     <!-- Main content -->
-    <main class="max-w-4xl mx-auto px-4 text-center">
-      <h1 class="text-5xl font-bold mb-4">Leon Leng</h1>
-      <div class="flex justify-center space-x-4 text-2xl mb-2">
-        <a href="https://github.com/yourusername" class="hover:underline">GitHub</a>
-        <a href="https://x.com/yourusername" class="hover:underline">X</a>
-        <a href="https://linkedin.com/in/yourusername" class="hover:underline">LinkedIn</a>
-        <a href="mailto:your@email.com" class="hover:underline">Email</a>
+    <main class="max-w-5xl mx-auto px-4">
+      <div class="text-center">
+        <h1 class="text-5xl font-bold mb-4 text-black">Leon Leng</h1>
+        <div class="flex justify-center items-center space-x-4 text-gray-700 text-base mb-6">
+          <a href="https://github.com/yourusername" class="hover:underline">GitHub</a>
+          <a href="https://x.com/yourusername" class="hover:underline">X</a>
+          <a href="https://linkedin.com/in/yourusername" class="hover:underline">LinkedIn</a>
+          <a href="mailto:your@email.com" class="hover:underline">Email</a>
+        </div>
       </div>
 
-      <p class="text-lg text-gray-800 mb-8">Leon Leng is a Ph.D. researcher working on distributed intelligence systems, programmable governance, and the intersection of AI agents, blockchain economics, and energy infrastructure.</p>
+      <!-- Flexbox layout with image and text side-by-side -->
+      <div class="flex flex-col md:flex-row items-center justify-center gap-10 mb-12">
+        <img src="images/leon.jpg" alt="Leon Leng" class="w-56 h-56 rounded-full object-cover shadow-md" />
 
-      <p class="text-lg text-gray-800 mb-8">He focuses on how intelligent systems allocate resources, align incentives, and balance centralization with autonomy. Leon collaborates with academic institutions and frontier companies to design operationally intelligent systems that are efficient, resilient, and interpretable.</p>
-
-      <div class="flex justify-center mb-8">
-        <img src="images/leon.jpg" alt="Leon Leng" class="w-48 h-48 rounded-full object-cover" />
+        <div class="text-left max-w-xl">
+          <h2 class="text-2xl font-semibold text-blue-700 mb-2">AI Systems · Distributed Intelligence · Governance</h2>
+          <p class="text-gray-800 leading-relaxed mb-4">
+            Leon Leng is a Ph.D. researcher working on distributed intelligence systems, programmable governance, and the intersection of AI agents, blockchain economics, and energy infrastructure.
+          </p>
+          <p class="text-gray-800 leading-relaxed">
+            He focuses on how intelligent systems allocate resources, align incentives, and balance centralization with autonomy. Leon collaborates with academic institutions and frontier companies to design operationally intelligent systems that are efficient, resilient, and interpretable.
+          </p>
+        </div>
       </div>
 
+      <!-- Video -->
       <div class="flex justify-center">
         <video src="videos/int1.mp4" autoplay loop muted playsinline controls class="rounded-lg w-full max-w-xl"></video>
       </div>
