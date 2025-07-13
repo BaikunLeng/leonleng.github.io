@@ -95,6 +95,41 @@ body {
     max-width: none !important;
   }
 }
+
+/* 移动端Recent News部分样式 */
+@media (max-width: 768px) {
+  .news-title {
+    margin-left: 0 !important;
+    text-align: center;
+  }
+  
+  .news-container {
+    margin-left: 0 !important;
+    max-width: none !important;
+  }
+}
+
+/* News item styles */
+.news-item {
+  padding: 1rem 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.news-item:last-child {
+  border-bottom: none;
+}
+
+.news-date {
+  color: #6b7280;
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+}
+
+.news-content {
+  color: #374151;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
 </style>
 </head>
 <body class="bg-white">
@@ -283,6 +318,36 @@ body {
     <!-- Scroll for more hint -->
     <div class="flex justify-end mt-1">
       <span class="text-xs text-gray-500">Scroll for more →</span>
+    </div>
+  </div>
+</div>
+
+<!-- Recent News Section -->
+<div class="mb-16">
+  <!-- Recent News Title with View all link -->
+  <div class="mb-6 news-title flex items-center justify-between" style="margin-left: calc(50% - 276px); max-width: 552px;">
+    <h2 class="text-xl font-semibold text-black">Recent News</h2>
+    <a href="news.html" class="text-sm text-gray-600 hover:text-black border-b border-dotted border-gray-400 hover:border-black">View all →</a>
+  </div>
+
+  <!-- News Container -->
+  <div class="news-container" style="margin-left: calc(50% - 276px); max-width: 552px;">
+    <!-- News Item 1 -->
+    <div class="news-item">
+      <div class="news-date">2025-06-02</div>
+      <div class="news-content">I'll be in New York City till mid September, interning with the FAIR Alignment team at Meta. If you're in the area, let's catch up!</div>
+    </div>
+
+    <!-- News Item 2 -->
+    <div class="news-item">
+      <div class="news-date">2025-04-26</div>
+      <div class="news-content">Heading to Sydney, AUS to present the Supernotes paper at WWW'25.</div>
+    </div>
+
+    <!-- News Item 3 -->
+    <div class="news-item">
+      <div class="news-date">2025-04-05</div>
+      <div class="news-content">In UMSI, organising the 5th International conference on Social Media and Society in India. This is my 4th year of involvement with this conference.</div>
     </div>
   </div>
 </div>
