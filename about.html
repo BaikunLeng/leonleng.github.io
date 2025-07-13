@@ -12,9 +12,9 @@
  body {
    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "San Francisco", "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
  }
-.nav-container {
-  margin-left: 0;
-}
+ .nav-container {
+   margin-left: calc(50% - 276px);
+ }
  
  /* 滚动条样式 */
  .scroll-container::-webkit-scrollbar {
@@ -84,14 +84,14 @@
  </div>
 
  <!-- Main Content -->
-<div class="flex items-start gap-8 justify-start mb-16">
+ <div class="flex items-start gap-8 justify-center mb-16">
    <!-- Image -->
    <div class="flex-shrink-0">
      <img src="images/about/leonlengabout1.png" alt="Profile Photo" class="w-48 h-56 rounded-lg object-cover shadow-lg" />
    </div>
 
    <!-- Text -->
-  <div class="flex-1" style="max-width: 320px;margin-top: -5px;">
+   <div class="flex-1" style="max-width: 320px;margin-top: -5px; margin-left: 20px;">
      <h2 class="text-xl font-semibold text-black mb-1 text-center">AI, Blockchain, Energy</h2>
      <p class="text-gray-800 text-base leading-tight text-justify">
        Leon researches how to build and design intelligent systems—broadly defined as human and programmable systems with decision-making capabilities and feedback mechanisms—to align system behavior with long-term objectives. His work focuses on AI, blockchain, and energy, which he views respectively as enhancing productive forces, reshaping production relations, and supporting both.
@@ -100,7 +100,7 @@
  </div>
 
  <!-- About Me Section -->
-<div class="flex items-start gap-8 justify-start mb-16">
+ <div class="flex items-start gap-8 justify-center mb-16">
    <!-- About Me Text -->
    <div class="flex-shrink-0" style="width: 192px;">
      <p class="text-gray-800 leading-tight" style="font-size: 13.5px;">
@@ -109,7 +109,7 @@
    </div>
 
    <!-- Media Grid -->
-  <div class="flex-1" style="max-width: 320px;">
+   <div class="flex-1" style="max-width: 320px; margin-left: 20px;">
      <!-- Vimeo Video 1 -->
      <div class="mb-2">
        <div style="position: relative; width: 100%; height: 140px; border-radius: 8px; overflow: hidden;">
@@ -143,9 +143,12 @@
  </div>
 
  <!-- Media Coverage Section -->
-<div class="flex items-start gap-8 justify-start mb-16">
-  <!-- Media Coverage Content -->
-  <div class="flex-1" style="max-width: 320px;">
+ <div class="flex items-start gap-8 justify-center mb-16">
+   <!-- Empty spacer to align with sections above -->
+   <div class="flex-shrink-0" style="width: 192px;"></div>
+
+   <!-- Media Coverage Content -->
+   <div class="flex-1" style="max-width: 320px; margin-left: 20px;">
      <h2 class="text-2xl font-bold text-black mb-2">Media Coverage</h2>
      <div id="mediaScroll" class="flex gap-3 overflow-x-auto scroll-container mb-4" style="scroll-behavior: smooth;">
        <!-- Media Item 1 -->
