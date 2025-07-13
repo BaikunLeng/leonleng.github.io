@@ -9,10 +9,20 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-body {
+html, body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, "San Francisco", "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
   overflow-x: hidden; /* 防止整个页面左右滑动 */
+  width: 100%;
+  max-width: 100%;
+  position: relative;
 }
+
+/* 确保所有容器都不会超出屏幕宽度 */
+* {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
 .nav-container {
   margin-left: calc(50% - 276px);
 }
@@ -34,10 +44,19 @@ body {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
+
+/* 确保主容器固定在中心 */
+.main-container {
+  width: 100%;
+  max-width: 896px; /* max-w-4xl 的像素值 */
+  margin: 0 auto;
+  padding: 0 24px; /* px-6 */
+  overflow: visible;
+}
 </style>
 </head>
 <body class="bg-white">
-<div class="max-w-4xl mx-auto px-6 py-12">
+<div class="main-container py-12">
 
 <!-- Navigation -->
 <nav class="mb-8 nav-container">
@@ -145,13 +164,13 @@ body {
 
 <!-- Media Coverage Section -->
 <div class="mb-16">
-  <!-- Media Coverage Title - 保持在左侧 -->
+  <!-- Media Coverage Title -->
   <div class="mb-6" style="margin-left: calc(50% - 276px);">
     <h2 class="text-2xl font-bold text-black">Media Coverage</h2>
   </div>
 
-  <!-- Media Scroll Container - 与标题左对齐，但限制宽度以恢复滚动功能 -->
-  <div style="margin-left: calc(50% - 276px); max-width: 552px; overflow: hidden;">
+  <!-- Media Scroll Container -->
+  <div style="margin-left: calc(50% - 276px); width: 552px; overflow: hidden;">
     <div id="mediaScroll" class="flex gap-3 overflow-x-auto scroll-container mb-4" style="scroll-behavior: smooth;">
       <!-- Media Item 1 -->
       <div class="media-card flex-shrink-0 cursor-pointer" style="width: 200px;" onclick="window.open('#', '_blank')">
