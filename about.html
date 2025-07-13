@@ -1,273 +1,274 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <meta charset="UTF-8" />
- <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
- <title>Leon Leng</title>
- <script src="https://cdn.tailwindcss.com"></script>
- <link rel="preconnect" href="https://fonts.googleapis.com">
- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
- <style>
-   body {
-     font-family: 'Inter', -apple-system, BlinkMacSystemFont, "San Francisco", "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
-   }
-   .nav-container {
-     margin-left: calc(50% - 276px);
-   }
-   
-   /* 滚动条样式 */
-   .scroll-container::-webkit-scrollbar {
-     display: none;
-   }
-   .scroll-container {
-     -ms-overflow-style: none;
-     scrollbar-width: none;
-   }
-   
-   /* Media card hover effect */
-   .media-card {
-     transition: transform 0.3s ease, box-shadow 0.3s ease;
-   }
-   .media-card:hover {
-     transform: translateY(-2px);
-     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-   }
- </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Leon Leng</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "San Francisco", "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  }
+  .nav-container {
+    margin-left: calc(50% - 276px);
+  }
+  
+  /* 滚动条样式 */
+  .scroll-container::-webkit-scrollbar {
+    display: none;
+  }
+  .scroll-container {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  /* Media card hover effect */
+  .media-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .media-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+</style>
 </head>
 <body class="bg-white">
- <div class="max-w-4xl mx-auto px-6 py-12">
-   
-   <!-- Navigation -->
-   <nav class="mb-8 nav-container">
-     <a href="index.html" class="text-black font-semibold mr-4">About</a>
-     <a href="muses.html" class="text-gray-700 hover:text-black">Muses</a>
-   </nav>
+<div class="max-w-4xl mx-auto px-6 py-12">
+  
+  <!-- Navigation -->
+  <nav class="mb-8 nav-container">
+    <a href="index.html" class="text-black font-semibold mr-4">About</a>
+    <a href="muses.html" class="text-gray-700 hover:text-black">Muses</a>
+  </nav>
 
-   <!-- Header -->
-   <div class="text-center mb-12">
-     <h1 class="text-4xl font-bold text-black mb-6">Leon Leng</h1>
+  <!-- Header -->
+  <div class="text-center mb-12">
+    <h1 class="text-4xl font-bold text-black mb-6">Leon Leng</h1>
 
-     <!-- Social Icons -->
-     <div class="flex justify-center items-center gap-4 mb-1">
-       <!-- LinkedIn -->
-       <a href="https://www.linkedin.com/in/leonleng5/" target="_blank" class="text-gray-700 hover:text-gray-900">
-         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-           <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452z"/>
-         </svg>
-       </a>
+    <!-- Social Icons -->
+    <div class="flex justify-center items-center gap-4 mb-1">
+      <!-- LinkedIn -->
+      <a href="https://www.linkedin.com/in/leonleng5/" target="_blank" class="text-gray-700 hover:text-gray-900">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452z"/>
+        </svg>
+      </a>
 
-       <!-- Twitter/X -->
-       <a href="https://x.com/LeonLeng5" target="_blank" class="text-gray-700 hover:text-gray-900">
-         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-           <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.8l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-         </svg>
-       </a>
+      <!-- Twitter/X -->
+      <a href="https://x.com/LeonLeng5" target="_blank" class="text-gray-700 hover:text-gray-900">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.8l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+        </svg>
+      </a>
 
-       <!-- Newsletter (Substack) -->
-       <a href="https://leonleng.substack.com/" target="_blank" class="text-gray-700 hover:text-gray-900">
-         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-           <path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/>
-         </svg>
-       </a>
+      <!-- Newsletter (Substack) -->
+      <a href="https://leonleng.substack.com/" target="_blank" class="text-gray-700 hover:text-gray-900">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/>
+        </svg>
+      </a>
 
-       <!-- Podcasts (YouTube) -->
-       <a href="https://www.youtube.com/@leonseetech" target="_blank" class="text-gray-700 hover:text-gray-900">
-         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-           <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-         </svg>
-       </a>
-     </div>
+      <!-- Podcasts (YouTube) -->
+      <a href="https://www.youtube.com/@leonseetech" target="_blank" class="text-gray-700 hover:text-gray-900">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+        </svg>
+      </a>
+    </div>
 
-     <!-- Email -->
-     <p class="text-gray-700 text-sm">leonleng@uw.edu</p>
-   </div>
+    <!-- Email -->
+    <p class="text-gray-700 text-sm">leonleng@uw.edu</p>
+  </div>
 
-   <!-- Main Content -->
-   <div class="flex items-start gap-8 justify-center mb-16">
-     <!-- Image -->
-     <div class="flex-shrink-0">
-       <img src="images/about/leonlengabout1.png" alt="Profile Photo" class="w-48 h-56 rounded-lg object-cover shadow-lg" />
-     </div>
+  <!-- Main Content -->
+  <div class="flex items-start gap-8 justify-center mb-16">
+    <!-- Image -->
+    <div class="flex-shrink-0">
+      <img src="images/about/leonlengabout1.png" alt="Profile Photo" class="w-48 h-56 rounded-lg object-cover shadow-lg" />
+    </div>
 
-     <!-- Text -->
-     <div class="flex-1" style="max-width: 320px;margin-top: -5px; margin-left: 20px;">
-       <h2 class="text-xl font-semibold text-black mb-1 text-center">AI, Blockchain, Energy</h2>
-       <p class="text-gray-800 text-base leading-tight text-justify">
-         Leon researches how to build and design intelligent systems—broadly defined as human and programmable systems with decision-making capabilities and feedback mechanisms—to align system behavior with long-term objectives. His work focuses on AI, blockchain, and energy, which he views respectively as enhancing productive forces, reshaping production relations, and supporting both.
-       </p>
-     </div>
-   </div>
+    <!-- Text -->
+    <div class="flex-1" style="max-width: 320px;margin-top: -5px; margin-left: 20px;">
+      <h2 class="text-xl font-semibold text-black mb-1 text-center">AI, Blockchain, Energy</h2>
+      <p class="text-gray-800 text-base leading-tight text-justify">
+        Leon researches how to build and design intelligent systems—broadly defined as human and programmable systems with decision-making capabilities and feedback mechanisms—to align system behavior with long-term objectives. His work focuses on AI, blockchain, and energy, which he views respectively as enhancing productive forces, reshaping production relations, and supporting both.
+      </p>
+    </div>
+  </div>
 
-   <!-- About Me Section -->
-   <div class="flex items-start gap-8 justify-center mb-16">
-     <!-- About Me Text -->
-     <div class="flex-shrink-0" style="width: 192px;">
-       <p class="text-gray-800 leading-tight" style="font-size: 13.5px;">
-         <span class="font-semibold text-black">About Me:</span> Leon Leng is a Ph.D. student in Information Systems & Operations Management at the University of Washington's Foster School of Business, with minors in Computer Science, Statistics, and Economic Theory. He holds a B.S. from The Chinese University of Hong Kong, Shenzhen, and completed a visiting program at UC Berkeley. Leon bridges research and practice through collaborations with industry experts via events, podcasts, newsletters and more. Feel free to reach out for a conversation.
-       </p>
-     </div>
+  <!-- About Me Section -->
+  <div class="flex items-start gap-8 justify-center mb-16">
+    <!-- About Me Text -->
+    <div class="flex-shrink-0" style="width: 192px;">
+      <p class="text-gray-800 leading-tight" style="font-size: 13.5px;">
+        <span class="font-semibold text-black">About Me:</span> Leon Leng is a Ph.D. student in Information Systems & Operations Management at the University of Washington's Foster School of Business, with minors in Computer Science, Statistics, and Economic Theory. He holds a B.S. from The Chinese University of Hong Kong, Shenzhen, and completed a visiting program at UC Berkeley. Leon bridges research and practice through collaborations with industry experts via events, podcasts, newsletters and more. Feel free to reach out for a conversation.
+      </p>
+    </div>
 
-     <!-- Media Grid -->
-     <div class="flex-1" style="max-width: 320px; margin-left: 20px;">
-       <!-- Vimeo Video 1 -->
-       <div class="mb-2">
-         <div style="position: relative; width: 100%; height: 140px; border-radius: 8px; overflow: hidden;">
-           <iframe 
-             src="https://player.vimeo.com/video/1100920444?badge=0&autoplay=1&loop=1&muted=1&autopause=0&controls=0&player_id=0&app_id=58479" 
-             frameborder="0" 
-             allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
-             style="position: absolute; top: 0; left: 0; width: 120%; height: 120%; transform: translate(-8.33%, -8.33%);"
-             title="Leon gives a research talk about Tokenomics Design">
-           </iframe>
-         </div>
-         <p class="text-xs text-gray-600 mt-1">Leon gives a research talk about Tokenomics Design</p>
-       </div>
+    <!-- Media Grid -->
+    <div class="flex-1" style="max-width: 320px; margin-left: 20px;">
+      <!-- Vimeo Video 1 -->
+      <div class="mb-2">
+        <div style="position: relative; width: 100%; height: 140px; border-radius: 8px; overflow: hidden;">
+          <iframe 
+            src="https://player.vimeo.com/video/1100920444?badge=0&autoplay=1&loop=1&muted=1&autopause=0&controls=0&player_id=0&app_id=58479" 
+            frameborder="0" 
+            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
+            style="position: absolute; top: 0; left: 0; width: 120%; height: 120%; transform: translate(-8.33%, -8.33%);"
+            title="Leon gives a research talk about Tokenomics Design">
+          </iframe>
+        </div>
+        <p class="text-xs text-gray-600 mt-1">Leon gives a research talk about Tokenomics Design</p>
+      </div>
 
-       <div class="mb-4"></div>
+      <div class="mb-4"></div>
 
-       <!-- Vimeo Video 2 -->
-       <div>
-         <div style="position: relative; width: 100%; height: 140px; border-radius: 8px; overflow: hidden;">
-           <iframe 
-             src="https://player.vimeo.com/video/1100926777?badge=0&autoplay=1&loop=1&muted=1&autopause=0&controls=0&player_id=0&app_id=58479" 
-             frameborder="0" 
-             allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
-             style="position: absolute; top: 0; left: 0; width: 120%; height: 120%; transform: translate(-8.33%, -8.33%);"
-             title="Leon was interviewed at ETH Denver at Media House">
-           </iframe>
-         </div>
-         <p class="text-xs text-gray-600 mt-1">Leon was interviewed at ETH Denver at Media House</p>
-       </div>
-     </div>
-   </div>
+      <!-- Vimeo Video 2 -->
+      <div>
+        <div style="position: relative; width: 100%; height: 140px; border-radius: 8px; overflow: hidden;">
+          <iframe 
+            src="https://player.vimeo.com/video/1100926777?badge=0&autoplay=1&loop=1&muted=1&autopause=0&controls=0&player_id=0&app_id=58479" 
+            frameborder="0" 
+            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
+            style="position: absolute; top: 0; left: 0; width: 120%; height: 120%; transform: translate(-8.33%, -8.33%);"
+            title="Leon was interviewed at ETH Denver at Media House">
+          </iframe>
+        </div>
+        <p class="text-xs text-gray-600 mt-1">Leon was interviewed at ETH Denver at Media House</p>
+      </div>
+    </div>
+  </div>
 
-   <!-- Media Coverage Section -->
-   <div class="flex items-start gap-8 justify-center mb-16">
-     <!-- Media Coverage - 完整宽度布局 -->
-     <div style="width: 512px; margin-left: calc(50% - 256px);">
-       <!-- Title -->
-       <h2 class="text-2xl font-bold text-black mb-6">Media Coverage</h2>
-       
-       <!-- Media Scroll Container - 全宽度 -->
-       <div id="mediaScroll" class="flex gap-3 overflow-x-auto scroll-container mb-4" style="scroll-behavior: smooth;">
-         <!-- Media Item 1 -->
-         <div class="media-card flex-shrink-0 cursor-pointer" style="width: 200px;" onclick="window.open('#', '_blank')">
-           <div style="position: relative; width: 100%; height: 140px; border-radius: 8px; overflow: hidden;" class="bg-gradient-to-br from-blue-500 to-purple-600">
-             <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
-               <div class="text-white text-center p-3">
-                 <h3 class="text-sm font-semibold mb-1">TechCrunch</h3>
-                 <p class="text-xs opacity-90">AI Startup Funding</p>
-               </div>
-             </div>
-           </div>
-           <p class="text-xs text-gray-600 mt-1">How AI is Reshaping Investment Landscape</p>
-         </div>
+  <!-- Media Coverage Section -->
+  <div class="flex items-start gap-8 justify-center">
+    <!-- Media Coverage Title -->
+    <div class="flex-shrink-0" style="width: 192px;">
+      <h2 class="text-2xl font-bold text-black mb-6">Media Coverage</h2>
+    </div>
 
-         <!-- Media Item 2 -->
-         <div class="media-card flex-shrink-0 cursor-pointer" style="width: 200px;" onclick="window.open('#', '_blank')">
-           <div style="position: relative; width: 100%; height: 140px; border-radius: 8px; overflow: hidden;" class="bg-gradient-to-br from-green-500 to-blue-500">
-             <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
-               <div class="text-white text-center p-3">
-                 <h3 class="text-sm font-semibold mb-1">MIT Tech Review</h3>
-                 <p class="text-xs opacity-90">Blockchain Innovation</p>
-               </div>
-             </div>
-           </div>
-           <p class="text-xs text-gray-600 mt-1">The Future of Decentralized Systems</p>
-         </div>
+    <!-- Media Scroll Container -->
+    <div class="flex-1" style="max-width: 320px; margin-left: 20px;">
+      <div id="mediaScroll" class="flex gap-3 overflow-x-auto scroll-container mb-4" style="scroll-behavior: smooth;">
+        <!-- Media Item 1 -->
+        <div class="media-card flex-shrink-0 cursor-pointer" style="width: 200px;" onclick="window.open('#', '_blank')">
+          <div style="position: relative; width: 100%; height: 140px; border-radius: 8px; overflow: hidden;" class="bg-gradient-to-br from-blue-500 to-purple-600">
+            <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+              <div class="text-white text-center p-3">
+                <h3 class="text-sm font-semibold mb-1">TechCrunch</h3>
+                <p class="text-xs opacity-90">AI Startup Funding</p>
+              </div>
+            </div>
+          </div>
+          <p class="text-xs text-gray-600 mt-1">How AI is Reshaping Investment Landscape</p>
+        </div>
 
-         <!-- Media Item 3 -->
-         <div class="media-card flex-shrink-0 cursor-pointer" style="width: 200px;" onclick="window.open('#', '_blank')">
-           <div style="position: relative; width: 100%; height: 140px; border-radius: 8px; overflow: hidden;" class="bg-gradient-to-br from-orange-500 to-red-500">
-             <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
-               <div class="text-white text-center p-3">
-                 <h3 class="text-sm font-semibold mb-1">Forbes</h3>
-                 <p class="text-xs opacity-90">Young Innovators</p>
-               </div>
-             </div>
-           </div>
-           <p class="text-xs text-gray-600 mt-1">Rising Stars in Tech Research</p>
-         </div>
+        <!-- Media Item 2 -->
+        <div class="media-card flex-shrink-0 cursor-pointer" style="width: 200px;" onclick="window.open('#', '_blank')">
+          <div style="position: relative; width: 100%; height: 140px; border-radius: 8px; overflow: hidden;" class="bg-gradient-to-br from-green-500 to-blue-500">
+            <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+              <div class="text-white text-center p-3">
+                <h3 class="text-sm font-semibold mb-1">MIT Tech Review</h3>
+                <p class="text-xs opacity-90">Blockchain Innovation</p>
+              </div>
+            </div>
+          </div>
+          <p class="text-xs text-gray-600 mt-1">The Future of Decentralized Systems</p>
+        </div>
 
-         <!-- Media Item 4 -->
-         <div class="media-card flex-shrink-0 cursor-pointer" style="width: 200px;" onclick="window.open('#', '_blank')">
-           <div style="position: relative; width: 100%; height: 140px; border-radius: 8px; overflow: hidden;" class="bg-gradient-to-br from-purple-500 to-pink-500">
-             <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
-               <div class="text-white text-center p-3">
-                 <h3 class="text-sm font-semibold mb-1">VentureBeat</h3>
-                 <p class="text-xs opacity-90">Energy Tech</p>
-               </div>
-             </div>
-           </div>
-           <p class="text-xs text-gray-600 mt-1">Energy Sector Digital Transformation</p>
-         </div>
+        <!-- Media Item 3 -->
+        <div class="media-card flex-shrink-0 cursor-pointer" style="width: 200px;" onclick="window.open('#', '_blank')">
+          <div style="position: relative; width: 100%; height: 140px; border-radius: 8px; overflow: hidden;" class="bg-gradient-to-br from-orange-500 to-red-500">
+            <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+              <div class="text-white text-center p-3">
+                <h3 class="text-sm font-semibold mb-1">Forbes</h3>
+                <p class="text-xs opacity-90">Young Innovators</p>
+              </div>
+            </div>
+          </div>
+          <p class="text-xs text-gray-600 mt-1">Rising Stars in Tech Research</p>
+        </div>
 
-         <!-- Media Item 5 -->
-         <div class="media-card flex-shrink-0 cursor-pointer" style="width: 200px;" onclick="window.open('#', '_blank')">
-           <div style="position: relative; width: 100%; height: 140px; border-radius: 8px; overflow: hidden;" class="bg-gradient-to-br from-indigo-500 to-blue-600">
-             <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
-               <div class="text-white text-center p-3">
-                 <h3 class="text-sm font-semibold mb-1">Wired</h3>
-                 <p class="text-xs opacity-90">Research Spotlight</p>
-               </div>
-             </div>
-           </div>
-           <p class="text-xs text-gray-600 mt-1">Academia Meets Industry Innovation</p>
-         </div>
-       </div>
-       
-       <!-- Scroll for more hint - 右对齐 -->
-       <div class="flex justify-end">
-         <span class="text-xs text-gray-500">Scroll for more →</span>
-       </div>
-     </div>
-   </div>
+        <!-- Media Item 4 -->
+        <div class="media-card flex-shrink-0 cursor-pointer" style="width: 200px;" onclick="window.open('#', '_blank')">
+          <div style="position: relative; width: 100%; height: 140px; border-radius: 8px; overflow: hidden;" class="bg-gradient-to-br from-purple-500 to-pink-500">
+            <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+              <div class="text-white text-center p-3">
+                <h3 class="text-sm font-semibold mb-1">VentureBeat</h3>
+                <p class="text-xs opacity-90">Energy Tech</p>
+              </div>
+            </div>
+          </div>
+          <p class="text-xs text-gray-600 mt-1">Energy Sector Digital Transformation</p>
+        </div>
 
- </div>
+        <!-- Media Item 5 -->
+        <div class="media-card flex-shrink-0 cursor-pointer" style="width: 200px;" onclick="window.open('#', '_blank')">
+          <div style="position: relative; width: 100%; height: 140px; border-radius: 8px; overflow: hidden;" class="bg-gradient-to-br from-indigo-500 to-blue-600">
+            <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+              <div class="text-white text-center p-3">
+                <h3 class="text-sm font-semibold mb-1">Wired</h3>
+                <p class="text-xs opacity-90">Research Spotlight</p>
+              </div>
+            </div>
+          </div>
+          <p class="text-xs text-gray-600 mt-1">Academia Meets Industry Innovation</p>
+        </div>
+      </div>
+      
+      <!-- Scroll for more hint -->
+      <div class="flex justify-end">
+        <span class="text-xs text-gray-500">Scroll for more →</span>
+      </div>
+    </div>
+  </div>
 
- <script>
-   function scrollMediaLeft() {
-     const container = document.getElementById('mediaScroll');
-     container.scrollBy({ left: -210, behavior: 'smooth' });
-   }
+</div>
 
-   function scrollMediaRight() {
-     const container = document.getElementById('mediaScroll');
-     container.scrollBy({ left: 210, behavior: 'smooth' });
-   }
+<script>
+  function scrollMediaLeft() {
+    const container = document.getElementById('mediaScroll');
+    container.scrollBy({ left: -210, behavior: 'smooth' });
+  }
 
-   // 添加触摸滑动支持
-   let isDown = false;
-   let startX;
-   let scrollLeft;
+  function scrollMediaRight() {
+    const container = document.getElementById('mediaScroll');
+    container.scrollBy({ left: 210, behavior: 'smooth' });
+  }
 
-   const slider = document.getElementById('mediaScroll');
+  // 添加触摸滑动支持
+  let isDown = false;
+  let startX;
+  let scrollLeft;
 
-   slider.addEventListener('mousedown', (e) => {
-     isDown = true;
-     slider.style.cursor = 'grabbing';
-     startX = e.pageX - slider.offsetLeft;
-     scrollLeft = slider.scrollLeft;
-   });
+  const slider = document.getElementById('mediaScroll');
 
-   slider.addEventListener('mouseleave', () => {
-     isDown = false;
-     slider.style.cursor = 'grab';
-   });
+  slider.addEventListener('mousedown', (e) => {
+    isDown = true;
+    slider.style.cursor = 'grabbing';
+    startX = e.pageX - slider.offsetLeft;
+    scrollLeft = slider.scrollLeft;
+  });
 
-   slider.addEventListener('mouseup', () => {
-     isDown = false;
-     slider.style.cursor = 'grab';
-   });
+  slider.addEventListener('mouseleave', () => {
+    isDown = false;
+    slider.style.cursor = 'grab';
+  });
 
-   slider.addEventListener('mousemove', (e) => {
-     if (!isDown) return;
-     e.preventDefault();
-     const x = e.pageX - slider.offsetLeft;
-     const walk = (x - startX) * 2;
-     slider.scrollLeft = scrollLeft - walk;
-   });
- </script>
+  slider.addEventListener('mouseup', () => {
+    isDown = false;
+    slider.style.cursor = 'grab';
+  });
+
+  slider.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - slider.offsetLeft;
+    const walk = (x - startX) * 2;
+    slider.scrollLeft = scrollLeft - walk;
+  });
+</script>
 </body>
 </html>
