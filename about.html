@@ -15,6 +15,24 @@
    .nav-container {
      margin-left: calc(50% - 276px);
    }
+   
+   /* 滚动条样式 */
+   .scroll-container::-webkit-scrollbar {
+     display: none;
+   }
+   .scroll-container {
+     -ms-overflow-style: none;
+     scrollbar-width: none;
+   }
+   
+   /* Media card hover effect */
+   .media-card {
+     transition: transform 0.3s ease, box-shadow 0.3s ease;
+   }
+   .media-card:hover {
+     transform: translateY(-4px);
+     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+   }
  </style>
 </head>
 <body class="bg-white">
@@ -82,7 +100,7 @@
    </div>
 
    <!-- About Me Section -->
-   <div class="flex items-start gap-8 justify-center">
+   <div class="flex items-start gap-8 justify-center mb-16">
      <!-- About Me Text -->
      <div class="flex-shrink-0" style="width: 192px;">
        <p class="text-gray-800 leading-tight" style="font-size: 13.5px;">
@@ -124,6 +142,152 @@
      </div>
    </div>
 
+   <!-- Media Coverage Section -->
+   <div class="mb-16">
+     <div class="flex items-center justify-between mb-6">
+       <h2 class="text-2xl font-bold text-black">Media Coverage</h2>
+       <div class="flex items-center gap-2">
+         <button onclick="scrollMediaLeft()" class="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors">
+           <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+           </svg>
+         </button>
+         <button onclick="scrollMediaRight()" class="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors">
+           <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+           </svg>
+         </button>
+         <span class="text-sm text-gray-500 ml-2">Scroll for more →</span>
+       </div>
+     </div>
+
+     <div id="mediaScroll" class="flex gap-4 overflow-x-auto scroll-container pb-4" style="scroll-behavior: smooth;">
+       <!-- Media Item 1 -->
+       <div class="media-card flex-shrink-0 w-80 bg-white rounded-lg overflow-hidden shadow-md cursor-pointer" onclick="window.open('#', '_blank')">
+         <div class="h-48 bg-gradient-to-br from-blue-500 to-purple-600 relative overflow-hidden">
+           <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+             <div class="text-white text-center p-4">
+               <h3 class="text-lg font-semibold mb-2">TechCrunch</h3>
+               <p class="text-sm opacity-90">AI Startup Funding Trends in 2024</p>
+             </div>
+           </div>
+         </div>
+         <div class="p-4">
+           <h4 class="font-semibold text-gray-900 mb-2">How AI is Reshaping Investment Landscape</h4>
+           <p class="text-sm text-gray-600">Leon discusses the future of AI investments and blockchain integration...</p>
+         </div>
+       </div>
+
+       <!-- Media Item 2 -->
+       <div class="media-card flex-shrink-0 w-80 bg-white rounded-lg overflow-hidden shadow-md cursor-pointer" onclick="window.open('#', '_blank')">
+         <div class="h-48 bg-gradient-to-br from-green-500 to-blue-500 relative overflow-hidden">
+           <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+             <div class="text-white text-center p-4">
+               <h3 class="text-lg font-semibold mb-2">MIT Technology Review</h3>
+               <p class="text-sm opacity-90">Blockchain Innovation Feature</p>
+             </div>
+           </div>
+         </div>
+         <div class="p-4">
+           <h4 class="font-semibold text-gray-900 mb-2">The Future of Decentralized Systems</h4>
+           <p class="text-sm text-gray-600">Expert insights on blockchain technology and its applications...</p>
+         </div>
+       </div>
+
+       <!-- Media Item 3 -->
+       <div class="media-card flex-shrink-0 w-80 bg-white rounded-lg overflow-hidden shadow-md cursor-pointer" onclick="window.open('#', '_blank')">
+         <div class="h-48 bg-gradient-to-br from-orange-500 to-red-500 relative overflow-hidden">
+           <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+             <div class="text-white text-center p-4">
+               <h3 class="text-lg font-semibold mb-2">Forbes</h3>
+               <p class="text-sm opacity-90">Young Innovators 2024</p>
+             </div>
+           </div>
+         </div>
+         <div class="p-4">
+           <h4 class="font-semibold text-gray-900 mb-2">Rising Stars in Tech Research</h4>
+           <p class="text-sm text-gray-600">Featured among promising young researchers in AI and blockchain...</p>
+         </div>
+       </div>
+
+       <!-- Media Item 4 -->
+       <div class="media-card flex-shrink-0 w-80 bg-white rounded-lg overflow-hidden shadow-md cursor-pointer" onclick="window.open('#', '_blank')">
+         <div class="h-48 bg-gradient-to-br from-purple-500 to-pink-500 relative overflow-hidden">
+           <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+             <div class="text-white text-center p-4">
+               <h3 class="text-lg font-semibold mb-2">VentureBeat</h3>
+               <p class="text-sm opacity-90">Energy Tech Analysis</p>
+             </div>
+           </div>
+         </div>
+         <div class="p-4">
+           <h4 class="font-semibold text-gray-900 mb-2">Energy Sector Digital Transformation</h4>
+           <p class="text-sm text-gray-600">Analysis of smart grid technologies and renewable energy systems...</p>
+         </div>
+       </div>
+
+       <!-- Media Item 5 -->
+       <div class="media-card flex-shrink-0 w-80 bg-white rounded-lg overflow-hidden shadow-md cursor-pointer" onclick="window.open('#', '_blank')">
+         <div class="h-48 bg-gradient-to-br from-indigo-500 to-blue-600 relative overflow-hidden">
+           <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+             <div class="text-white text-center p-4">
+               <h3 class="text-lg font-semibold mb-2">Wired</h3>
+               <p class="text-sm opacity-90">Academic Research Spotlight</p>
+             </div>
+           </div>
+         </div>
+         <div class="p-4">
+           <h4 class="font-semibold text-gray-900 mb-2">Academia Meets Industry Innovation</h4>
+           <p class="text-sm text-gray-600">Bridging the gap between research and practical applications...</p>
+         </div>
+       </div>
+     </div>
+   </div>
+
  </div>
+
+ <script>
+   function scrollMediaLeft() {
+     const container = document.getElementById('mediaScroll');
+     container.scrollBy({ left: -320, behavior: 'smooth' });
+   }
+
+   function scrollMediaRight() {
+     const container = document.getElementById('mediaScroll');
+     container.scrollBy({ left: 320, behavior: 'smooth' });
+   }
+
+   // 添加触摸滑动支持
+   let isDown = false;
+   let startX;
+   let scrollLeft;
+
+   const slider = document.getElementById('mediaScroll');
+
+   slider.addEventListener('mousedown', (e) => {
+     isDown = true;
+     slider.style.cursor = 'grabbing';
+     startX = e.pageX - slider.offsetLeft;
+     scrollLeft = slider.scrollLeft;
+   });
+
+   slider.addEventListener('mouseleave', () => {
+     isDown = false;
+     slider.style.cursor = 'grab';
+   });
+
+   slider.addEventListener('mouseup', () => {
+     isDown = false;
+     slider.style.cursor = 'grab';
+   });
+
+   slider.addEventListener('mousemove', (e) => {
+     if (!isDown) return;
+     e.preventDefault();
+     const x = e.pageX - slider.offsetLeft;
+     const walk = (x - startX) * 2;
+     slider.scrollLeft = scrollLeft - walk;
+   });
+ </script>
 </body>
 </html>
