@@ -11,6 +11,7 @@
 <style>
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, "San Francisco", "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  overflow-x: hidden; /* 防止整个页面左右滑动 */
 }
 .nav-container {
   margin-left: calc(50% - 276px);
@@ -149,8 +150,8 @@ body {
     <h2 class="text-2xl font-bold text-black">Media Coverage</h2>
   </div>
 
-  <!-- Media Scroll Container - 与标题左对齐 -->
-  <div style="margin-left: calc(50% - 276px);">
+  <!-- Media Scroll Container - 与标题左对齐，但限制宽度以恢复滚动功能 -->
+  <div style="margin-left: calc(50% - 276px); max-width: 552px; overflow: hidden;">
     <div id="mediaScroll" class="flex gap-3 overflow-x-auto scroll-container mb-4" style="scroll-behavior: smooth;">
       <!-- Media Item 1 -->
       <div class="media-card flex-shrink-0 cursor-pointer" style="width: 200px;" onclick="window.open('#', '_blank')">
