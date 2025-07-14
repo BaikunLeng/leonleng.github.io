@@ -117,6 +117,57 @@ body {
   text-align: center;
 }
 
+/* Gallery 滑动样式 */
+.gallery-container {
+  margin-left: calc(50% - 276px);
+  max-width: 552px;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .gallery-container {
+    margin-left: 0;
+    max-width: none;
+  }
+}
+
+.gallery-scroll {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding-bottom: 1rem;
+}
+
+.gallery-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.gallery-scroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.gallery-item {
+  flex-shrink: 0;
+  width: 200px;
+  height: 150px;
+  border-radius: 8px;
+  background-color: #f3f4f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9ca3af;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
 /* 内容区域样式 */
 .content-container {
   margin-left: calc(50% - 276px);
@@ -328,7 +379,100 @@ body {
   </div>
 </div>
 
+<!-- Gallery Section -->
+<div class="mb-16">
+  <!-- Gallery Title -->
+  <div class="mb-6" style="margin-left: calc(50% - 276px);">
+    <h2 class="text-xl font-semibold text-black">Gallery</h2>
+  </div>
+
+  <!-- Gallery Scroll Container -->
+  <div class="gallery-container">
+    <div id="galleryScroll" class="gallery-scroll">
+      <!-- Gallery Item 1 -->
+      <div class="gallery-item">
+        Gallery Image
+      </div>
+
+      <!-- Gallery Item 2 -->
+      <div class="gallery-item">
+        Gallery Image
+      </div>
+
+      <!-- Gallery Item 3 -->
+      <div class="gallery-item">
+        Gallery Image
+      </div>
+
+      <!-- Gallery Item 4 -->
+      <div class="gallery-item">
+        Gallery Image
+      </div>
+
+      <!-- Gallery Item 5 -->
+      <div class="gallery-item">
+        Gallery Image
+      </div>
+
+      <!-- Gallery Item 6 -->
+      <div class="gallery-item">
+        Gallery Image
+      </div>
+
+      <!-- Gallery Item 7 -->
+      <div class="gallery-item">
+        Gallery Image
+      </div>
+
+      <!-- Gallery Item 8 -->
+      <div class="gallery-item">
+        Gallery Image
+      </div>
+    </div>
+    
+    <!-- Scroll hint -->
+    <div class="flex justify-end mt-1">
+      <span class="text-xs text-gray-500">Scroll for more →</span>
+    </div>
+  </div>
 </div>
 
+</div>
+
+<script>
+// Gallery scroll functionality
+let isDown = false;
+let startX;
+let scrollLeft;
+
+const gallerySlider = document.getElementById('galleryScroll');
+
+if (gallerySlider) {
+  gallerySlider.addEventListener('mousedown', (e) => {
+    isDown = true;
+    gallerySlider.style.cursor = 'grabbing';
+    startX = e.pageX - gallerySlider.offsetLeft;
+    scrollLeft = gallerySlider.scrollLeft;
+  });
+
+  gallerySlider.addEventListener('mouseleave', () => {
+    isDown = false;
+    gallerySlider.style.cursor = 'grab';
+  });
+
+  gallerySlider.addEventListener('mouseup', () => {
+    isDown = false;
+    gallerySlider.style.cursor = 'grab';
+  });
+
+  gallerySlider.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - gallerySlider.offsetLeft;
+    const walk = (x - startX) * 2;
+    gallerySlider.scrollLeft = scrollLeft - walk;
+  });
+}
+</script>
 </body>
 </html>
