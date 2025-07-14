@@ -10,198 +10,205 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "San Francisco", "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
-  overflow-x: hidden;
+ font-family: 'Inter', -apple-system, BlinkMacSystemFont, "San Francisco", "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+ overflow-x: hidden;
 }
 
 /* 桌面版导航样式 */
 .nav-container {
-  margin-left: calc(50% - 276px);
+ margin-left: calc(50% - 276px);
 }
 
 /* 移动端导航样式 */
 @media (max-width: 768px) {
-  .nav-container {
-    margin-left: 0;
-    text-align: center;
-  }
+ .nav-container {
+   margin-left: 0;
+   text-align: center;
+ }
 }
 
 /* 书籍和电影卡片样式 */
 .media-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
-  margin-bottom: 3rem;
+ display: grid;
+ grid-template-columns: repeat(4, 1fr);
+ gap: 1.5rem;
+ margin-bottom: 3rem;
 }
 
 @media (max-width: 768px) {
-  .media-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-  }
+ .media-grid {
+   grid-template-columns: repeat(2, 1fr);
+   gap: 1rem;
+ }
 }
 
 .media-card {
-  display: flex;
-  flex-direction: column;
+ display: flex;
+ flex-direction: column;
 }
 
 .media-image {
-  width: 100%;
-  aspect-ratio: 3/4;
-  border-radius: 8px;
-  object-fit: cover;
-  margin-bottom: 0.75rem;
-  background-color: #f3f4f6;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #9ca3af;
-  font-size: 0.875rem;
+ width: 100%;
+ aspect-ratio: 3/4;
+ border-radius: 8px;
+ object-fit: cover;
+ margin-bottom: 0.75rem;
+ background-color: #f3f4f6;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ color: #9ca3af;
+ font-size: 0.875rem;
 }
 
 .media-title {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: #111827;
-  line-height: 1.3;
-  margin-bottom: 0.25rem;
-  text-align: center;
+ font-size: 0.875rem;
+ font-weight: 600;
+ color: #111827;
+ line-height: 1.3;
+ margin-bottom: 0.25rem;
+ text-align: center;
 }
 
 .media-author {
-  font-size: 0.875rem;
-  color: #6b7280;
-  line-height: 1.3;
+ font-size: 0.875rem;
+ color: #6b7280;
+ line-height: 1.3;
 }
 
 /* 艺术表达网格样式 - 使用不同的布局 */
 .art-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  margin-bottom: 3rem;
+ display: grid;
+ grid-template-columns: repeat(3, 1fr);
+ gap: 1.5rem;
+ margin-bottom: 3rem;
 }
 
 @media (max-width: 768px) {
-  .art-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-  }
+ .art-grid {
+   grid-template-columns: repeat(2, 1fr);
+   gap: 1rem;
+ }
 }
 
 .art-card {
-  display: flex;
-  flex-direction: column;
+ display: flex;
+ flex-direction: column;
 }
 
 .art-image {
-  width: 100%;
-  aspect-ratio: 1/1;
-  border-radius: 8px;
-  object-fit: cover;
-  margin-bottom: 0.75rem;
-  background-color: #f3f4f6;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #9ca3af;
-  font-size: 0.875rem;
+ width: 100%;
+ aspect-ratio: 1/1;
+ border-radius: 8px;
+ object-fit: cover;
+ margin-bottom: 0.75rem;
+ background-color: #f3f4f6;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ color: #9ca3af;
+ font-size: 0.875rem;
 }
 
 .art-title {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: #111827;
-  line-height: 1.3;
-  text-align: center;
+ font-size: 0.875rem;
+ font-weight: 600;
+ color: #111827;
+ line-height: 1.3;
+ text-align: center;
 }
 
 /* Gallery 滑动样式 */
 .gallery-container {
-  margin-left: calc(50% - 276px);
-  max-width: 552px;
-  overflow: hidden;
+ margin-left: calc(50% - 276px);
+ max-width: 552px;
+ overflow: hidden;
 }
 
 @media (max-width: 768px) {
-  .gallery-container {
-    margin-left: 0;
-    max-width: none;
-  }
+ .gallery-container {
+   margin-left: 0;
+   max-width: none;
+ }
 }
 
 .gallery-scroll {
-  display: flex;
-  gap: 1rem;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  padding-bottom: 1rem;
+ display: flex;
+ gap: 1rem;
+ overflow-x: auto;
+ scroll-behavior: smooth;
+ padding-bottom: 1rem;
 }
 
 .gallery-scroll::-webkit-scrollbar {
-  display: none;
+ display: none;
 }
 
 .gallery-scroll {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+ -ms-overflow-style: none;
+ scrollbar-width: none;
 }
 
 .gallery-card {
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
+ flex-shrink: 0;
+ display: flex;
+ flex-direction: column;
 }
 
 .gallery-item {
-  width: 200px;
-  height: 150px;
-  border-radius: 8px;
-  background-color: #f3f4f6;
-  object-fit: cover;
-  cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  margin-bottom: 0.75rem;
+ width: 200px;
+ height: 150px;
+ border-radius: 8px;
+ background-color: #f3f4f6;
+ object-fit: cover;
+ cursor: pointer;
+ transition: transform 0.3s ease, box-shadow 0.3s ease;
+ margin-bottom: 0.75rem;
 }
 
 .gallery-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+ transform: translateY(-2px);
+ box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .gallery-title {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: #111827;
-  line-height: 1.3;
-  text-align: center;
+ font-size: 0.875rem;
+ font-weight: 600;
+ color: #111827;
+ line-height: 1.3;
+ text-align: center;
 }
 
 /* 内容区域样式 */
 .content-container {
-  margin-left: calc(50% - 276px);
-  max-width: 552px;
+ margin-left: calc(50% - 276px);
+ max-width: 552px;
 }
 
 @media (max-width: 768px) {
-  .content-container {
-    margin-left: 0;
-    max-width: none;
-  }
+ .content-container {
+   margin-left: 0;
+   max-width: none;
+ }
 }
 
 .section-title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #111827;
-  margin-bottom: 1.5rem;
-  margin-top: 3rem;
+ font-size: 1.5rem;
+ font-weight: 700;
+ color: #111827;
+ margin-bottom: 1.5rem;
+ margin-top: 3rem;
 }
 
 .section-title:first-of-type {
-  margin-top: 2rem;
+ margin-top: 2rem;
+}
+
+.section-subtitle {
+ font-size: 0.75rem;
+ color: #6b7280;
+ margin-top: -1rem;
+ margin-bottom: 1.5rem;
 }
 </style>
 </head>
@@ -210,208 +217,209 @@ body {
 
 <!-- Navigation -->
 <nav class="mb-8 nav-container">
-  <a href="index.html" class="text-gray-700 hover:text-black mr-4">About</a>
-  <a href="muses.html" class="text-black font-semibold">Muses</a>
+ <a href="index.html" class="text-gray-700 hover:text-black mr-4">About</a>
+ <a href="muses.html" class="text-black font-semibold">Muses</a>
 </nav>
 
 <!-- Header -->
 <div class="text-center mb-12">
-  <h1 class="text-4xl font-bold text-black mb-6">Leon Leng</h1>
+ <h1 class="text-4xl font-bold text-black mb-6">Leon Leng</h1>
 
-  <!-- Social Icons -->
-  <div class="flex justify-center items-center gap-4 mb-1">
-    <!-- LinkedIn -->
-    <a href="https://www.linkedin.com/in/leonleng5/" target="_blank" class="text-gray-700 hover:text-gray-900">
-      <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452z"/>
-      </svg>
-    </a>
+ <!-- Social Icons -->
+ <div class="flex justify-center items-center gap-4 mb-1">
+   <!-- LinkedIn -->
+   <a href="https://www.linkedin.com/in/leonleng5/" target="_blank" class="text-gray-700 hover:text-gray-900">
+     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+       <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452z"/>
+     </svg>
+   </a>
 
-    <!-- Twitter/X -->
-    <a href="https://x.com/LeonLeng5" target="_blank" class="text-gray-700 hover:text-gray-900">
-      <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.8l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-      </svg>
-    </a>
+   <!-- Twitter/X -->
+   <a href="https://x.com/LeonLeng5" target="_blank" class="text-gray-700 hover:text-gray-900">
+     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+       <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.8l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+     </svg>
+   </a>
 
-    <!-- Newsletter (Substack) -->
-    <a href="https://leonleng.substack.com/" target="_blank" class="text-gray-700 hover:text-gray-900">
-      <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/>
-      </svg>
-    </a>
+   <!-- Newsletter (Substack) -->
+   <a href="https://leonleng.substack.com/" target="_blank" class="text-gray-700 hover:text-gray-900">
+     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+       <path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/>
+     </svg>
+   </a>
 
-    <!-- Podcasts (YouTube) -->
-    <a href="https://www.youtube.com/@leonseetech" target="_blank" class="text-gray-700 hover:text-gray-900">
-      <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-      </svg>
-    </a>
-  </div>
+   <!-- Podcasts (YouTube) -->
+   <a href="https://www.youtube.com/@leonseetech" target="_blank" class="text-gray-700 hover:text-gray-900">
+     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+       <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+     </svg>
+   </a>
+ </div>
 
-  <!-- Email -->
-  <p class="text-gray-700 text-sm">leonleng@uw.edu</p>
+ <!-- Email -->
+ <p class="text-gray-700 text-sm">leonleng@uw.edu</p>
 </div>
 
 <!-- Content Container -->
 <div class="content-container">
-  <!-- Recently Read Books Section -->
-  <h2 class="section-title">Recently Read Books</h2>
-  <div class="media-grid">
-      <div class="media-card">
-        <img class="media-image" src="images/muses/books/Economic and Philosophic Manuscripts of 1844.png" alt="Economic and Philosophic Manuscripts of 1844">
-        <div class="media-title">Economic and Philosophic Manuscripts of 1844</div>
-      </div>
-      <div class="media-card">
-        <img class="media-image" src="images/muses/books/Poor Charlie’s Almanack The Wit and Wisdom of Charles T. Munger.png" alt="Poor Charlie’s Almanack The Wit and Wisdom of Charles T. Munger">
-        <div class="media-title">Poor Charlie’s Almanack The Wit and Wisdom of Charles T. Munger</div>
-      </div>
-      <div class="media-card">
-        <img class="media-image" src="images/muses/books/The Singapore Story Memoirs of Lee Kuan Yew.png" alt="The Singapore Story Memoirs of Lee Kuan Yew">
-        <div class="media-title">The Singapore Story Memoirs of Lee Kuan Yew</div>
-      </div>
-      <div class="media-card">
-        <img class="media-image" src="images/muses/books/Zero to One Notes on Startups, or How to Build the Future.png" alt="Zero to One Notes on Startups, or How to Build the Future">
-        <div class="media-title">Zero to One Notes on Startups, or How to Build the Future</div>
-      </div>
-  </div>
+ <!-- Recently Read Books Section -->
+ <h2 class="section-title">Recently Read Books</h2>
+ <div class="media-grid">
+     <div class="media-card">
+       <img class="media-image" src="images/muses/books/Economic and Philosophic Manuscripts of 1844.png" alt="Economic and Philosophic Manuscripts of 1844">
+       <div class="media-title">Economic and Philosophic Manuscripts of 1844</div>
+     </div>
+     <div class="media-card">
+       <img class="media-image" src="images/muses/books/Poor Charlie's Almanack The Wit and Wisdom of Charles T. Munger.png" alt="Poor Charlie's Almanack The Wit and Wisdom of Charles T. Munger">
+       <div class="media-title">Poor Charlie's Almanack The Wit and Wisdom of Charles T. Munger</div>
+     </div>
+     <div class="media-card">
+       <img class="media-image" src="images/muses/books/The Singapore Story Memoirs of Lee Kuan Yew.png" alt="The Singapore Story Memoirs of Lee Kuan Yew">
+       <div class="media-title">The Singapore Story Memoirs of Lee Kuan Yew</div>
+     </div>
+     <div class="media-card">
+       <img class="media-image" src="images/muses/books/Zero to One Notes on Startups, or How to Build the Future.png" alt="Zero to One Notes on Startups, or How to Build the Future">
+       <div class="media-title">Zero to One Notes on Startups, or How to Build the Future</div>
+     </div>
+ </div>
 
-  <!-- Favorite Movies Section -->
-  <h2 class="section-title">Favorite Movies</h2>
-  <div class="media-grid">
-      <div class="media-card">
-        <img class="media-image" src="images/muses/movies/A Touch of Sin.png" alt="A Touch of Sin">
-        <div class="media-title">A Touch of Sin</div>
-      </div>
-      <div class="media-card">
-        <img class="media-image" src="images/muses/movies/About Time.png" alt="About Time">
-        <div class="media-title">About Time</div>
-      </div>
-      <div class="media-card">
-        <img class="media-image" src="images/muses/movies/Break the Limit.png" alt="Break the Limit">
-        <div class="media-title">Break the Limit</div>
-      </div>
-      <div class="media-card">
-        <img class="media-image" src="images/muses/movies/Catch Me If You Can.png" alt="Catch Me If You Can">
-        <div class="media-title">Catch Me If You Can</div>
-      </div>
-      <div class="media-card">
-        <img class="media-image" src="images/muses/movies/Fight Club.jpeg" alt="Fight Club">
-        <div class="media-title">Fight Club</div>
-      </div>
-      <div class="media-card">
-        <img class="media-image" src="images/muses/movies/Lurk.png" alt="Lurk">
-        <div class="media-title">Lurk</div>
-      </div>
-      <div class="media-card">
-        <img class="media-image" src="images/muses/movies/Pulp Fiction.jpeg" alt="Pulp Fiction">
-        <div class="media-title">Pulp Fiction</div>
-      </div>
-      <div class="media-card">
-        <img class="media-image" src="images/muses/movies/Sparrow.png" alt="Sparrow">
-        <div class="media-title">Sparrow</div>
-      </div>
-  </div>
+ <!-- Favorite Movies Section -->
+ <h2 class="section-title">Favorite Movies</h2>
+ <div class="media-grid">
+     <div class="media-card">
+       <img class="media-image" src="images/muses/movies/A Touch of Sin.png" alt="A Touch of Sin">
+       <div class="media-title">A Touch of Sin</div>
+     </div>
+     <div class="media-card">
+       <img class="media-image" src="images/muses/movies/About Time.png" alt="About Time">
+       <div class="media-title">About Time</div>
+     </div>
+     <div class="media-card">
+       <img class="media-image" src="images/muses/movies/Break the Limit.png" alt="Break the Limit">
+       <div class="media-title">Break the Limit</div>
+     </div>
+     <div class="media-card">
+       <img class="media-image" src="images/muses/movies/Catch Me If You Can.png" alt="Catch Me If You Can">
+       <div class="media-title">Catch Me If You Can</div>
+     </div>
+     <div class="media-card">
+       <img class="media-image" src="images/muses/movies/Fight Club.jpeg" alt="Fight Club">
+       <div class="media-title">Fight Club</div>
+     </div>
+     <div class="media-card">
+       <img class="media-image" src="images/muses/movies/Lurk.png" alt="Lurk">
+       <div class="media-title">Lurk</div>
+     </div>
+     <div class="media-card">
+       <img class="media-image" src="images/muses/movies/Pulp Fiction.jpeg" alt="Pulp Fiction">
+       <div class="media-title">Pulp Fiction</div>
+     </div>
+     <div class="media-card">
+       <img class="media-image" src="images/muses/movies/Sparrow.png" alt="Sparrow">
+       <div class="media-title">Sparrow</div>
+     </div>
+ </div>
 
-  <!-- Recent Art Expression Section -->
-  <h2 class="section-title">Recent Art Expression</h2>
-  <div class="art-grid">
-      <div class="art-card">
-        <img class="art-image" src="images/muses/artwork/Hoh Rain Forest.png" alt="Hoh Rain Forest">
-        <div class="art-title">Hoh Rain Forest</div>
-      </div>
-      <div class="art-card">
-        <img class="art-image" src="images/muses/artwork/Convex Optimization.png" alt="Convex Optimization">
-        <div class="art-title">Convex Optimization</div>
-      </div>
-      <div class="art-card">
-        <img class="art-image" src="images/muses/artwork/Sugar coated Tomato.png" alt="Sugar coated Tomato">
-        <div class="art-title">Sugar coated Tomato</div>
-      </div>
-      <div class="art-card">
-        <img class="art-image" src="images/muses/artwork/The Life of Leon.png" alt="The Life of Leon">
-        <div class="art-title">The Life of Leon</div>
-      </div>
-      <div class="art-card">
-        <img class="art-image" src="images/muses/artwork/Wait for A UTD.png" alt="Wait for A UTD">
-        <div class="art-title">Wait for A UTD</div>
-      </div>
-      <div class="art-card">
-        <img class="art-image" src="images/muses/artwork/Elon Leon Loen Lone.png" alt="Elon Leon Loen Lone">
-        <div class="art-title">Elon Leon Loen Lone</div>
-      </div>
-  </div>
+ <!-- Recent Artwork Created By Me and AI Section -->
+ <h2 class="section-title">Recent Artwork Created By Me and AI</h2>
+ <p class="section-subtitle">Some ideas are from the cosmos. Created for personal expression, not for commercial use.</p>
+ <div class="art-grid">
+     <div class="art-card">
+       <img class="art-image" src="images/muses/artwork/Hoh Rain Forest.png" alt="Hoh Rain Forest">
+       <div class="art-title">Hoh Rain Forest</div>
+     </div>
+     <div class="art-card">
+       <img class="art-image" src="images/muses/artwork/Convex Optimization.png" alt="Convex Optimization">
+       <div class="art-title">Convex Optimization</div>
+     </div>
+     <div class="art-card">
+       <img class="art-image" src="images/muses/artwork/Sugar coated Tomato.png" alt="Sugar coated Tomato">
+       <div class="art-title">Sugar coated Tomato</div>
+     </div>
+     <div class="art-card">
+       <img class="art-image" src="images/muses/artwork/The Life of Leon.png" alt="The Life of Leon">
+       <div class="art-title">The Life of Leon</div>
+     </div>
+     <div class="art-card">
+       <img class="art-image" src="images/muses/artwork/Wait for A UTD.png" alt="Wait for A UTD">
+       <div class="art-title">Wait for A UTD</div>
+     </div>
+     <div class="art-card">
+       <img class="art-image" src="images/muses/artwork/Elon Leon Loen Lone.png" alt="Elon Leon Loen Lone">
+       <div class="art-title">Elon Leon Loen Lone</div>
+     </div>
+ </div>
 </div>
 
 <!-- Gallery Section -->
 <div class="mb-16">
-  <!-- Gallery Title -->
-  <div class="mb-6" style="margin-left: calc(50% - 276px);">
-    <h2 class="section-title" style="margin-top: 0;">Gallery</h2>
-  </div>
+ <!-- Gallery Title -->
+ <div class="mb-6" style="margin-left: calc(50% - 276px);">
+   <h2 class="section-title" style="margin-top: 0;">Gallery</h2>
+ </div>
 
-  <!-- Gallery Scroll Container -->
-  <div class="gallery-container">
-    <div id="galleryScroll" class="gallery-scroll">
-      <div class="gallery-card">
-        <img class="gallery-item" src="images/muses/gallery/Berkeley 1.jpg" alt="Berkeley 1">
-        <div class="gallery-title">Berkeley 1</div>
-      </div>
-      <div class="gallery-card">
-        <img class="gallery-item" src="images/muses/gallery/Berkeley 2.jpg" alt="Berkeley 2">
-        <div class="gallery-title">Berkeley 2</div>
-      </div>
-      <div class="gallery-card">
-        <img class="gallery-item" src="images/muses/gallery/Berkeley 3.jpg" alt="Berkeley 3">
-        <div class="gallery-title">Berkeley 3</div>
-      </div>
-      <div class="gallery-card">
-        <img class="gallery-item" src="images/muses/gallery/Berkeley 4.jpg" alt="Berkeley 4">
-        <div class="gallery-title">Berkeley 4</div>
-      </div>
-      <div class="gallery-card">
-        <img class="gallery-item" src="images/muses/gallery/Boston 1.jpg" alt="Boston 1">
-        <div class="gallery-title">Boston 1</div>
-      </div>
-      <div class="gallery-card">
-        <img class="gallery-item" src="images/muses/gallery/Harbin 1.jpg" alt="Harbin 1">
-        <div class="gallery-title">Harbin 1</div>
-      </div>
-      <div class="gallery-card">
-        <img class="gallery-item" src="images/muses/gallery/LA 1.jpg" alt="LA 1">
-        <div class="gallery-title">LA 1</div>
-      </div>
-      <div class="gallery-card">
-        <img class="gallery-item" src="images/muses/gallery/NYC 1.jpg" alt="NYC 1">
-        <div class="gallery-title">NYC 1</div>
-      </div>
-      <div class="gallery-card">
-        <img class="gallery-item" src="images/muses/gallery/NYC 2.jpg" alt="NYC 2">
-        <div class="gallery-title">NYC 2</div>
-      </div>
-      <div class="gallery-card">
-        <img class="gallery-item" src="images/muses/gallery/Seattle 1.jpg" alt="Seattle 1">
-        <div class="gallery-title">Seattle 1</div>
-      </div>
-      <div class="gallery-card">
-        <img class="gallery-item" src="images/muses/gallery/Seattle 2.jpg" alt="Seattle 2">
-        <div class="gallery-title">Seattle 2</div>
-      </div>
-      <div class="gallery-card">
-        <img class="gallery-item" src="images/muses/gallery/Shenzhen 1.jpg" alt="Shenzhen 1">
-        <div class="gallery-title">Shenzhen 1</div>
-      </div>
-      <div class="gallery-card">
-        <img class="gallery-item" src="images/muses/gallery/Shenzhen 2.jpg" alt="Shenzhen 2">
-        <div class="gallery-title">Shenzhen 2</div>
-      </div>
-    </div>
-    
-    <!-- Scroll hint -->
-    <div class="flex justify-end mt-1">
-      <span class="text-xs text-gray-500">Scroll for more →</span>
-    </div>
-  </div>
+ <!-- Gallery Scroll Container -->
+ <div class="gallery-container">
+   <div id="galleryScroll" class="gallery-scroll">
+     <div class="gallery-card">
+       <img class="gallery-item" src="images/muses/gallery/Berkeley 1.jpg" alt="Berkeley 1">
+       <div class="gallery-title">Berkeley 1</div>
+     </div>
+     <div class="gallery-card">
+       <img class="gallery-item" src="images/muses/gallery/Berkeley 2.jpg" alt="Berkeley 2">
+       <div class="gallery-title">Berkeley 2</div>
+     </div>
+     <div class="gallery-card">
+       <img class="gallery-item" src="images/muses/gallery/Berkeley 3.jpg" alt="Berkeley 3">
+       <div class="gallery-title">Berkeley 3</div>
+     </div>
+     <div class="gallery-card">
+       <img class="gallery-item" src="images/muses/gallery/Berkeley 4.jpg" alt="Berkeley 4">
+       <div class="gallery-title">Berkeley 4</div>
+     </div>
+     <div class="gallery-card">
+       <img class="gallery-item" src="images/muses/gallery/Boston 1.jpg" alt="Boston 1">
+       <div class="gallery-title">Boston 1</div>
+     </div>
+     <div class="gallery-card">
+       <img class="gallery-item" src="images/muses/gallery/Harbin 1.jpg" alt="Harbin 1">
+       <div class="gallery-title">Harbin 1</div>
+     </div>
+     <div class="gallery-card">
+       <img class="gallery-item" src="images/muses/gallery/LA 1.jpg" alt="LA 1">
+       <div class="gallery-title">LA 1</div>
+     </div>
+     <div class="gallery-card">
+       <img class="gallery-item" src="images/muses/gallery/NYC 1.jpg" alt="NYC 1">
+       <div class="gallery-title">NYC 1</div>
+     </div>
+     <div class="gallery-card">
+       <img class="gallery-item" src="images/muses/gallery/NYC 2.jpg" alt="NYC 2">
+       <div class="gallery-title">NYC 2</div>
+     </div>
+     <div class="gallery-card">
+       <img class="gallery-item" src="images/muses/gallery/Seattle 1.jpg" alt="Seattle 1">
+       <div class="gallery-title">Seattle 1</div>
+     </div>
+     <div class="gallery-card">
+       <img class="gallery-item" src="images/muses/gallery/Seattle 2.jpg" alt="Seattle 2">
+       <div class="gallery-title">Seattle 2</div>
+     </div>
+     <div class="gallery-card">
+       <img class="gallery-item" src="images/muses/gallery/Shenzhen 1.jpg" alt="Shenzhen 1">
+       <div class="gallery-title">Shenzhen 1</div>
+     </div>
+     <div class="gallery-card">
+       <img class="gallery-item" src="images/muses/gallery/Shenzhen 2.jpg" alt="Shenzhen 2">
+       <div class="gallery-title">Shenzhen 2</div>
+     </div>
+   </div>
+   
+   <!-- Scroll hint -->
+   <div class="flex justify-end mt-1">
+     <span class="text-xs text-gray-500">Scroll for more →</span>
+   </div>
+ </div>
 </div>
 
 </div>
@@ -425,30 +433,30 @@ let scrollLeft;
 const gallerySlider = document.getElementById('galleryScroll');
 
 if (gallerySlider) {
-  gallerySlider.addEventListener('mousedown', (e) => {
-    isDown = true;
-    gallerySlider.style.cursor = 'grabbing';
-    startX = e.pageX - gallerySlider.offsetLeft;
-    scrollLeft = gallerySlider.scrollLeft;
-  });
+ gallerySlider.addEventListener('mousedown', (e) => {
+   isDown = true;
+   gallerySlider.style.cursor = 'grabbing';
+   startX = e.pageX - gallerySlider.offsetLeft;
+   scrollLeft = gallerySlider.scrollLeft;
+ });
 
-  gallerySlider.addEventListener('mouseleave', () => {
-    isDown = false;
-    gallerySlider.style.cursor = 'grab';
-  });
+ gallerySlider.addEventListener('mouseleave', () => {
+   isDown = false;
+   gallerySlider.style.cursor = 'grab';
+ });
 
-  gallerySlider.addEventListener('mouseup', () => {
-    isDown = false;
-    gallerySlider.style.cursor = 'grab';
-  });
+ gallerySlider.addEventListener('mouseup', () => {
+   isDown = false;
+   gallerySlider.style.cursor = 'grab';
+ });
 
-  gallerySlider.addEventListener('mousemove', (e) => {
-    if (!isDown) return;
-    e.preventDefault();
-    const x = e.pageX - gallerySlider.offsetLeft;
-    const walk = (x - startX) * 2;
-    gallerySlider.scrollLeft = scrollLeft - walk;
-  });
+ gallerySlider.addEventListener('mousemove', (e) => {
+   if (!isDown) return;
+   e.preventDefault();
+   const x = e.pageX - gallerySlider.offsetLeft;
+   const walk = (x - startX) * 2;
+   gallerySlider.scrollLeft = scrollLeft - walk;
+ });
 }
 </script>
 </body>
