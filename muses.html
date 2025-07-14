@@ -159,11 +159,7 @@ body {
   height: 150px;
   border-radius: 8px;
   background-color: #f3f4f6;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #9ca3af;
-  font-size: 0.875rem;
+  object-fit: cover;
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   margin-bottom: 0.75rem;
@@ -261,125 +257,88 @@ body {
   <!-- Recently Read Books Section -->
   <h2 class="section-title">Recently Read Books</h2>
   <div class="media-grid">
-    <!-- Book 1 -->
-    <div class="media-card">
-      <div class="media-image">Book Cover</div>
-      <div class="media-title">The Practice of the Presence of God</div>
-      <div class="media-author">Lawrence, Brother</div>
-    </div>
-
-    <!-- Book 2 -->
-    <div class="media-card">
-      <div class="media-image">Book Cover</div>
-      <div class="media-title">Sun and Steel</div>
-      <div class="media-author">Mishima, Yukio</div>
-    </div>
-
-    <!-- Book 3 -->
-    <div class="media-card">
-      <div class="media-image">Book Cover</div>
-      <div class="media-title">A Season in Hell & Illuminations</div>
-      <div class="media-author">Rimbaud, Arthur</div>
-    </div>
-
-    <!-- Book 4 -->
-    <div class="media-card">
-      <div class="media-image">Book Cover</div>
-      <div class="media-title">Jesus' Son</div>
-      <div class="media-author">Johnson, Denis</div>
-    </div>
+      <div class="media-card">
+        <img class="media-image" src="images/muses/books/Economic and Philosophic Manuscripts of 1844.png" alt="Economic and Philosophic Manuscripts of 1844">
+        <div class="media-title">Economic and Philosophic Manuscripts of 1844</div>
+      </div>
+      <div class="media-card">
+        <img class="media-image" src="images/muses/books/Poor Charlie’s Almanack The Wit and Wisdom of Charles T. Munge.png" alt="Poor Charlie’s Almanack The Wit and Wisdom of Charles T. Munge">
+        <div class="media-title">Poor Charlie’s Almanack The Wit and Wisdom of Charles T. Munge</div>
+      </div>
+      <div class="media-card">
+        <img class="media-image" src="images/muses/books/The Singapore Story Memoirs of Lee Kuan Yew.png" alt="The Singapore Story Memoirs of Lee Kuan Yew">
+        <div class="media-title">The Singapore Story Memoirs of Lee Kuan Yew</div>
+      </div>
+      <div class="media-card">
+        <img class="media-image" src="images/muses/books/Zero to One Notes on Startups, or How to Build the Future.png" alt="Zero to One Notes on Startups, or How to Build the Future">
+        <div class="media-title">Zero to One Notes on Startups, or How to Build the Future</div>
+      </div>
   </div>
 
   <!-- Favorite Movies Section -->
   <h2 class="section-title">Favorite Movies</h2>
   <div class="media-grid">
-    <!-- Movie 1 -->
-    <div class="media-card">
-      <div class="media-image">Movie Poster</div>
-      <div class="media-title">Synecdoche, New York, 2008</div>
-    </div>
-
-    <!-- Movie 2 -->
-    <div class="media-card">
-      <div class="media-image">Movie Poster</div>
-      <div class="media-title">Call Me by Your Name, 2017</div>
-    </div>
-
-    <!-- Movie 3 -->
-    <div class="media-card">
-      <div class="media-image">Movie Poster</div>
-      <div class="media-title">Pi, 1998</div>
-    </div>
-
-    <!-- Movie 4 -->
-    <div class="media-card">
-      <div class="media-image">Movie Poster</div>
-      <div class="media-title">Shangri-La, 2019</div>
-    </div>
-
-    <!-- Movie 5 -->
-    <div class="media-card">
-      <div class="media-image">Movie Poster</div>
-      <div class="media-title">Requiem for a Dream, 2000</div>
-    </div>
-
-    <!-- Movie 6 -->
-    <div class="media-card">
-      <div class="media-image">Movie Poster</div>
-      <div class="media-title">Léon: The Professional, 1994</div>
-    </div>
-
-    <!-- Movie 7 -->
-    <div class="media-card">
-      <div class="media-image">Movie Poster</div>
-      <div class="media-title">Dune: Part Two, 2024</div>
-    </div>
-
-    <!-- Movie 8 -->
-    <div class="media-card">
-      <div class="media-image">Movie Poster</div>
-      <div class="media-title">jeen-yuhs: A Kanye Trilogy, 2022</div>
-    </div>
+      <div class="media-card">
+        <img class="media-image" src="images/muses/movies/abouttime.png" alt="abouttime">
+        <div class="media-title">abouttime</div>
+      </div>
+      <div class="media-card">
+        <img class="media-image" src="images/muses/movies/atouchofsin.png" alt="atouchofsin">
+        <div class="media-title">atouchofsin</div>
+      </div>
+      <div class="media-card">
+        <img class="media-image" src="images/muses/movies/breakthelimit.png" alt="breakthelimit">
+        <div class="media-title">breakthelimit</div>
+      </div>
+      <div class="media-card">
+        <img class="media-image" src="images/muses/movies/catchmeifyoucan.png" alt="catchmeifyoucan">
+        <div class="media-title">catchmeifyoucan</div>
+      </div>
+      <div class="media-card">
+        <img class="media-image" src="images/muses/movies/fightclub.jpeg" alt="fightclub">
+        <div class="media-title">fightclub</div>
+      </div>
+      <div class="media-card">
+        <img class="media-image" src="images/muses/movies/lurk.png" alt="lurk">
+        <div class="media-title">lurk</div>
+      </div>
+      <div class="media-card">
+        <img class="media-image" src="images/muses/movies/pulpfiction.jpeg" alt="pulpfiction">
+        <div class="media-title">pulpfiction</div>
+      </div>
+      <div class="media-card">
+        <img class="media-image" src="images/muses/movies/sparrow.png" alt="sparrow">
+        <div class="media-title">sparrow</div>
+      </div>
   </div>
 
   <!-- Recent Art Expression Section -->
   <h2 class="section-title">Recent Art Expression</h2>
   <div class="art-grid">
-    <!-- Art 1 -->
-    <div class="art-card">
-      <div class="art-image">Artwork</div>
-      <div class="art-title">Léon</div>
-    </div>
-
-    <!-- Art 2 -->
-    <div class="art-card">
-      <div class="art-image">Artwork</div>
-      <div class="art-title">Red Landscape</div>
-    </div>
-
-    <!-- Art 3 -->
-    <div class="art-card">
-      <div class="art-image">Artwork</div>
-      <div class="art-title">Convex Optimization</div>
-    </div>
-
-    <!-- Art 4 -->
-    <div class="art-card">
-      <div class="art-image">Artwork</div>
-      <div class="art-title">Digital Characters</div>
-    </div>
-
-    <!-- Art 5 -->
-    <div class="art-card">
-      <div class="art-image">Artwork</div>
-      <div class="art-title">Polar Bear</div>
-    </div>
-
-    <!-- Art 6 -->
-    <div class="art-card">
-      <div class="art-image">Artwork</div>
-      <div class="art-title">Code Poetry</div>
-    </div>
+      <div class="art-card">
+        <img class="art-image" src="images/muses/artwork/Catch Me at Hoh Rain Forest.png" alt="Catch Me at Hoh Rain Forest">
+        <div class="art-title">Catch Me at Hoh Rain Forest</div>
+      </div>
+      <div class="art-card">
+        <img class="art-image" src="images/muses/artwork/Convex Optimization.png" alt="Convex Optimization">
+        <div class="art-title">Convex Optimization</div>
+      </div>
+      <div class="art-card">
+        <img class="art-image" src="images/muses/artwork/Sugar coated Tomato.png" alt="Sugar coated Tomato">
+        <div class="art-title">Sugar coated Tomato</div>
+      </div>
+      <div class="art-card">
+        <img class="art-image" src="images/muses/artwork/The Life of Leon.png" alt="The Life of Leon">
+        <div class="art-title">The Life of Leon</div>
+      </div>
+      <div class="art-card">
+        <img class="art-image" src="images/muses/artwork/Wait for A UTD Acceptance.png" alt="Wait for A UTD Acceptance">
+        <div class="art-title">Wait for A UTD Acceptance</div>
+      </div>
+      <div class="art-card">
+        <img class="art-image" src="images/muses/artwork/elon leon loen lone.png" alt="elon leon loen lone">
+        <div class="art-title">elon leon loen lone</div>
+      </div>
   </div>
 </div>
 
@@ -393,68 +352,57 @@ body {
   <!-- Gallery Scroll Container -->
   <div class="gallery-container">
     <div id="galleryScroll" class="gallery-scroll">
-      <!-- Gallery Item 1 -->
       <div class="gallery-card">
-        <div class="gallery-item">
-          Gallery Image
-        </div>
+        <img class="gallery-item" src="images/muses/gallery/Berkeley 1.jpg" alt="Berkeley 1">
         <div class="gallery-title">Berkeley 1</div>
       </div>
-
-      <!-- Gallery Item 2 -->
       <div class="gallery-card">
-        <div class="gallery-item">
-          Gallery Image
-        </div>
-        <div class="gallery-title">Harbin 1</div>
-      </div>
-
-      <!-- Gallery Item 3 -->
-      <div class="gallery-card">
-        <div class="gallery-item">
-          Gallery Image
-        </div>
-        <div class="gallery-title">Seattle 1</div>
-      </div>
-
-      <!-- Gallery Item 4 -->
-      <div class="gallery-card">
-        <div class="gallery-item">
-          Gallery Image
-        </div>
+        <img class="gallery-item" src="images/muses/gallery/Berkeley 2.jpg" alt="Berkeley 2">
         <div class="gallery-title">Berkeley 2</div>
       </div>
-
-      <!-- Gallery Item 5 -->
       <div class="gallery-card">
-        <div class="gallery-item">
-          Gallery Image
-        </div>
-        <div class="gallery-title">Harbin 2</div>
-      </div>
-
-      <!-- Gallery Item 6 -->
-      <div class="gallery-card">
-        <div class="gallery-item">
-          Gallery Image
-        </div>
-        <div class="gallery-title">Seattle 2</div>
-      </div>
-
-      <!-- Gallery Item 7 -->
-      <div class="gallery-card">
-        <div class="gallery-item">
-          Gallery Image
-        </div>
+        <img class="gallery-item" src="images/muses/gallery/Berkeley 3.jpg" alt="Berkeley 3">
         <div class="gallery-title">Berkeley 3</div>
       </div>
-
-      <!-- Gallery Item 8 -->
       <div class="gallery-card">
-        <div class="gallery-item">
-          Gallery Image
-        </div>
-        <div class="gallery-title">Harbin 3</div>
+        <img class="gallery-item" src="images/muses/gallery/Berkeley 4.jpg" alt="Berkeley 4">
+        <div class="gallery-title">Berkeley 4</div>
+      </div>
+      <div class="gallery-card">
+        <img class="gallery-item" src="images/muses/gallery/Boston 1.jpg" alt="Boston 1">
+        <div class="gallery-title">Boston 1</div>
+      </div>
+      <div class="gallery-card">
+        <img class="gallery-item" src="images/muses/gallery/Harbin 1.jpg" alt="Harbin 1">
+        <div class="gallery-title">Harbin 1</div>
+      </div>
+      <div class="gallery-card">
+        <img class="gallery-item" src="images/muses/gallery/LA 1.jpg" alt="LA 1">
+        <div class="gallery-title">LA 1</div>
+      </div>
+      <div class="gallery-card">
+        <img class="gallery-item" src="images/muses/gallery/NYC 1.jpg" alt="NYC 1">
+        <div class="gallery-title">NYC 1</div>
+      </div>
+      <div class="gallery-card">
+        <img class="gallery-item" src="images/muses/gallery/NYC 2.jpg" alt="NYC 2">
+        <div class="gallery-title">NYC 2</div>
+      </div>
+      <div class="gallery-card">
+        <img class="gallery-item" src="images/muses/gallery/Seattle 1.jpg" alt="Seattle 1">
+        <div class="gallery-title">Seattle 1</div>
+      </div>
+      <div class="gallery-card">
+        <img class="gallery-item" src="images/muses/gallery/Seattle 2.jpg" alt="Seattle 2">
+        <div class="gallery-title">Seattle 2</div>
+      </div>
+      <div class="gallery-card">
+        <img class="gallery-item" src="images/muses/gallery/Shenzhen 1.jpg" alt="Shenzhen 1">
+        <div class="gallery-title">Shenzhen 1</div>
+      </div>
+      <div class="gallery-card">
+        <img class="gallery-item" src="images/muses/gallery/Shenzhen 2.jpg" alt="Shenzhen 2">
+        <div class="gallery-title">Shenzhen 2</div>
       </div>
     </div>
     
