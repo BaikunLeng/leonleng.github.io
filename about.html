@@ -130,6 +130,62 @@ body {
  font-size: 0.875rem;
  line-height: 1.5;
 }
+
+/* Education and industry experience */
+.experience-section {
+ max-width: 552px;
+ margin: 0 auto 4rem;
+ color: #374151;
+ font-size: 0.875rem;
+ line-height: 1.6;
+}
+.affiliation-row {
+ display: grid;
+ grid-template-columns: 96px minmax(0, 1fr);
+ gap: 1.5rem;
+ align-items: start;
+ margin-top: 1.75rem;
+}
+.affiliation-logo {
+ height: 80px;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+}
+.affiliation-logo img {
+ max-width: 96px;
+ max-height: 72px;
+ width: auto;
+ height: auto;
+ object-fit: contain;
+}
+.affiliation-logo .square-mark { width: 64px; height: 64px; }
+.affiliation-row p { margin: 0.35rem 0 0; }
+.affiliation-row h3 { font-size: inherit; line-height: inherit; margin: 0; color: #111827; }
+.affiliation-date { font-weight: 600; }
+.affiliation-name { font-weight: 600; font-style: italic; }
+.affiliation-detail { color: #6b7280; font-size: 0.8125rem; }
+.outreach-card { width: 200px; display: block; }
+.outreach-art {
+ width: 100%; height: 140px; border-radius: 8px;
+ padding: 16px; background: #f8fafc;
+ display: flex; align-items: center; justify-content: center;
+}
+.outreach-art img { width: 100%; height: 100%; object-fit: contain; border-radius: 4px; }
+.outreach-type { text-align: center; color: #374151; line-height: 1.35; }
+.outreach-type strong { display: block; font-size: 1.3rem; font-weight: 600; letter-spacing: -0.025em; }
+.outreach-type span { display: block; font-size: 0.8rem; margin-top: 0.35rem; }
+.outreach-card p { font-size: 0.75rem; line-height: 1.5; color: #4b5563; margin-top: 0.4rem; }
+.outreach-controls { display: flex; justify-content: flex-end; gap: .5rem; align-items: center; margin-top: .5rem; }
+.outreach-controls button { border: 1px solid #e5e7eb; border-radius: 4px; padding: 0 .5rem; color: #4b5563; }
+.outreach-card:focus-visible, .outreach-controls button:focus-visible { outline: 2px solid #6b7280; outline-offset: 3px; }
+@media (max-width: 768px) {
+ .experience-section { width: 100%; }
+ .affiliation-row { grid-template-columns: 64px minmax(0, 1fr); gap: 1rem; }
+ .affiliation-logo { height: 64px; }
+ .affiliation-logo img { max-width: 64px; max-height: 56px; }
+ .affiliation-logo .square-mark { width: 48px; height: 48px; }
+}
 </style>
 </head>
 <body class="bg-white">
@@ -202,7 +258,7 @@ body {
  <!-- About Me Text -->
  <div class="flex-shrink-0 about-text" style="width: 192px;">
    <p class="text-gray-800 leading-tight" style="font-size: 13.5px;">
-     <span class="font-semibold text-black">About Me:</span> Leon Leng is a Ph.D. student in Information Systems & Operations Management at the University of Washington's Foster School of Business, with minors in Computer Science, Statistics, and Economic Theory. He holds a B.S. from The Chinese University of Hong Kong, Shenzhen, and completed a visiting program at UC Berkeley. Leon bridges research and practice through collaborations with industry experts via events, podcasts, newsletters and more. Feel free to reach out for a conversation.
+     <span class="font-semibold text-black">About Me:</span> Leon Leng is a Ph.D. student in Information Systems &amp; Operations Management at the University of Washington’s Foster School of Business, with minors in Computer Science and Economics. He is also a visiting researcher at Microsoft Research Asia and previously worked as an Elite (Qingyun) Research Scientist with Tencent’s WeChat Experiment Platform. He holds a B.S. in Data Science from The Chinese University of Hong Kong, Shenzhen, and studied EECS as a visiting student at UC Berkeley. Feel free to reach out for a conversation or collaboration.
    </p>
  </div>
 
@@ -240,63 +296,81 @@ body {
  </div>
 </div>
 
+<!-- Education Section -->
+<section class="experience-section" aria-labelledby="education-heading">
+ <h2 id="education-heading" class="text-xl font-semibold text-black">Education</h2>
+ <article class="affiliation-row">
+  <div class="affiliation-logo"><img src="images/affiliations/uw.png" alt="University of Washington, Seattle logo" loading="lazy" /></div>
+  <div><h3><span class="affiliation-date">2024–present</span><br /><span class="affiliation-name">University of Washington, Seattle</span></h3>
+   <p>Ph.D. student in Information Systems &amp; Operations Management, Foster School of Business.</p><p class="affiliation-detail">Minors: Computer Science and Economics.<br />Industry leave: June–December 2026.</p>
+  </div>
+ </article>
+ <article class="affiliation-row">
+  <div class="affiliation-logo"><img src="images/affiliations/berkeley.svg" alt="University of California, Berkeley logo" loading="lazy" /></div>
+  <div><h3><span class="affiliation-date">2022–2023</span><br /><span class="affiliation-name">University of California, Berkeley</span></h3>
+   <p>Visiting student, Electrical Engineering and Computer Sciences (EECS).</p>
+  </div>
+ </article>
+ <article class="affiliation-row">
+  <div class="affiliation-logo"><img src="images/affiliations/cuhk-shenzhen.png" alt="The Chinese University of Hong Kong, Shenzhen logo" loading="lazy" class="square-mark" /></div>
+  <div><h3><span class="affiliation-date">2020–2022; 2023–2024</span><br /><span class="affiliation-name">The Chinese University of Hong Kong, Shenzhen</span></h3>
+   <p>B.S. in Data Science.</p>
+  </div>
+ </article>
+</section>
+
+<!-- Industry Experience Section -->
+<section class="experience-section" aria-labelledby="industry-heading">
+ <h2 id="industry-heading" class="text-xl font-semibold text-black">Industry Experience</h2>
+ <article class="affiliation-row">
+  <div class="affiliation-logo"><img src="images/affiliations/microsoft.svg" alt="Microsoft Research Asia logo" loading="lazy" class="square-mark" /></div>
+  <div><h3><span class="affiliation-date">Oct. 2026–Dec. 2026</span><br /><span class="affiliation-name">Microsoft Research Asia</span></h3>
+   <p>Visiting Researcher.</p><p class="affiliation-detail">Beijing, China (remote).<br />Organizational design for agents and efficient agent compute allocation.</p>
+  </div>
+ </article>
+ <article class="affiliation-row">
+  <div class="affiliation-logo"><img src="images/affiliations/tencent.png" alt="Tencent logo" loading="lazy" /></div>
+  <div><h3><span class="affiliation-date">Jun. 2026–Oct. 2026</span><br /><span class="affiliation-name">Tencent</span></h3>
+   <p>Elite (Qingyun) Research Scientist, WeChat Experiment Platform.</p><p class="affiliation-detail">Shenzhen, China.<br />Experiment knowledge systems, causal evaluation, model post-training, and mechanistic interpretability.</p>
+  </div>
+ </article>
+ <article class="affiliation-row">
+  <div class="affiliation-logo"><img src="images/affiliations/usarc.png" alt="U.S. Arctic Research Commission logo" loading="lazy" class="square-mark" /></div>
+  <div><h3><span class="affiliation-date">Feb. 2023–May 2023</span><br /><span class="affiliation-name">U.S. Arctic Research Commission</span></h3>
+   <p>Data Scientist, Berkeley Capstone Program.</p><p class="affiliation-detail">Washington, DC.<br />Analysis of Arctic research funding, priorities, and international collaboration.</p>
+  </div>
+ </article>
+ <article class="affiliation-row">
+  <div class="affiliation-logo"><img src="images/affiliations/nothing-research.svg" alt="Nothing Research logo" loading="lazy" /></div>
+  <div><h3><span class="affiliation-date">Dec. 2022–Feb. 2023</span><br /><span class="affiliation-name">Nothing Research</span></h3>
+   <p>Research Intern.</p><p class="affiliation-detail">Shanghai, China (remote).<br />Research on DeFi, DAOs, and the Ethereum ecosystem.</p>
+  </div>
+ </article>
+</section>
+
 <!-- Outreach Section -->
-<div class="mb-16">
- <!-- Outreach Title -->
+<section class="mb-16" aria-labelledby="outreach-heading">
  <div class="mb-6 outreach-title" style="margin-left: calc(50% - 276px);">
-   <h2 class="text-xl font-semibold text-black">Outreach</h2>
+  <h2 id="outreach-heading" class="text-xl font-semibold text-black">Outreach</h2>
  </div>
-
- <!-- Media Scroll Container -->
  <div class="outreach-container" style="margin-left: calc(50% - 276px); max-width: 552px; overflow: hidden;">
-   <div id="mediaScroll" class="flex gap-3 overflow-x-auto scroll-container" style="scroll-behavior: smooth;">
-    <!-- Media Item 1 -->
-    <div class="media-card flex-shrink-0 cursor-pointer" style="width: 200px;" onclick="window.open('https://www.linkedin.com/posts/leonleng5_poms2025-activity-7327332132643573762-bloq?utm_source=share&amp;utm_medium=member_desktop&amp;rcm=ACoAADZ-9g8Bve6AHKnqHwNmNvTNRo2tgLtlCFw', '_blank')">
-      <div style="position: relative; width: 100%; height: 140px; border-radius: 8px; overflow: hidden; padding: 10px; background-color: #f8fafc;">
-        <img src="images/about/outreach/Poms.png" alt="POMS Annual Meeting" style="width: 100%; height: 100%; object-fit: contain; border-radius: 4px;">
-      </div>
-      <p class="text-xs text-gray-600 mt-1">Leon attended POMS Annual Meeting and be a session chair related to blockchain, economics and operations.</p>
-    </div>
-
-      <!-- Media Item 2 -->
-      <div class="media-card flex-shrink-0 cursor-pointer" style="width: 200px;" onclick="window.open('https://www.linkedin.com/posts/leonleng5_uw-blockchain-society-meet-up-feat-manami-activity-7319794028210704384-G7C3?utm_source=share&utm_medium=member_desktop&rcm=ACoAADZ-9g8Bve6AHKnqHwNmNvTNRo2tgLtlCFw', '_blank')">
-        <div style="position: relative; width: 100%; height: 140px; border-radius: 8px; overflow: hidden; padding: 10px; background-color: #f8fafc;">
-          <img src="images/about/outreach/UW Blockchain Society Eventjpg.jpg" alt="UW Blockchain Society Event" style="width: 100%; height: 100%; object-fit: contain; border-radius: 4px;">
-        </div>
-        <p class="text-xs text-gray-600 mt-1">Leon became the new president of UW Blockchain Society And held events related to Crypto, AI with Seattle local firms</p>
-      </div>
-
-     <!-- Media Item 3 -->
-      <div class="media-card flex-shrink-0 cursor-pointer" style="width: 200px;" onclick="window.open('https://sites.google.com/uw.edu/fsbcohortof2024/home', '_blank')">
-        <div style="position: relative; width: 100%; height: 140px; border-radius: 8px; overflow: hidden; padding: 10px; background-color: #f8fafc;">
-          <img src="images/about/outreach/Leon Joined UW Foster.png" alt="Leon Joined UW Foster" style="width: 100%; height: 100%; object-fit: contain; border-radius: 4px;">
-        </div>
-        <p class="text-xs text-gray-600 mt-1">Leon decided to join Foster and the school made an intro book for his cohort</p>
-      </div>
-
-     <!-- Media Item 4 -->
-    <div class="media-card flex-shrink-0 cursor-pointer" style="width: 200px;" onclick="window.open('https://www.linkedin.com/posts/leonleng5_blockchain-adpotion-insurance-activity-7120631995088482304-LCgQ?utm_source=share&amp;utm_medium=member_desktop&amp;rcm=ACoAADZ-9g8Bve6AHKnqHwNmNvTNRo2tgLtlCFw', '_blank' )">
-      <div style="position: relative; width: 100%; height: 140px; border-radius: 8px; overflow: hidden; padding: 10px; background-color: #f8fafc;">
-        <img src="images/about/outreach/Blockchain Insurance Design.png" alt="Blockchain Insurance Design" style="width: 100%; height: 100%; object-fit: contain; border-radius: 4px;">
-      </div>
-      <p class="text-xs text-gray-600 mt-1">Gave A Talk About Industry Insurance Design Landscape And Its Future</p>
-    </div>
-
-    <!-- Media Item 5 -->
-    <div class="media-card flex-shrink-0 cursor-pointer" style="width: 200px;" onclick="window.open('https://www.linkedin.com/posts/kose-john-82486b1b_blockchain-literature-catalog-crypto-and-activity-7087510395120205824-ijUB?utm_source=share&amp;utm_medium=member_desktop&amp;rcm=ACoAADZ-9g8Bve6AHKnqHwNmNvTNRo2tgLtlCFw', '_blank')">
-      <div style="position: relative; width: 100%; height: 140px; border-radius: 8px; overflow: hidden; padding: 10px; background-color: #f8fafc;">
-        <img src="images/about/outreach/CBER Literature Database Set Up.png" alt="CBER Literature Database Set Up" style="width: 100%; height: 100%; object-fit: contain; border-radius: 4px;">
-      </div>
-      <p class="text-xs text-gray-600 mt-1">Set Up Database for CBER with Prof. Gerry Tsoukalas and Prof. Fahad Saleh</p>
-    </div>
-   </div>
-   
-   <!-- Scroll for more hint -->
-   <div class="flex justify-end mt-1">
-     <span class="text-xs text-gray-500">Scroll for more →</span>
-   </div>
+  <div id="mediaScroll" class="flex gap-3 overflow-x-auto scroll-container" style="scroll-behavior: smooth;" aria-label="Outreach activities">
+   <article class="outreach-card flex-shrink-0"><div class="outreach-art"><div class="outreach-type"><strong>INFORMS</strong><span>2026 · San Francisco</span></div></div><p>Session chair for the AI Track at INFORMS 2026; presented research on centralized and decentralized evaluation.</p></article>
+   <article class="outreach-card flex-shrink-0"><div class="outreach-art"><img src="images/about/outreach/Poms.png" alt="POMS" loading="lazy" /></div><p>Session chair for the Product Innovation and Technology Management Track at POMS 2026 (Reno) and 2025 (Atlanta); presented insurance evaluation research.</p></article>
+   <a class="outreach-card media-card flex-shrink-0" href="http://aiseattle.org" target="_blank" rel="noopener noreferrer"><div class="outreach-art"><div class="outreach-type"><strong>Seattle AI<br />× Business</strong><span>Board Member</span></div></div><p>Connecting AI research and the business community as a board member of Seattle AI × Business.</p></a>
+   <a class="outreach-card media-card flex-shrink-0" href="http://uwfintech.org" target="_blank" rel="noopener noreferrer"><div class="outreach-art"><div class="outreach-type"><strong>UW Fintech</strong><span>Research Group</span></div></div><p>Board member of the UW Fintech Research Group.</p></a>
+   <a class="outreach-card media-card flex-shrink-0" href="https://www.linkedin.com/posts/leonleng5_uw-blockchain-society-meet-up-feat-manami-activity-7319794028210704384-G7C3" target="_blank" rel="noopener noreferrer"><div class="outreach-art"><img src="images/about/outreach/UW Blockchain Society Eventjpg.jpg" alt="UW Blockchain Society event" loading="lazy" /></div><p>Served as president of the UW Blockchain Society and organized crypto and AI events with Seattle companies.</p></a>
+   <a class="outreach-card media-card flex-shrink-0" href="https://sites.google.com/uw.edu/fsbcohortof2024/home" target="_blank" rel="noopener noreferrer"><div class="outreach-art"><img src="images/about/outreach/Leon Joined UW Foster.png" alt="UW Foster doctoral cohort introduction" loading="lazy" /></div><p>Joined UW Foster’s doctoral program in 2024 and was featured in the cohort introduction.</p></a>
+   <a class="outreach-card media-card flex-shrink-0" href="https://www.linkedin.com/posts/leonleng5_blockchain-adpotion-insurance-activity-7120631995088482304-LCgQ" target="_blank" rel="noopener noreferrer"><div class="outreach-art"><img src="images/about/outreach/Blockchain Insurance Design.png" alt="Blockchain insurance design talk" loading="lazy" /></div><p>Gave a talk on the insurance industry landscape and the future of blockchain-based insurance.</p></a>
+   <a class="outreach-card media-card flex-shrink-0" href="https://www.linkedin.com/posts/kose-john-82486b1b_blockchain-literature-catalog-crypto-and-activity-7087510395120205824-ijUB" target="_blank" rel="noopener noreferrer"><div class="outreach-art"><img src="images/about/outreach/CBER Literature Database Set Up.png" alt="CBER literature database" loading="lazy" /></div><p>Helped build the CBER literature database with Prof. Gerry Tsoukalas and Prof. Fahad Saleh.</p></a>
+  </div>
+  <div class="outreach-controls">
+   <span class="text-xs text-gray-500">Scroll for more</span>
+   <button type="button" onclick="scrollMediaLeft()" aria-label="Scroll outreach left">←</button>
+   <button type="button" onclick="scrollMediaRight()" aria-label="Scroll outreach right">→</button>
+  </div>
  </div>
-</div>
+</section>
 
 <!-- Recent News Section -->
 <div class="mb-16">
@@ -308,23 +382,10 @@ body {
 
  <!-- News Container -->
  <div class="news-container" style="margin-left: calc(50% - 276px); max-width: 552px;">
-   <!-- News Item 1 -->
-   <div class="news-item">
-     <div class="news-date">2025-06-11</div>
-     <div class="news-content">Finished First Year PhD, mainly taking and teaching courses: mathematical programming, queuing theory, economics theory I, II, II, interactive learning. Being TA for Executive MBA and Full-Time MBA students, will teach master program in summer. Joined 2 conferences, 1 workshop, 2 industry summits. Listened 10 more department talks, nearly no absent for the department talk for the whole year!</div>
-   </div>
-
-   <!-- News Item 2 -->
-   <div class="news-item">
-     <div class="news-date">2025-06-03</div>
-     <div class="news-content">Leon earned Acute Gastritis. A recognition for hard working, crazily drinking coffee and unstable life schedule. Keep going!</div>
-   </div>
-
-   <!-- News Item 3 -->
-   <div class="news-item">
-     <div class="news-date">2025-05-13</div>
-     <div class="news-content">After 2 months hustling. Leon attended POMS, first time joined as a session chair and gave his talk twice. Thanks Zihao and Rowena.</div>
-   </div>
+   <div class="news-item"><div class="news-date">2026-10</div><div class="news-content">Joined Microsoft Research Asia as a visiting researcher, studying organizational design for agents and efficient agent compute allocation.</div></div>
+   <div class="news-item"><div class="news-date">2026-06</div><div class="news-content">Joined Tencent’s WeChat Experiment Platform as an Elite (Qingyun) Research Scientist, co-leading projects at the intersection of AI and economics.</div></div>
+   <div class="news-item"><div class="news-date">2026</div><div class="news-content">Served as a session chair for the AI Track at INFORMS in San Francisco and the Product Innovation and Technology Management Track at POMS in Reno.</div></div>
+   <div class="news-item"><div class="news-date">2026</div><div class="news-content">HasciDB: A Database for Identifying Cryptocurrency Airdrop Sybil Hunters was accepted at Nanyang Blockchain Conference 2026.</div></div>
  </div>
 </div>
 
