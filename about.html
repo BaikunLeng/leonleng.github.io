@@ -45,42 +45,57 @@ body {
  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* 移动端主要内容区域样式 */
+/* Shared biography typography and layout */
+.main-content, .about-section {
+ max-width: 552px;
+ margin: 0 auto 4rem;
+}
+.main-content {
+ display: grid;
+ grid-template-columns: 176px minmax(0, 1fr);
+ gap: 1.5rem;
+ align-items: start;
+}
+.profile-image img {
+ width: 176px;
+ height: 224px;
+ object-fit: cover;
+ border-radius: 8px;
+}
+.text-content { min-width: 0; }
+.section-heading {
+ color: #111827;
+ font-size: 1.25rem;
+ line-height: 1.4;
+ font-weight: 600;
+ letter-spacing: -0.015em;
+ text-align: left;
+ margin: 0 0 1rem;
+}
+.profile-copy {
+ color: #374151;
+ font-size: 0.875rem;
+ line-height: 1.75;
+ font-weight: 400;
+ letter-spacing: normal;
+ word-spacing: normal;
+ text-align: left;
+}
+.media-grid {
+ display: grid;
+ grid-template-columns: repeat(2, minmax(0, 1fr));
+ gap: 1.25rem;
+ margin-top: 1.5rem;
+}
+.media-frame { position: relative; aspect-ratio: 16 / 9; border-radius: 8px; overflow: hidden; }
+.media-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.media-caption { color: #6b7280; font-size: 0.75rem; line-height: 1.5; margin-top: .5rem; }
 @media (max-width: 768px) {
- .main-content {
-   flex-direction: column;
-   align-items: center;
-   gap: 1rem;
- }
- 
- .main-content .profile-image {
-   display: flex;
-   justify-content: center;
-   width: 100%;
- }
- 
- .main-content .text-content {
-   max-width: none !important;
-   margin-left: 0 !important;
-   margin-top: 0 !important;
-   width: 100%;
- }
- 
- .about-section {
-   flex-direction: column;
-   align-items: center;
-   gap: 1rem;
- }
- 
- .about-section .about-text {
-   width: 100% !important;
- }
- 
- .about-section .media-grid {
-   max-width: none !important;
-   margin-left: 0 !important;
-   width: 100%;
- }
+ .main-content { grid-template-columns: 1fr; gap: 1.5rem; }
+ .profile-image { display: flex; justify-content: center; }
+}
+@media (max-width: 480px) {
+ .media-grid { grid-template-columns: 1fr; }
 }
 
 /* 移动端Outreach部分样式 */
@@ -128,7 +143,7 @@ body {
 .news-content {
  color: #374151;
  font-size: 0.875rem;
- line-height: 1.5;
+ line-height: 1.7;
 }
 
 /* Education and industry experience */
@@ -137,7 +152,7 @@ body {
  margin: 0 auto 4rem;
  color: #374151;
  font-size: 0.875rem;
- line-height: 1.6;
+ line-height: 1.7;
 }
 .affiliation-row {
  display: grid;
@@ -162,8 +177,8 @@ body {
 .affiliation-logo .square-mark { width: 64px; height: 64px; }
 .affiliation-row p { margin: 0.35rem 0 0; }
 .affiliation-row h3 { font-size: inherit; line-height: inherit; margin: 0; color: #111827; }
-.affiliation-date { font-weight: 600; }
-.affiliation-name { font-weight: 600; font-style: italic; }
+.affiliation-date { font-size: 0.8125rem; font-weight: 400; color: #6b7280; }
+.affiliation-name { font-weight: 600; font-style: normal; }
 .affiliation-detail { color: #6b7280; font-size: 0.8125rem; }
 .outreach-card { width: 200px; display: block; }
 .outreach-art {
@@ -238,67 +253,63 @@ body {
 </div>
 
 <!-- Main Content -->
-<div class="flex items-start gap-8 justify-center mb-16 main-content">
+<div class="main-content">
  <!-- Image -->
- <div class="flex-shrink-0 profile-image">
-   <img src="images/about/leonlengabout1.png" alt="Profile Photo" class="w-48 h-56 rounded-lg object-cover shadow-lg" />
+ <div class="profile-image">
+   <img src="images/about/leonlengabout1.png" alt="Profile Photo"  />
  </div>
 
  <!-- Text -->
- <div class="flex-1 text-content" style="max-width: 320px;margin-top: -5px; margin-left: 20px;">
-   <h2 class="text-xl font-semibold text-black mb-1 text-center">Intelligent Systems</h2>
-   <p class="text-gray-800 text-base leading-tight text-justify">
+ <div class="text-content">
+   <h2 class="section-heading">Intelligent Systems</h2>
+   <p class="profile-copy">
      Leon researches how intelligent systems learn, reason, and coordinate to make better decisions. His work connects AI and economics, with a focus on agent design and self-improvement, causal reasoning and experimentation, and mechanism design. He studies how organizational structures, information, and incentives shape the behavior of AI agents and human decision-makers, aiming to build systems that learn from evidence, use resources efficiently, and align individual decisions with broader objectives.
    </p>
  </div>
 </div>
 
 <!-- About Me Section -->
-<div class="flex items-start gap-8 justify-center mb-16 about-section">
+<div class="about-section">
  <!-- About Me Text -->
- <div class="flex-shrink-0 about-text" style="width: 192px;">
-   <p class="text-gray-800 leading-tight" style="font-size: 13.5px;">
-     <span class="font-semibold text-black">About Me:</span> Leon Leng is a Ph.D. student in Information Systems &amp; Operations Management at the University of Washington’s Foster School of Business, with minors in Computer Science and Economics. He is also a visiting researcher at Microsoft Research Asia and previously worked as an Elite (Qingyun) Research Scientist with Tencent’s WeChat Experiment Platform. He holds a B.S. in Data Science from The Chinese University of Hong Kong, Shenzhen, and studied EECS as a visiting student at UC Berkeley. Feel free to reach out for a conversation or collaboration.
+ <div class="about-text">
+   <h2 class="section-heading">About Me</h2>
+   <p class="profile-copy"> Leon Leng is a Ph.D. student in Information Systems &amp; Operations Management at the University of Washington’s Foster School of Business, with minors in Computer Science and Economics. He is also a visiting researcher at Microsoft Research Asia and previously worked as an Elite (Qingyun) Research Scientist with Tencent’s WeChat Experiment Platform. He holds a B.S. in Data Science from The Chinese University of Hong Kong, Shenzhen, and studied EECS as a visiting student at UC Berkeley. Feel free to reach out for a conversation or collaboration.
    </p>
  </div>
 
  <!-- Media Grid -->
- <div class="flex-1 media-grid" style="max-width: 320px; margin-left: 20px;">
+ <div class="media-grid">
    <!-- Vimeo Video 1 -->
-   <div class="mb-2">
-     <div style="position: relative; width: 100%; height: 140px; border-radius: 8px; overflow: hidden;">
+   <div>
+     <div class="media-frame">
        <iframe 
          src="https://player.vimeo.com/video/1100920444?badge=0&autoplay=1&loop=1&muted=1&autopause=0&controls=0&player_id=0&app_id=58479" 
          frameborder="0" 
          allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
-         style="position: absolute; top: 0; left: 0; width: 120%; height: 120%; transform: translate(-8.33%, -8.33%);"
          title="Leon gives a research talk about Tokenomics Design">
        </iframe>
      </div>
-     <p class="text-xs text-gray-600 mt-1 pl-4">Leon gives a research talk about Tokenomics Design</p>
+     <p class="media-caption">Leon gives a research talk about Tokenomics Design</p>
    </div>
 
-   <div class="mb-2"></div>
-
-   <!-- Vimeo Video 2 -->
+      <!-- Vimeo Video 2 -->
    <div>
-     <div style="position: relative; width: 100%; height: 140px; border-radius: 8px; overflow: hidden;">
+     <div class="media-frame">
        <iframe 
          src="https://player.vimeo.com/video/1100926777?badge=0&autoplay=1&loop=1&muted=1&autopause=0&controls=0&player_id=0&app_id=58479" 
          frameborder="0" 
          allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
-         style="position: absolute; top: 0; left: 0; width: 120%; height: 120%; transform: translate(-8.33%, -8.33%);"
          title="Leon was interviewed at ETH Denver at Media House">
        </iframe>
      </div>
-     <p class="text-xs text-gray-600 mt-1 pl-4">Leon was interviewed at ETH Denver at Media House</p>
+     <p class="media-caption">Leon was interviewed at ETH Denver at Media House</p>
    </div>
  </div>
 </div>
 
 <!-- Education Section -->
 <section class="experience-section" aria-labelledby="education-heading">
- <h2 id="education-heading" class="text-xl font-semibold text-black">Education</h2>
+ <h2 id="education-heading" class="section-heading">Education</h2>
  <article class="affiliation-row">
   <div class="affiliation-logo"><img src="images/affiliations/uw.png" alt="University of Washington, Seattle logo" loading="lazy" /></div>
   <div><h3><span class="affiliation-date">2024–present</span><br /><span class="affiliation-name">University of Washington, Seattle</span></h3>
@@ -321,7 +332,7 @@ body {
 
 <!-- Industry Experience Section -->
 <section class="experience-section" aria-labelledby="industry-heading">
- <h2 id="industry-heading" class="text-xl font-semibold text-black">Industry Experience</h2>
+ <h2 id="industry-heading" class="section-heading">Industry Experience</h2>
  <article class="affiliation-row">
   <div class="affiliation-logo"><img src="images/affiliations/microsoft.svg" alt="Microsoft Research Asia logo" loading="lazy" class="square-mark" /></div>
   <div><h3><span class="affiliation-date">Oct. 2026–Dec. 2026</span><br /><span class="affiliation-name">Microsoft Research Asia</span></h3>
@@ -351,7 +362,7 @@ body {
 <!-- Outreach Section -->
 <section class="mb-16" aria-labelledby="outreach-heading">
  <div class="mb-6 outreach-title" style="margin-left: calc(50% - 276px);">
-  <h2 id="outreach-heading" class="text-xl font-semibold text-black">Outreach</h2>
+  <h2 id="outreach-heading" class="section-heading">Outreach</h2>
  </div>
  <div class="outreach-container" style="margin-left: calc(50% - 276px); max-width: 552px; overflow: hidden;">
   <div id="mediaScroll" class="flex gap-3 overflow-x-auto scroll-container" style="scroll-behavior: smooth;" aria-label="Outreach activities">
@@ -376,7 +387,7 @@ body {
 <div class="mb-16">
  <!-- Recent News Title with View all link -->
  <div class="mb-6 news-title flex items-center justify-between" style="margin-left: calc(50% - 276px); max-width: 552px;">
-   <h2 class="text-xl font-semibold text-black">Recent News</h2>
+   <h2 class="section-heading">Recent News</h2>
    <a href="news.html" class="text-sm text-gray-600 hover:text-black border-b border-dotted border-gray-400 hover:border-black">View all →</a>
  </div>
 
