@@ -17,7 +17,7 @@ body { margin: 0; background: #fff; color: var(--text); font-family: 'Inter', -a
 a { color: inherit; text-underline-offset: 4px; text-decoration-thickness: 1px; }
 a:hover { color: #000; }
 a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid #6b7280; outline-offset: 4px; }
-.page-shell { max-width: 896px; margin: 0 auto; padding: 48px 24px 64px; }
+.max-w-4xl { max-width: 896px; margin: 0 auto; padding: 48px 24px 64px; }
 /* Match the About and Muses navigation and centered identity. */
 .nav-container { margin-left: calc(50% - 276px); line-height: 1.5; }
 .nav-container a { text-decoration: none; }
@@ -41,45 +41,34 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 .h-5 { height: 20px; }
 .flex a { display: flex; }
 .text-sm { font-size: .875rem; margin: 0; line-height: 1.5; }
-.research-content { width: 100%; }
-.research-intro { max-width: 552px; margin: 0 auto 32px; }
+.research-content { max-width: 552px; margin: 0 auto; }
+.research-intro { margin: 0 0 40px; }
 .page-title { margin: 0 0 16px; color: #111827; font-size: 1.5rem; font-weight: 700; line-height: 1.4; letter-spacing: -.015em; }
 .research-intro p { margin: 0; font-size: 1rem; line-height: 1.75; }
-.research-controls { margin: 0 0 32px; padding: 0 0 18px; border-bottom: 1px solid var(--line); }
-.control-row { display: flex; align-items: center; flex-wrap: wrap; gap: 12px 20px; }
-.topic-filters { display: flex; gap: 8px 18px; flex-wrap: wrap; }
-.filter-button { appearance: none; background: none; border: 0; border-bottom: 1px solid transparent; padding: 3px 0; font: inherit; font-size: .875rem; color: var(--muted); cursor: pointer; }
-.filter-button:hover { color: #000; }
-.filter-button[aria-pressed="true"] { border-bottom-color: #111827; color: #111827; font-weight: 600; }
-.search-wrap { margin-left: auto; min-width: 180px; flex: 0 1 220px; }
-.search-wrap input { width: 100%; padding: 9px 12px; border: 1px solid #e5e7eb; border-radius: 6px; color: #374151; background: #fff; font: inherit; font-size: .875rem; }
-.results-count { margin: 12px 0 0; font-size: .875rem; color: var(--muted); }
 .section-heading { margin: 0 0 24px; color: #111827; font-size: 1.25rem; font-weight: 600; line-height: 1.4; letter-spacing: -.015em; }
 .research-section + .research-section { margin-top: 48px; }
-.research-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px 28px; align-items: start; }
+.research-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 48px; }
 .research-item { min-width: 0; }
-.research-figure { margin: 0 0 18px; border-radius: 8px; overflow: hidden; background: #f8fafc; }
-.research-figure img { display: block; width: 100%; height: auto; aspect-ratio: 20 / 11; object-fit: contain; }
+.research-figure { margin: 0 0 20px; background: #fff; }
+.research-figure img { display: block; width: 100%; height: auto; aspect-ratio: 40 / 19; object-fit: contain; }
 .research-item h3 { margin: 0 0 8px; font-size: 1.0625rem; line-height: 1.5; font-weight: 600; letter-spacing: -.015em; color: #111827; overflow-wrap: break-word; }
-.authors { margin: 0 0 8px; color: #6b7280; font-size: .875rem; line-height: 1.65; }
-.authors strong { color: #374151; font-weight: 600; }
-.research-meta { margin: 0 0 10px; color: #6b7280; font-size: .875rem; line-height: 1.6; font-weight: 400; }
+.research-byline { margin: 0 0 10px; color: #6b7280; font-size: .875rem; line-height: 1.7; }
+.research-byline strong { color: #374151; font-weight: 600; }
+.research-meta { margin: 0 0 10px; color: #6b7280; font-size: .875rem; line-height: 1.7; font-weight: 400; }
 .research-summary { margin: 0; font-size: 1rem; line-height: 1.75; color: #374151; }
 .figure-note { margin: 32px 0 0; font-size: .875rem; color: #6b7280; }
-.empty-state { padding: 32px 0; color: #6b7280; }
 .page-footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; margin-top: 40px; padding-top: 20px; border-top: 1px solid #e5e7eb; font-size: .875rem; color: #6b7280; }
 .page-footer p { margin: 0; }
 @media (max-width: 768px) {
  .nav-container { margin-left: 0; text-align: center; }
- .research-intro { max-width: none; }
- .search-wrap { flex: 1 1 100%; margin-left: 0; }
- .research-grid { grid-template-columns: 1fr; gap: 36px; }
+ .research-content { max-width: none; }
+ .research-grid { gap: 40px; }
  .research-section + .research-section { margin-top: 40px; }
 }
 </style>
 </head>
 <body>
-<div class="page-shell">
+<div class="max-w-4xl mx-auto px-6 py-12">
 <nav class="mb-8 nav-container" aria-label="Main navigation">
  <a href="index.html" class="text-gray-700 hover:text-black mr-4">About</a>
  <a href="research.html" class="text-black font-semibold mr-4" aria-current="page">Research</a>
@@ -131,55 +120,38 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
  <p>Leon studies the design of intelligent systems, from individual AI agents to organizations. His work connects AI and economics through agent design, causal reasoning and experimentation, and incentive mechanisms.</p>
  </div>
 
- <div class="research-controls" aria-label="Filter research">
-  <div class="control-row">
-   <div class="topic-filters" role="group" aria-label="Research topics">
-    <button type="button" class="filter-button" data-topic="all" aria-pressed="true">All research</button>
-    <button type="button" class="filter-button" data-topic="agents" aria-pressed="false">AI agents</button>
-    <button type="button" class="filter-button" data-topic="causal" aria-pressed="false">Causal inference</button>
-    <button type="button" class="filter-button" data-topic="mechanisms" aria-pressed="false">Mechanism design</button>
-   </div>
-   <label class="search-wrap"><span hidden>Search research</span><input id="research-search" type="search" placeholder="Search research" aria-label="Search research" /></label>
-  </div>
-  <p class="results-count" id="research-count" role="status" aria-live="polite">8 research items</p>
- </div>
-
  <section class="research-section" aria-labelledby="papers-heading">
   <div class="section-label">
   <h2 class="section-heading" id="papers-heading">Papers &amp; Working Papers</h2>
   </div>
   <div class="research-grid">
 
-  <article class="research-item" id="agentspec" data-topics="agents">
-   <figure class="research-figure"><img src="images/research/agentspec.svg" width="800" height="440" alt="Conceptual diagram of reasoning, memory, reflection, and action components in a modular agent." loading="lazy" /></figure>
+  <article class="research-item" id="agentspec">
+   <figure class="research-figure"><img src="images/research/agentspec.svg" width="800" height="380" alt="Conceptual diagram of reasoning, memory, reflection, and action components in a modular agent." loading="lazy" /></figure>
    <h3>AgentSpec: A Modular Specification Framework for Controlled Analysis of Embodied Agents</h3>
-   <p class="authors">J. Chen, J. Shen, H. Kang, Z. Hong, Q. Jiang, S. Bose, Y. Zhang, <strong>L. Leng</strong>, A. Vyas, L. Mao, S. Ouyang, K. Zhou, and L. Qin</p>
-   <p class="research-meta">Manuscript</p>
-   <p class="research-summary">A modular framework for studying how reasoning, memory, reflection, and learning interact in embodied agents. Standardized component interfaces support controlled comparisons across DeliveryBench, ALFRED, MiniGrid, and RoboTHOR.</p>
+   <p class="research-byline" title="J. Chen, J. Shen, H. Kang, Z. Hong, Q. Jiang, S. Bose, Y. Zhang, L. Leng, A. Vyas, L. Mao, S. Ouyang, K. Zhou, and L. Qin">J. Chen et al. (including <strong>L. Leng</strong>) · Manuscript</p>
+   <p class="research-summary">A modular framework for controlled comparisons of how reasoning, memory, reflection, and learning interact in embodied agents.</p>
   </article>
 
-  <article class="research-item" id="hascidb" data-topics="mechanisms">
-   <figure class="research-figure"><img src="images/research/hascidb.svg" width="800" height="440" alt="Conceptual diagram of transaction patterns linking cryptocurrency addresses." loading="lazy" /></figure>
+  <article class="research-item" id="hascidb">
+   <figure class="research-figure"><img src="images/research/hascidb.svg" width="800" height="380" alt="Conceptual diagram of transaction patterns linking cryptocurrency addresses." loading="lazy" /></figure>
    <h3>HasciDB: A Database for Identifying Cryptocurrency Airdrop Sybil Hunters</h3>
-   <p class="authors">A. Wen, C. Li, S. Qu, <strong>L. Leng</strong>, and W. Cai</p>
-   <p class="research-meta">Accepted at Nanyang Blockchain Conference 2026</p>
-   <p class="research-summary">A reproducible database covering 3.5 million eligible addresses across 16 Ethereum airdrops. Five behavioral indicators identify suspected Sybil activity, supporting research on coordinated participation, token allocation, and airdrop mechanism design.</p>
+   <p class="research-byline">A. Wen, C. Li, S. Qu, <strong>L. Leng</strong>, and W. Cai · Accepted at Nanyang Blockchain Conference 2026</p>
+   <p class="research-summary">A database of 3.5 million eligible addresses across 16 Ethereum airdrops for studying Sybil behavior and token allocation.</p>
   </article>
 
-  <article class="research-item" id="optimal-capping" data-topics="causal">
-   <figure class="research-figure"><img src="images/research/optimal-capping.svg" width="800" height="440" alt="Conceptual diagram showing how capping limits the contribution of extreme metric values." loading="lazy" /></figure>
+  <article class="research-item" id="optimal-capping">
+   <figure class="research-figure"><img src="images/research/optimal-capping.svg" width="800" height="380" alt="Conceptual diagram showing how capping limits the contribution of extreme metric values." loading="lazy" /></figure>
    <h3>Optimal Capping Theory for Heavy-Tailed Metrics in Experimentation</h3>
-   <p class="authors">H. Deng, <strong>L. Leng</strong>, and T. Ni</p>
-   <p class="research-meta">Working paper</p>
-   <p class="research-summary">How should an A/B test cap extreme observations in metrics such as user revenue? This project studies how the capping threshold changes both the measured treatment effect and its uncertainty, with the goal of improving sensitivity while controlling false positives.</p>
+   <p class="research-byline">H. Deng, <strong>L. Leng</strong>, and T. Ni · Working paper</p>
+   <p class="research-summary">Choosing capping thresholds for heavy-tailed experiment metrics to balance sensitivity, uncertainty, and false-positive control.</p>
   </article>
 
-  <article class="research-item" id="centralized-decentralized-evaluation" data-topics="mechanisms">
-   <figure class="research-figure"><img src="images/research/centralized-decentralized-evaluation.svg" width="800" height="440" alt="Conceptual comparison of centralized and independent peer assessment." loading="lazy" /></figure>
+  <article class="research-item" id="centralized-decentralized-evaluation">
+   <figure class="research-figure"><img src="images/research/centralized-decentralized-evaluation.svg" width="800" height="380" alt="Conceptual comparison of centralized and independent peer assessment." loading="lazy" /></figure>
    <h3>Centralized Evaluation vs. Decentralized Evaluation</h3>
-   <p class="authors"><strong>L. Leng</strong>, R. J. Gan, and S. Chen</p>
-   <p class="research-meta">Working paper · Presented at INFORMS and POMS, 2025–2026</p>
-   <p class="research-summary">A game-theoretic study of insurance claim assessment: how payment liability, information quality, and assessor incentives affect decisions and welfare. It compares centralized assessment with peer-based mechanisms that support costly, truthful review under specified assumptions, while accounting for remaining blind-reporting equilibria.</p>
+   <p class="research-byline"><strong>L. Leng</strong>, R. J. Gan, and S. Chen · Working paper · Presented at INFORMS and POMS, 2025–2026</p>
+   <p class="research-summary">How payment liability, information quality, and assessor incentives shape insurance claim assessment, reporting behavior, and welfare.</p>
   </article>
   </div>
  </section>
@@ -190,71 +162,39 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
   </div>
   <div class="research-grid">
 
-  <article class="research-item" id="agent-organizations" data-topics="agents">
-   <figure class="research-figure"><img src="images/research/agent-organizations.svg" width="800" height="440" alt="Conceptual comparison of hierarchical and peer-based agent teams." loading="lazy" /></figure>
+  <article class="research-item" id="agent-organizations">
+   <figure class="research-figure"><img src="images/research/agent-organizations.svg" width="800" height="380" alt="Conceptual comparison of hierarchical and peer-based agent teams." loading="lazy" /></figure>
    <h3>Organizational Design for AI Agents</h3>
    <p class="research-meta">Microsoft Research Asia · Ongoing research</p>
-   <p class="research-summary">An experimentation platform for comparing agent teams organized as hierarchies, peer squads, or divisions. Teams perform the same business task with the task, information, model, and budget held fixed; deterministic evaluation and information-flow replay help isolate the effects of organizational structure.</p>
+   <p class="research-summary">Controlled experiments comparing agent team structures on the same task, with information, model, and budget held fixed.</p>
   </article>
 
-  <article class="research-item" id="agent-compute" data-topics="agents">
-   <figure class="research-figure"><img src="images/research/agent-compute.svg" width="800" height="440" alt="Conceptual diagram of checkpointed agent strategies and compute decisions." loading="lazy" /></figure>
+  <article class="research-item" id="agent-compute">
+   <figure class="research-figure"><img src="images/research/agent-compute.svg" width="800" height="380" alt="Conceptual diagram of checkpointed agent strategies and compute decisions." loading="lazy" /></figure>
    <h3>Adaptive Compute Allocation for Agents</h3>
    <p class="research-meta">Microsoft Research Asia · Ongoing research</p>
-   <p class="research-summary">Agents can finish a task successfully while spending much more compute than necessary. This project replays checkpoints under alternative strategies—continuing, verifying, replanning, or refocusing—to measure their quality and cost, and is developing a controller that uses those comparisons to guide intervention.</p>
+   <p class="research-summary">Replaying agent checkpoints under alternative strategies to study when intervention can reduce compute without sacrificing task success.</p>
   </article>
 
-  <article class="research-item" id="experiment-knowledge" data-topics="agents causal">
-   <figure class="research-figure"><img src="images/research/experiment-knowledge.svg" width="800" height="440" alt="Conceptual diagram connecting experimental evidence, knowledge, evaluation, and reviewed repairs." loading="lazy" /></figure>
+  <article class="research-item" id="experiment-knowledge">
+   <figure class="research-figure"><img src="images/research/experiment-knowledge.svg" width="800" height="380" alt="Conceptual diagram connecting experimental evidence, knowledge, evaluation, and reviewed repairs." loading="lazy" /></figure>
    <h3>Learning from Experimental Evidence</h3>
    <p class="research-meta">Tencent · Experiment knowledge systems</p>
-   <p class="research-summary">A knowledge and decision system that turns scattered experiment results into evidence-linked lessons and proposed follow-up tests. The design connects evaluation failures to repair tickets, with held-out checks and human review before changes enter the knowledge base.</p>
+   <p class="research-summary">Turning past experiments into evidence-linked knowledge, with evaluation and human-reviewed repairs guiding improvements.</p>
   </article>
 
-  <article class="research-item" id="causal-ai" data-topics="causal">
-   <figure class="research-figure"><img src="images/research/causal-ai.svg" width="800" height="440" alt="Conceptual causal graph and workflow for evaluating and improving causal reasoning." loading="lazy" /></figure>
+  <article class="research-item" id="causal-ai">
+   <figure class="research-figure"><img src="images/research/causal-ai.svg" width="800" height="380" alt="Conceptual causal graph and workflow for evaluating and improving causal reasoning." loading="lazy" /></figure>
    <h3>Evaluating and Improving Causal Reasoning</h3>
    <p class="research-meta">Tencent · Benchmarks, post-training, and interpretability</p>
-   <p class="research-summary">Executable evaluations spanning experiment design, causal estimation, sensitivity analysis, and non-identification; post-training with programmatic verifiers; and controlled probes and interventions to study whether models represent and use causal concepts. The work also investigates tool-use regressions that aggregate accuracy can conceal.</p>
+   <p class="research-summary">Executable benchmarks, post-training, and interpretability studies of causal reasoning, including identification failures and tool-use regressions.</p>
   </article>
   </div>
  </section>
 
- <p class="empty-state" id="research-empty" hidden>No research matches this search. Try another topic or keyword.</p>
  <p class="figure-note">Illustrations show conceptual overviews of the research.</p>
  <footer class="page-footer"><p>Research inquiries: <a href="mailto:leonleng@uw.edu">leonleng@uw.edu</a></p><p><a href="index.html">About Leon</a></p></footer>
 </main>
 </div>
-<script>
-(() => {
- const buttons = [...document.querySelectorAll('[data-topic]')];
- const items = [...document.querySelectorAll('.research-item')];
- const sections = [...document.querySelectorAll('.research-section')];
- const search = document.getElementById('research-search');
- const count = document.getElementById('research-count');
- const empty = document.getElementById('research-empty');
- let topic = 'all';
- function filterResearch() {
-  const query = search.value.trim().toLocaleLowerCase();
-  let visible = 0;
-  items.forEach(item => {
-   const matchesTopic = topic === 'all' || item.dataset.topics.split(' ').includes(topic);
-   const matchesText = !query || item.textContent.toLocaleLowerCase().includes(query);
-   item.hidden = !(matchesTopic && matchesText);
-   if (!item.hidden) visible++;
-  });
-  sections.forEach(section => { section.hidden = ![...section.querySelectorAll('.research-item')].some(item => !item.hidden); });
-  count.textContent = `${visible} of ${items.length} research items`;
-  empty.hidden = visible > 0;
- }
- buttons.forEach(button => button.addEventListener('click', () => {
-  topic = button.dataset.topic;
-  buttons.forEach(b => b.setAttribute('aria-pressed', String(b === button)));
-  filterResearch();
- }));
- search.addEventListener('input', filterResearch);
- filterResearch();
-})();
-</script>
 </body>
 </html>
