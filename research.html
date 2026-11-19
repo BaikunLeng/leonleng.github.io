@@ -10,49 +10,65 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
 <style>
+:root { --ink: #293d46; --text: #425058; --muted: #6c777c; --accent: #42645b; --line: #dfe5e3; }
 * { box-sizing: border-box; }
-body { margin: 0; background: #fff; color: #374151; font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif; font-size: 1rem; line-height: 1.75; }
-.page-shell { max-width: 896px; margin: 0 auto; padding: 48px 24px 64px; }
-a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; }
-a:hover { color: #000; }
-a:focus-visible { outline: 2px solid #374151; outline-offset: 4px; border-radius: 2px; }
-.nav-container { margin: 0 0 32px calc(50% - 276px); display: flex; gap: 1.25rem; align-items: baseline; line-height: 1.5; }
-.nav-container a { text-decoration: none; color: #374151; white-space: nowrap; }
-.nav-container a:hover { text-decoration: underline; }
-.nav-container a[aria-current="page"] { color: #000; font-weight: 600; }
-.text-center { text-align: center; }
-.mb-12 { margin-bottom: 48px; }
-.text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
-.font-bold { font-weight: 700; }
-.text-black { color: #000; }
-.mb-6 { margin: 0 0 24px; }
-.flex { display: flex; }
-.justify-center { justify-content: center; }
-.items-center { align-items: center; }
-.gap-4 { gap: 16px; }
-.mb-1 { margin-bottom: 4px; }
-.w-5 { width: 20px; }
-.h-5 { height: 20px; }
-.flex a { display: flex; }
-.text-sm { font-size: .875rem; margin: 0; line-height: 1.5; }
-.research-content { max-width: 552px; margin: 0 auto; }
-.page-title { margin: 0 0 16px; color: #111827; font-size: 1.75rem; font-weight: 600; line-height: 1.3; letter-spacing: -.025em; }
-.research-intro { margin: 0; }
-.section-heading { margin: 44px 0 24px; color: #111827; font-size: 1.25rem; font-weight: 600; line-height: 1.4; letter-spacing: -.015em; }
-.research-item { margin: 0 0 28px; padding: 0 0 28px; border-bottom: 1px solid #e5e7eb; }
-.research-item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: 0; }
-.research-item h3 { color: #111827; font-size: 1.0625rem; line-height: 1.55; font-weight: 600; letter-spacing: -.01em; margin: 0 0 6px; overflow-wrap: break-word; }
-.authors { font-size: .875rem; line-height: 1.65; margin: 0 0 6px; color: #4b5563; }
-.authors strong { color: #374151; font-weight: 600; }
-.research-meta { font-size: .875rem; line-height: 1.6; color: #6b7280; margin: 0 0 10px; }
-.research-summary { margin: 0; }
-.page-footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid #e5e7eb; font-size: .875rem; color: #6b7280; }
-@media (max-width: 768px) {
- .nav-container { margin-left: 0; justify-content: center; gap: 1.1rem; }
+[hidden] { display: none !important; }
+body { margin: 0; background: #fff; color: var(--text); font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 1rem; line-height: 1.7; }
+a { color: var(--accent); text-underline-offset: 4px; text-decoration-thickness: 1px; }
+a:hover { color: #223c34; }
+a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.page-shell { max-width: 1104px; margin: 0 auto; padding: 38px 32px 56px; }
+.nav-container { display: flex; gap: 28px; margin-bottom: 32px; padding-bottom: 18px; border-bottom: 1px solid var(--line); line-height: 1.5; }
+.nav-container a { color: var(--muted); text-decoration: none; }
+.nav-container a:hover { color: var(--ink); }
+.nav-container a[aria-current="page"] { color: var(--accent); font-weight: 600; }
+.site-header { display: flex; justify-content: space-between; align-items: center; gap: 24px; margin: 0 0 38px; }
+.site-name { margin: 0; color: var(--ink); font-family: Georgia, 'Times New Roman', serif; font-size: 2.25rem; font-weight: 600; line-height: 1.2; letter-spacing: -.035em; }
+.site-name a { color: inherit; text-decoration: none; }
+.site-contact { display: flex; gap: 18px; flex-wrap: wrap; align-items: center; font-size: .875rem; }
+.site-contact a { text-decoration: none; }
+.research-content { width: 100%; }
+.research-intro { max-width: 770px; margin: 0 0 30px; }
+.page-title { margin: 0 0 12px; color: var(--ink); font-family: Georgia, 'Times New Roman', serif; font-size: 2rem; font-weight: 500; line-height: 1.25; letter-spacing: -.025em; }
+.research-intro p { margin: 0; font-size: 1rem; line-height: 1.75; }
+.research-controls { margin: 0 0 32px; padding: 18px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.control-row { display: flex; align-items: center; flex-wrap: wrap; gap: 12px 24px; }
+.topic-filters { display: flex; gap: 8px 20px; flex-wrap: wrap; }
+.filter-button { appearance: none; background: none; border: 0; border-bottom: 1px solid transparent; padding: 3px 0; font: inherit; font-size: .875rem; color: var(--muted); cursor: pointer; }
+.filter-button:hover { color: var(--accent); }
+.filter-button[aria-pressed="true"] { border-bottom-color: var(--accent); color: var(--accent); font-weight: 600; }
+.search-wrap { margin-left: auto; min-width: 200px; flex: 0 1 250px; }
+.search-wrap input { width: 100%; padding: 9px 12px; border: 1px solid #d6dfdb; border-radius: 4px; color: var(--ink); background: #fff; font: inherit; font-size: .875rem; }
+.results-count { margin: 12px 0 0; font-size: .875rem; color: var(--muted); }
+.section-heading { margin: 0 0 24px; font-family: Georgia, 'Times New Roman', serif; color: var(--ink); font-size: 1.75rem; font-weight: 500; line-height: 1.3; letter-spacing: -.025em; }
+.research-section + .research-section { margin-top: 48px; }
+.research-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px 32px; align-items: start; }
+.research-item { min-width: 0; }
+.research-figure { margin: 0 0 18px; border-radius: 7px; overflow: hidden; border: 1px solid #e3e9e7; background: #f4f7f6; }
+.research-figure img { display: block; width: 100%; height: auto; aspect-ratio: 20 / 11; object-fit: contain; }
+.research-item h3 { margin: 0 0 8px; font-size: 1.125rem; line-height: 1.5; font-weight: 600; letter-spacing: -.02em; color: var(--ink); overflow-wrap: break-word; }
+.authors { margin: 0 0 8px; color: var(--muted); font-size: .875rem; line-height: 1.65; }
+.authors strong { color: var(--text); font-weight: 600; }
+.research-meta { margin: 0 0 10px; color: var(--accent); font-size: .875rem; line-height: 1.6; font-weight: 500; }
+.research-summary { margin: 0; font-size: 1rem; line-height: 1.75; color: var(--text); }
+.figure-note { margin: 32px 0 0; font-size: .875rem; color: var(--muted); }
+.empty-state { padding: 32px 0; color: var(--muted); }
+.page-footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--line); font-size: .875rem; color: var(--muted); }
+.page-footer p { margin: 0; }
+@media (max-width: 760px) {
+ .page-shell { padding: 28px 22px 40px; }
+ .nav-container { gap: 24px; margin-bottom: 26px; }
+ .site-header { align-items: flex-start; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+ .site-name { font-size: 2rem; }
+ .search-wrap { flex: 1 1 100%; margin-left: 0; }
+ .research-grid { grid-template-columns: 1fr; gap: 36px; }
+ .research-item h3 { font-size: 1.125rem; }
+ .research-summary { font-size: 1rem; }
+ .research-section + .research-section { margin-top: 40px; }
 }
-@media (max-width: 400px) {
- .page-shell { padding-left: 20px; padding-right: 20px; }
- .nav-container { gap: 1rem; }
+@media (prefers-reduced-motion: no-preference) {
+ .research-figure img { transition: transform .2s ease; }
+ .research-item:hover .research-figure img { transform: scale(1.015); }
 }
 </style>
 </head>
@@ -65,110 +81,145 @@ a:focus-visible { outline: 2px solid #374151; outline-offset: 4px; border-radius
  <a href="https://docs.google.com/document/d/1LwmmVY2ubUbmLOVHN6iLzTF6-LNrYX0iYz3AWnUyo2M/edit" target="_blank" rel="noopener noreferrer">CV</a>
 </nav>
 
-<div class="text-center mb-12">
- <h1 class="text-4xl font-bold text-black mb-6">Leon Leng</h1>
-
- <!-- Social Icons -->
- <div class="flex justify-center items-center gap-4 mb-1">
-   <!-- LinkedIn -->
-   <a href="https://www.linkedin.com/in/leonleng5/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer" class="text-gray-700 hover:text-gray-900">
-     <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-       <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452z"/>
-     </svg>
-   </a>
-
-   <!-- Twitter/X -->
-   <a href="https://x.com/LeonLeng5" aria-label="X" target="_blank" rel="noopener noreferrer" class="text-gray-700 hover:text-gray-900">
-     <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-       <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.8l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-     </svg>
-   </a>
-
-   <!-- Newsletter (Substack) -->
-   <a href="https://leonleng.substack.com/" aria-label="Newsletter" target="_blank" rel="noopener noreferrer" class="text-gray-700 hover:text-gray-900">
-     <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-       <path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/>
-     </svg>
-   </a>
-
-   <!-- Podcasts (YouTube) -->
-   <a href="https://www.youtube.com/@leonseetech" aria-label="YouTube" target="_blank" rel="noopener noreferrer" class="text-gray-700 hover:text-gray-900">
-     <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-       <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-     </svg>
-   </a>
+<header class="site-header">
+ <h1 class="site-name"><a href="index.html">Leon Leng</a></h1>
+ <div class="site-contact">
+  <a href="mailto:leonleng@uw.edu">leonleng@uw.edu</a>
+  <a href="https://www.linkedin.com/in/leonleng5/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+  <a href="https://github.com/BaikunLeng" target="_blank" rel="noopener noreferrer">GitHub</a>
  </div>
-
- <!-- Email -->
- <p class="text-gray-700 text-sm">leonleng@uw.edu</p>
-</div>
+</header>
 
 <main class="research-content" id="main-content">
+ <div class="research-intro">
  <h2 class="page-title">Research</h2>
- <p class="research-intro">Leon studies the design of intelligent systems, from individual AI agents to organizations. His work connects AI and economics through agent design, causal reasoning and experimentation, and incentive mechanisms.</p>
+ <p>Leon studies the design of intelligent systems, from individual AI agents to organizations. His work connects AI and economics through agent design, causal reasoning and experimentation, and incentive mechanisms.</p>
+ </div>
 
- <section aria-labelledby="papers-heading">
+ <div class="research-controls" aria-label="Filter research">
+  <div class="control-row">
+   <div class="topic-filters" role="group" aria-label="Research topics">
+    <button type="button" class="filter-button" data-topic="all" aria-pressed="true">All research</button>
+    <button type="button" class="filter-button" data-topic="agents" aria-pressed="false">AI agents</button>
+    <button type="button" class="filter-button" data-topic="causal" aria-pressed="false">Causal inference</button>
+    <button type="button" class="filter-button" data-topic="mechanisms" aria-pressed="false">Mechanism design</button>
+   </div>
+   <label class="search-wrap"><span hidden>Search research</span><input id="research-search" type="search" placeholder="Search research" aria-label="Search research" /></label>
+  </div>
+  <p class="results-count" id="research-count" role="status" aria-live="polite">8 research items</p>
+ </div>
+
+ <section class="research-section" aria-labelledby="papers-heading">
+  <div class="section-label">
   <h2 class="section-heading" id="papers-heading">Papers &amp; Working Papers</h2>
+  </div>
+  <div class="research-grid">
 
-  <article class="research-item" id="agentspec">
+  <article class="research-item" id="agentspec" data-topics="agents">
+   <figure class="research-figure"><img src="images/research/agentspec.svg" width="800" height="440" alt="Conceptual diagram of reasoning, memory, reflection, and action components in a modular agent." loading="lazy" /></figure>
    <h3>AgentSpec: A Modular Specification Framework for Controlled Analysis of Embodied Agents</h3>
    <p class="authors">J. Chen, J. Shen, H. Kang, Z. Hong, Q. Jiang, S. Bose, Y. Zhang, <strong>L. Leng</strong>, A. Vyas, L. Mao, S. Ouyang, K. Zhou, and L. Qin</p>
    <p class="research-meta">Manuscript</p>
    <p class="research-summary">A modular framework for studying how reasoning, memory, reflection, and learning interact in embodied agents. Standardized component interfaces support controlled comparisons across DeliveryBench, ALFRED, MiniGrid, and RoboTHOR.</p>
   </article>
 
-  <article class="research-item" id="hascidb">
+  <article class="research-item" id="hascidb" data-topics="mechanisms">
+   <figure class="research-figure"><img src="images/research/hascidb.svg" width="800" height="440" alt="Conceptual diagram of transaction patterns linking cryptocurrency addresses." loading="lazy" /></figure>
    <h3>HasciDB: A Database for Identifying Cryptocurrency Airdrop Sybil Hunters</h3>
    <p class="authors">A. Wen, C. Li, S. Qu, <strong>L. Leng</strong>, and W. Cai</p>
    <p class="research-meta">Accepted at Nanyang Blockchain Conference 2026</p>
    <p class="research-summary">A reproducible database covering 3.5 million eligible addresses across 16 Ethereum airdrops. Five behavioral indicators identify suspected Sybil activity, supporting research on coordinated participation, token allocation, and airdrop mechanism design.</p>
   </article>
 
-  <article class="research-item" id="optimal-capping">
+  <article class="research-item" id="optimal-capping" data-topics="causal">
+   <figure class="research-figure"><img src="images/research/optimal-capping.svg" width="800" height="440" alt="Conceptual diagram showing how capping limits the contribution of extreme metric values." loading="lazy" /></figure>
    <h3>Optimal Capping Theory for Heavy-Tailed Metrics in Experimentation</h3>
    <p class="authors">H. Deng, <strong>L. Leng</strong>, and T. Ni</p>
    <p class="research-meta">Working paper</p>
    <p class="research-summary">How should an A/B test cap extreme observations in metrics such as user revenue? This project studies how the capping threshold changes both the measured treatment effect and its uncertainty, with the goal of improving sensitivity while controlling false positives.</p>
   </article>
 
-  <article class="research-item" id="centralized-decentralized-evaluation">
+  <article class="research-item" id="centralized-decentralized-evaluation" data-topics="mechanisms">
+   <figure class="research-figure"><img src="images/research/centralized-decentralized-evaluation.svg" width="800" height="440" alt="Conceptual comparison of centralized and independent peer assessment." loading="lazy" /></figure>
    <h3>Centralized Evaluation vs. Decentralized Evaluation</h3>
    <p class="authors"><strong>L. Leng</strong>, R. J. Gan, and S. Chen</p>
    <p class="research-meta">Working paper · Presented at INFORMS and POMS, 2025–2026</p>
    <p class="research-summary">A game-theoretic study of insurance claim assessment: how payment liability, information quality, and assessor incentives affect decisions and welfare. It compares centralized assessment with peer-based mechanisms that support costly, truthful review under specified assumptions, while accounting for remaining blind-reporting equilibria.</p>
   </article>
+  </div>
  </section>
 
- <section aria-labelledby="projects-heading">
+ <section class="research-section" aria-labelledby="projects-heading">
+  <div class="section-label">
   <h2 class="section-heading" id="projects-heading">Research in Progress</h2>
+  </div>
+  <div class="research-grid">
 
-  <article class="research-item" id="agent-organizations">
+  <article class="research-item" id="agent-organizations" data-topics="agents">
+   <figure class="research-figure"><img src="images/research/agent-organizations.svg" width="800" height="440" alt="Conceptual comparison of hierarchical and peer-based agent teams." loading="lazy" /></figure>
    <h3>Organizational Design for AI Agents</h3>
    <p class="research-meta">Microsoft Research Asia · Ongoing research</p>
    <p class="research-summary">An experimentation platform for comparing agent teams organized as hierarchies, peer squads, or divisions. Teams perform the same business task with the task, information, model, and budget held fixed; deterministic evaluation and information-flow replay help isolate the effects of organizational structure.</p>
   </article>
 
-  <article class="research-item" id="agent-compute">
+  <article class="research-item" id="agent-compute" data-topics="agents">
+   <figure class="research-figure"><img src="images/research/agent-compute.svg" width="800" height="440" alt="Conceptual diagram of checkpointed agent strategies and compute decisions." loading="lazy" /></figure>
    <h3>Adaptive Compute Allocation for Agents</h3>
    <p class="research-meta">Microsoft Research Asia · Ongoing research</p>
    <p class="research-summary">Agents can finish a task successfully while spending much more compute than necessary. This project replays checkpoints under alternative strategies—continuing, verifying, replanning, or refocusing—to measure their quality and cost, and is developing a controller that uses those comparisons to guide intervention.</p>
   </article>
 
-  <article class="research-item" id="experiment-knowledge">
+  <article class="research-item" id="experiment-knowledge" data-topics="agents causal">
+   <figure class="research-figure"><img src="images/research/experiment-knowledge.svg" width="800" height="440" alt="Conceptual diagram connecting experimental evidence, knowledge, evaluation, and reviewed repairs." loading="lazy" /></figure>
    <h3>Learning from Experimental Evidence</h3>
    <p class="research-meta">Tencent · Experiment knowledge systems</p>
    <p class="research-summary">A knowledge and decision system that turns scattered experiment results into evidence-linked lessons and proposed follow-up tests. The design connects evaluation failures to repair tickets, with held-out checks and human review before changes enter the knowledge base.</p>
   </article>
 
-  <article class="research-item" id="causal-ai">
+  <article class="research-item" id="causal-ai" data-topics="causal">
+   <figure class="research-figure"><img src="images/research/causal-ai.svg" width="800" height="440" alt="Conceptual causal graph and workflow for evaluating and improving causal reasoning." loading="lazy" /></figure>
    <h3>Evaluating and Improving Causal Reasoning</h3>
    <p class="research-meta">Tencent · Benchmarks, post-training, and interpretability</p>
    <p class="research-summary">Executable evaluations spanning experiment design, causal estimation, sensitivity analysis, and non-identification; post-training with programmatic verifiers; and controlled probes and interventions to study whether models represent and use causal concepts. The work also investigates tool-use regressions that aggregate accuracy can conceal.</p>
   </article>
+  </div>
  </section>
 
- <footer class="page-footer">For research inquiries, contact <a href="mailto:leonleng@uw.edu">leonleng@uw.edu</a>.</footer>
+ <p class="empty-state" id="research-empty" hidden>No research matches this search. Try another topic or keyword.</p>
+ <p class="figure-note">Illustrations show conceptual overviews of the research.</p>
+ <footer class="page-footer"><p>Research inquiries: <a href="mailto:leonleng@uw.edu">leonleng@uw.edu</a></p><p><a href="index.html">About Leon</a></p></footer>
 </main>
 </div>
+<script>
+(() => {
+ const buttons = [...document.querySelectorAll('[data-topic]')];
+ const items = [...document.querySelectorAll('.research-item')];
+ const sections = [...document.querySelectorAll('.research-section')];
+ const search = document.getElementById('research-search');
+ const count = document.getElementById('research-count');
+ const empty = document.getElementById('research-empty');
+ let topic = 'all';
+ function filterResearch() {
+  const query = search.value.trim().toLocaleLowerCase();
+  let visible = 0;
+  items.forEach(item => {
+   const matchesTopic = topic === 'all' || item.dataset.topics.split(' ').includes(topic);
+   const matchesText = !query || item.textContent.toLocaleLowerCase().includes(query);
+   item.hidden = !(matchesTopic && matchesText);
+   if (!item.hidden) visible++;
+  });
+  sections.forEach(section => { section.hidden = ![...section.querySelectorAll('.research-item')].some(item => !item.hidden); });
+  count.textContent = `${visible} of ${items.length} research items`;
+  empty.hidden = visible > 0;
+ }
+ buttons.forEach(button => button.addEventListener('click', () => {
+  topic = button.dataset.topic;
+  buttons.forEach(b => b.setAttribute('aria-pressed', String(b === button)));
+  filterResearch();
+ }));
+ search.addEventListener('input', filterResearch);
+ filterResearch();
+})();
+</script>
 </body>
 </html>
