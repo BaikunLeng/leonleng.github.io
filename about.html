@@ -262,6 +262,16 @@ body {
 #randomNews { border: 0; background: transparent; padding: 0; font: inherit; font-size: .875rem; color: #4b5563; cursor: pointer; border-bottom: 1px dotted #9ca3af; }
 #randomNews:hover { color: #111827; }
 #randomNews:focus-visible { outline: 2px solid #6b7280; outline-offset: 4px; }
+
+/* Optional, explicitly illustrative word connections in the research introduction. */
+.attention-word { border-radius: 2px; cursor: pointer; transition: background-color 160ms ease; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+.attention-word:hover { background-color: #fef9c3; }
+.attention-word:focus-visible { outline: 1px solid #64748b; outline-offset: 2px; }
+.attention-word.is-query { background-color: #bfdbfe !important; }
+.attention-note { display: flex; align-items: baseline; justify-content: space-between; gap: .5rem; margin-top: .75rem; color: #6b7280; font-size: .75rem; line-height: 1.5; }
+.attention-note button { border: 0; padding: 0; background: transparent; color: #6b7280; font: inherit; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+.attention-note button:focus-visible { outline: 1px solid #64748b; outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .attention-word { transition: none; } }
 </style>
 </head>
 <body class="bg-white">
@@ -640,6 +650,113 @@ document.getElementById('randomNews').addEventListener('click', () => {
  currentNewsKey = newsKey(item);
  featuredNews.replaceChildren(item);
 });
+
+// This is a hand-authored semantic illustration, not a model's attention matrix.
+const introParagraph = document.querySelector('.main-content .profile-copy');
+if (introParagraph) {
+ const originalText = introParagraph.textContent;
+ const normalizeWord = value => value.toLowerCase().replace(/[^a-z0-9]/g, '');
+ const groups = [
+  ['agents', 'agent', 'systems', 'intelligent', 'design', 'deployment'],
+  ['learn', 'knowledge', 'rsi', 'research', 'studies'],
+  ['reason', 'learn', 'decisions', 'intelligent', 'ai'],
+  ['collaborate', 'agents', 'agent', 'systems', 'behavior', 'social'],
+  ['economics', 'finance', 'incentives', 'decisions', 'behavior', 'social', 'science'],
+  ['digital', 'twins', 'simulation', 'systems', 'design'],
+  ['ai', 'intelligent', 'agents', 'agent', 'reason', 'learn', 'rsi', 'simulation'],
+  ['research', 'studies', 'work', 'design', 'deployment'],
+  ['leon', 'his']
+ ];
+ const direct = {
+  agents: ['learn', 'reason', 'collaborate', 'agent', 'systems'],
+  agent: ['agents', 'systems', 'design', 'ai'],
+  incentives: ['behavior', 'decisions', 'economics', 'finance'],
+  knowledge: ['rsi', 'learn', 'reason', 'research'],
+  rsi: ['knowledge', 'learn', 'ai', 'agents'],
+  digital: ['twins', 'simulation'], twins: ['digital', 'simulation'],
+  simulation: ['digital', 'twins', 'systems'],
+  economics: ['finance', 'incentives', 'decisions', 'social', 'science'],
+  finance: ['economics', 'incentives', 'decisions'],
+  social: ['science', 'economics', 'behavior', 'collaborate'],
+  science: ['social', 'research', 'economics']
+ };
+ const fragment = document.createDocumentFragment();
+ const words = [];
+ originalText.split(/(\s+)/).forEach(piece => {
+  if (!piece) return;
+  if (/^\s+$/.test(piece)) { fragment.append(document.createTextNode(piece)); return; }
+  const word = document.createElement('span');
+  word.className = 'attention-word'; word.textContent = piece;
+  word.dataset.word = normalizeWord(piece);
+  word.setAttribute('role', 'button');
+  word.setAttribute('aria-label', 'Explore connections for ' + word.dataset.word);
+  word.setAttribute('aria-pressed', 'false');
+  word.tabIndex = words.length ? -1 : 0;
+  words.push(word); fragment.append(word);
+ });
+ introParagraph.replaceChildren(fragment);
+ const note = document.createElement('div'); note.className = 'attention-note';
+ const status = document.createElement('span'); status.setAttribute('aria-live', 'polite');
+ status.textContent = 'Select a word · Illustrative attention';
+ status.title = 'Hand-authored semantic connections; not actual model attention weights.';
+ const clear = document.createElement('button'); clear.type = 'button'; clear.textContent = 'Clear'; clear.hidden = true;
+ note.append(status, clear); introParagraph.after(note);
+ let selected = null;
+ function score(query, target) {
+  if (!query || !target) return 0;
+  if (query === target) return 1;
+  const shared = groups.filter(group => group.includes(query) && group.includes(target)).length;
+  const linked = direct[query]?.includes(target) || direct[target]?.includes(query);
+  return linked ? .9 : shared ? Math.min(.75, .38 + .16 * shared) : 0;
+ }
+ function reset() {
+  selected = null;
+  words.forEach(word => { word.classList.remove('is-query'); word.setAttribute('aria-pressed', 'false'); word.style.removeProperty('background-color'); word.removeAttribute('title'); });
+  status.textContent = 'Select a word · Illustrative attention'; clear.hidden = true;
+ }
+ function highlight(word) {
+  selected = word;
+  const query = word.dataset.word;
+  let count = 0;
+  words.forEach(target => {
+   const weight = score(query, target.dataset.word);
+   target.classList.toggle('is-query', target === word);
+   target.setAttribute('aria-pressed', String(target === word));
+   target.style.backgroundColor = target === word ? '' : weight ? `rgba(250, 204, 21, ${.12 + weight * .58})` : '';
+   if (target !== word && weight) count++;
+   target.title = target === word ? 'Selected word' : weight ? 'Illustrative semantic connection' : '';
+   target.tabIndex = target === word ? 0 : -1;
+  });
+  status.textContent = 'Illustrative attention · ' + query + ' → ' + count + ' related words';
+  clear.hidden = false;
+ }
+ clear.addEventListener('click', () => { window.getSelection()?.removeAllRanges(); reset(); });
+ introParagraph.addEventListener('click', event => {
+  const word = event.target.closest('.attention-word');
+  if (word && introParagraph.contains(word)) highlight(word);
+ });
+ introParagraph.addEventListener('pointerup', () => {
+  const selection = window.getSelection();
+  if (!selection || selection.isCollapsed || !introParagraph.contains(selection.anchorNode) || !introParagraph.contains(selection.focusNode)) return;
+  const anchor = selection.anchorNode.nodeType === Node.TEXT_NODE ? selection.anchorNode.parentElement : selection.anchorNode;
+  const word = anchor.closest('.attention-word');
+  if (word) highlight(word);
+ });
+ introParagraph.addEventListener('keydown', event => {
+  const word = event.target.closest('.attention-word');
+  if (!word) return;
+  if (event.key === 'Escape') { reset(); return; }
+  if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); highlight(word); return; }
+  if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+   event.preventDefault();
+   const index = words.indexOf(word);
+   const next = words[(index + (event.key === 'ArrowRight' ? 1 : -1) + words.length) % words.length];
+   words.forEach(item => item.tabIndex = item === next ? 0 : -1);
+   next.focus(); highlight(next);
+  }
+ });
+ document.addEventListener('click', event => { if (selected && !introParagraph.contains(event.target) && !note.contains(event.target)) reset(); });
+}
 </script>
 </body>
 </html>
