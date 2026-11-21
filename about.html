@@ -258,6 +258,10 @@ body {
 .carousel-detail p, .carousel-detail figcaption { margin-top: .75rem; font-size: .95rem; line-height: 1.7; }
 [data-reading="true"] > .carousel-belt > [data-carousel-copy] { display: none !important; }
 .carousel-belt { display: flex; flex: 0 0 100%; width: 100%; min-width: 0; gap: inherit; will-change: transform; }
+.news-actions { display: flex; align-items: center; gap: 1rem; }
+#randomNews { border: 0; background: transparent; padding: 0; font: inherit; font-size: .875rem; color: #4b5563; cursor: pointer; border-bottom: 1px dotted #9ca3af; }
+#randomNews:hover { color: #111827; }
+#randomNews:focus-visible { outline: 2px solid #6b7280; outline-offset: 4px; }
 </style>
 </head>
 <body class="bg-white">
@@ -448,15 +452,16 @@ body {
  <!-- Recent News Title with View all link -->
  <div class="mb-6 news-title flex items-center justify-between" style="margin-left: calc(50% - 276px); max-width: 552px;">
    <h2 class="section-heading">Recent News</h2>
-   <a href="news.html" class="text-sm text-gray-600 hover:text-black border-b border-dotted border-gray-400 hover:border-black">View all →</a>
+   <div class="news-actions"><button id="randomNews" type="button" aria-label="Show a random news item">Random pick</button>
+   <a href="news.html" class="text-sm text-gray-600 hover:text-black border-b border-dotted border-gray-400 hover:border-black">View all →</a></div>
  </div>
 
  <!-- News Container -->
- <div class="news-container" style="margin-left: calc(50% - 276px); max-width: 552px;">
+ <div id="featuredNews" aria-live="polite" aria-atomic="true" class="news-container" style="margin-left: calc(50% - 276px); max-width: 552px;">
    <div class="news-item"><div class="news-date">2026-10</div><div class="news-content">Joined Microsoft Research Asia as a visiting researcher, studying organizational design for agents and efficient agent compute allocation.</div></div>
-   <div class="news-item"><div class="news-date">2026-06</div><div class="news-content">Joined Tencent’s WeChat Experiment Platform as an Elite (Qingyun) Research Scientist, co-leading projects at the intersection of AI and economics.</div></div>
-   <div class="news-item"><div class="news-date">2026</div><div class="news-content">Served as a session chair for the AI Track at INFORMS in San Francisco and the Product Innovation and Technology Management Track at POMS in Reno.</div></div>
-   <div class="news-item"><div class="news-date">2026</div><div class="news-content">HasciDB: A Database for Identifying Cryptocurrency Airdrop Sybil Hunters was accepted at Nanyang Blockchain Conference 2026.</div></div>
+   <div class="news-item" hidden><div class="news-date">2026-06</div><div class="news-content">Joined Tencent’s WeChat Experiment Platform as an Elite (Qingyun) Research Scientist, co-leading projects at the intersection of AI and economics.</div></div>
+   <div class="news-item" hidden><div class="news-date">2026</div><div class="news-content">Served as a session chair for the AI Track at INFORMS in San Francisco and the Product Innovation and Technology Management Track at POMS in Reno.</div></div>
+   <div class="news-item" hidden><div class="news-date">2026</div><div class="news-content">HasciDB: A Database for Identifying Cryptocurrency Airdrop Sybil Hunters was accepted at Nanyang Blockchain Conference 2026.</div></div>
  </div>
 </div>
 
@@ -503,7 +508,7 @@ document.querySelectorAll('#aboutMediaGallery, #mediaScroll, .experience-carouse
  };
  const belt = document.createElement('div'); belt.className = 'carousel-belt';
  belt.append(...cards.map(cloneCard), ...cards, ...cards.map(cloneCard)); track.append(belt);
- const state = { track, belt, cards, cycle: 0, baseScroll: 0, duration: 0, motion: null, reading: false, visible: false, dragging: false, moved: false, touching: false };
+ const state = { track, belt, cards, cycle: 0, baseScroll: 0, duration: 0, motion: null, reading: false, visible: false, dragging: false, moved: false, manualMoved: false, touching: false };
  let resumeTimer, snapTimer, dragStart = 0, dragLeft = 0;
  const keyboardFocused = () => track.matches(':focus-visible') || !!track.querySelector(':focus-visible');
  function updatePlayback() {
@@ -514,7 +519,6 @@ document.querySelectorAll('#aboutMediaGallery, #mediaScroll, .experience-carouse
  state.updatePlayback = updatePlayback;
  function offset() {
   if (!state.cycle) return 0;
-  if (state.reading) return track.scrollLeft;
   const progress = state.motion ? modulo(Number(state.motion.currentTime || 0), state.duration) / state.duration : 0;
   return modulo(track.scrollLeft - state.baseScroll + progress * state.cycle, state.cycle);
  }
@@ -525,7 +529,6 @@ document.querySelectorAll('#aboutMediaGallery, #mediaScroll, .experience-carouse
   state.cycle = cards.reduce((sum, card) => sum + card.getBoundingClientRect().width + gap, 0);
   state.duration = state.cycle / 30 * 1000;
   if (!state.cycle) return;
-  if (state.reading) { track.scrollLeft = saved; return; }
   track.scrollLeft = state.cycle;
   state.baseScroll = track.scrollLeft;
   state.motion = belt.animate([{ transform: 'translate3d(0,0,0)' }, { transform: `translate3d(${-state.cycle}px,0,0)` }], { duration: state.duration, iterations: Infinity, easing: 'linear' });
@@ -536,26 +539,30 @@ document.querySelectorAll('#aboutMediaGallery, #mediaScroll, .experience-carouse
   if (!state.reading || state.dragging || state.touching) return;
   const gap = parseFloat(getComputedStyle(belt).columnGap) || 0;
   const step = cards[0].getBoundingClientRect().width + gap;
-  const target = Math.min(Math.max(0, track.scrollWidth - track.clientWidth), Math.max(0, Math.round(track.scrollLeft / step) * step));
+  const progress = state.motion ? modulo(Number(state.motion.currentTime || 0), state.duration) / state.duration * state.cycle : 0;
+  const visual = track.scrollLeft - state.baseScroll + progress;
+  const aligned = Math.round(visual / step) * step;
+  const target = Math.min(Math.max(0, track.scrollWidth - track.clientWidth), Math.max(0, state.baseScroll + aligned - progress));
   if (Math.abs(target - track.scrollLeft) > .75) track.scrollTo({ left: target, behavior: reducedMotion.matches ? 'instant' : 'smooth' });
  }
  function enterReading() {
   clearTimeout(resumeTimer);
   if (state.reading) return;
-  const saved = offset();
-  state.motion?.cancel(); state.motion = null;
-  state.reading = true; track.dataset.reading = 'true';
-  track.scrollLeft = saved;
-  if (saved > track.scrollWidth - track.clientWidth + 1 && !reducedMotion.matches) belt.animate([{ opacity: .65 }, { opacity: 1 }], { duration: 200, easing: 'ease-out' });
-  snapReading();
+  state.reading = true; state.manualMoved = false;
+  track.dataset.paused = 'true';
+  // Pause the existing animation without changing layout, time or scroll position.
+  state.motion?.pause();
  }
  function resume(delay = 700) {
   clearTimeout(resumeTimer);
   resumeTimer = setTimeout(() => {
    if (track.matches(':hover') || keyboardFocused() || state.dragging || state.touching || detail.open) return;
-   const saved = track.scrollLeft;
-   state.reading = false; track.removeAttribute('data-reading');
-   measure(saved);
+   state.reading = false;
+   track.removeAttribute('data-paused');
+   // Hover-only pauses continue the same animation at its existing time.
+   // Rebase only after the visitor has manually moved the native scroll position.
+   if (Math.abs(track.scrollLeft - state.baseScroll) > 1) measure(offset());
+   else updatePlayback();
   }, delay);
  }
  state.resume = resume;
@@ -571,14 +578,14 @@ document.querySelectorAll('#aboutMediaGallery, #mediaScroll, .experience-carouse
  track.addEventListener('focusin', enterReading);
  track.addEventListener('focusout', () => resume());
  track.addEventListener('scroll', () => {
-  if (!state.reading) return;
+  if (!state.reading || !state.manualMoved) return;
   clearTimeout(snapTimer); snapTimer = setTimeout(snapReading, 180);
  }, { passive: true });
- track.addEventListener('wheel', () => { enterReading(); if (!track.matches(':hover')) resume(1600); }, { passive: true });
+ track.addEventListener('wheel', () => { enterReading(); state.manualMoved = true; if (!track.matches(':hover')) resume(1600); }, { passive: true });
  track.addEventListener('pointerdown', event => {
   enterReading(); state.moved = false;
   track.scrollTo({ left: track.scrollLeft, behavior: 'instant' });
-  if (event.pointerType !== 'mouse') { state.touching = true; return; }
+  if (event.pointerType !== 'mouse') { state.touching = true; state.manualMoved = true; return; }
   if (event.button !== 0) return;
   state.dragging = true; dragStart = event.clientX; dragLeft = track.scrollLeft;
  });
@@ -586,9 +593,9 @@ document.querySelectorAll('#aboutMediaGallery, #mediaScroll, .experience-carouse
   if (!state.dragging) return;
   const distance = event.clientX - dragStart;
   if (!state.moved && Math.abs(distance) > 6) { state.moved = true; track.setPointerCapture(event.pointerId); }
-  if (state.moved) track.scrollLeft = dragLeft - distance;
+  if (state.moved) { state.manualMoved = true; track.scrollLeft = dragLeft - distance; }
  });
- const stopDrag = () => { state.dragging = false; state.touching = false; snapReading(); resume(1400); };
+ const stopDrag = () => { if (!state.dragging && !state.touching) return; const moved = state.moved || state.touching; state.dragging = false; state.touching = false; if (moved) snapReading(); resume(1400); };
  track.addEventListener('pointerup', stopDrag); track.addEventListener('pointercancel', stopDrag);
  window.addEventListener('pointerup', () => { if (state.dragging || state.touching) stopDrag(); });
  track.addEventListener('dragstart', event => event.preventDefault());
@@ -598,6 +605,7 @@ document.querySelectorAll('#aboutMediaGallery, #mediaScroll, .experience-carouse
   if (card?.parentElement === belt && card.tagName !== 'A') openCard(card);
  });
  track.addEventListener('keydown', event => {
+  if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') state.manualMoved = true;
   if (event.key !== 'Enter' && event.key !== ' ') return;
   const card = event.target.closest('figure, article');
   if (card?.parentElement === belt) { event.preventDefault(); openCard(card); }
@@ -606,6 +614,32 @@ document.querySelectorAll('#aboutMediaGallery, #mediaScroll, .experience-carouse
 document.addEventListener('visibilitychange', () => tracks.forEach(state => state.updatePlayback()));
 reducedMotion.addEventListener('change', () => tracks.forEach(state => state.updatePlayback()));
 detail.addEventListener('close', () => tracks.forEach(state => { if (state.reading) state.resume(); else state.updatePlayback(); }));
+
+// Show the newest homepage item by default; random picks draw from the News archive.
+const featuredNews = document.getElementById('featuredNews');
+let newsPool = [...featuredNews.querySelectorAll('.news-item')].map(item => item.cloneNode(true));
+const newsKey = item => item.textContent.replace(/\s+/g, ' ').trim();
+let currentNewsKey = newsKey(newsPool[0]);
+fetch('news.html').then(response => {
+ if (!response.ok) throw new Error('News archive unavailable');
+ return response.text();
+}).then(html => {
+ const archive = new DOMParser().parseFromString(html, 'text/html');
+ const history = [...archive.querySelectorAll('.news-item')];
+ if (history.length) {
+  const unique = new Map();
+  [...newsPool, ...history].forEach(item => unique.set(newsKey(item), item.cloneNode(true)));
+  newsPool = [...unique.values()];
+ }
+}).catch(() => { /* The existing homepage items remain available offline. */ });
+document.getElementById('randomNews').addEventListener('click', () => {
+ const choices = newsPool.filter(item => newsKey(item) !== currentNewsKey);
+ if (!choices.length) return;
+ const item = choices[Math.floor(Math.random() * choices.length)].cloneNode(true);
+ item.hidden = false;
+ currentNewsKey = newsKey(item);
+ featuredNews.replaceChildren(item);
+});
 </script>
 </body>
 </html>
