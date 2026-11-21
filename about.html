@@ -69,10 +69,15 @@ body {
 .portrait-arrow svg { display: block; width: 100%; height: 100%; }
 .portrait-arrow:hover { transform: translate(-2px, -3px); }
 .portrait-arrow:focus-visible { outline: 2px solid #2563a6; outline-offset: 2px; border-radius: 4px; }
-.portrait-speech { position: absolute; z-index: 8; right: 76%; top: 12%; width: 185px; padding: 18px 16px; border: 1px solid #d1d5db; border-radius: 46% 50% 43% 48% / 45% 48% 47% 50%; background: #fff; color: #1f2937; text-align: center; font-size: .875rem; line-height: 1.5; box-shadow: 0 4px 16px rgba(17,24,39,.12); }
-.portrait-speech::after { content: ''; position: absolute; right: -64px; bottom: 8px; width: 77px; height: 17px; background: #fff; border-right: 1px solid #d1d5db; border-bottom: 1px solid #d1d5db; clip-path: polygon(100% 100%, 0 0, 0 75%); transform: rotate(10deg); }
+.portrait-speech { position: absolute; z-index: 8; right: 88%; top: 5%; width: 200px; height: 88px; color: #253444; font-size: .875rem; line-height: 1.5; text-align: center; animation: speech-appear 220ms cubic-bezier(.2,.8,.3,1); transform-origin: bottom right; }
+.speech-cloud { position: absolute; inset: 0 auto auto 0; width: 280px; height: 96px; overflow: visible; pointer-events: none; filter: drop-shadow(0 5px 9px rgba(31,41,55,.10)); }
+.speech-cloud path { fill: #fff; stroke: #94a3b8; stroke-width: 1.1; stroke-linejoin: round; }
+.speech-cloud .cloud-mobile { display: none; }
+.speech-message { position: absolute; left: 18px; right: 12px; top: 31px; white-space: nowrap; font-weight: 500; letter-spacing: .01em; }
 .portrait-speech[hidden] { display: none; }
-@media (max-width: 480px) { .portrait-speech { right: auto; left: -6px; top: -18px; } .portrait-speech::after { right: auto; left: 95px; bottom: -12px; width: 15px; height: 24px; clip-path: polygon(0 0, 100% 0, 0 100%); transform: none; } }
+@keyframes speech-appear { from { opacity: 0; transform: translateY(5px) scale(.96); } to { opacity: 1; transform: none; } }
+@media (max-width: 480px) { .portrait-speech { right: auto; left: -45px; top: -82px; } .speech-cloud { height: 176px; } .speech-cloud .cloud-desktop { display: none; } .speech-cloud .cloud-mobile { display: block; } }
+@media (prefers-reduced-motion: reduce) { .portrait-speech { animation: none; } }
 @media (prefers-reduced-motion: reduce) { .portrait-arrow { transition: none; } }
 
 .text-content { min-width: 0; }
@@ -357,7 +362,13 @@ body {
    <button class="portrait-arrow" type="button" aria-label="Say hello to Leon" aria-expanded="false" aria-controls="portraitSpeech" title="Click to say hello">
     <svg viewBox="0 0 38 54" aria-hidden="true"><path d="M3 2v45l10-10 7 15 7-4-7-14h15z" fill="white" stroke="#111827" stroke-width="2.3" stroke-linejoin="miter" /></svg>
    </button>
-   <div id="portraitSpeech" class="portrait-speech" role="status" hidden>Hi, I’m Leon! 👋</div>
+   <div id="portraitSpeech" class="portrait-speech" role="status" hidden>
+    <svg class="speech-cloud" viewBox="0 0 280 96" preserveAspectRatio="none" aria-hidden="true">
+     <path class="cloud-desktop" d="M25 20C15 2 48-2 62 8C76-2 103-1 115 10C136-4 163 4 169 18C194 13 210 32 197 48C204 55 200 62 192 65L280 73L182 71C167 87 143 88 127 81C106 94 77 86 69 81C47 90 25 80 23 68C2 67-4 43 9 32C4 22 14 16 25 20Z" />
+     <path class="cloud-mobile" transform="scale(1 .54545)" d="M25 20C15 2 48-2 62 8C76-2 103-1 115 10C136-4 163 4 169 18C194 13 210 32 197 48C211 66 190 85 169 79L146 166L145 84C132 91 113 88 104 82C82 93 55 86 48 79C30 83 19 76 23 68C2 67-4 43 9 32C4 22 14 16 25 20Z" />
+    </svg>
+    <span class="speech-message">Hi, I’m Leon! 👋</span>
+   </div>
   </div>
  </div>
 
