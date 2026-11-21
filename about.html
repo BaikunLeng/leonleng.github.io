@@ -231,6 +231,14 @@ body {
  .affiliation-logo img { max-width: 64px; max-height: 56px; }
  .affiliation-logo .square-mark { width: 48px; height: 48px; }
 }
+
+/* Horizontal experience cards share the site's reading-column width. */
+.experience-carousel { display: flex; gap: 1.5rem; overflow-x: auto; scroll-snap-type: x proximity; scroll-behavior: smooth; padding: .25rem 0 .5rem; }
+.experience-carousel .affiliation-row { display: block; flex: 0 0 85%; min-width: 0; margin: 0; scroll-snap-align: start; }
+.experience-carousel .affiliation-logo { justify-content: flex-start; height: 80px; margin-bottom: 1rem; }
+.experience-carousel:focus-visible { outline: 2px solid #6b7280; outline-offset: 4px; }
+@media (min-width: 769px) { .experience-carousel .affiliation-row { flex-basis: 75%; } }
+@media (prefers-reduced-motion: reduce) { .experience-carousel { scroll-behavior: auto; } }
 </style>
 </head>
 <body class="bg-white">
@@ -349,6 +357,7 @@ body {
 <!-- Education Section -->
 <section class="experience-section" aria-labelledby="education-heading">
  <h2 id="education-heading" class="section-heading">Education</h2>
+ <div id="educationCarousel" class="experience-carousel scroll-container" tabindex="0" role="region" aria-label="Education">
  <article class="affiliation-row">
   <div class="affiliation-logo"><img src="images/affiliations/uw.png" alt="University of Washington, Seattle logo" loading="lazy" /></div>
   <div><h3><span class="affiliation-date">2024–present</span><br /><span class="affiliation-name">University of Washington, Seattle</span></h3>
@@ -367,11 +376,18 @@ body {
    <p>B.S. in Data Science.</p>
   </div>
  </article>
+ </div>
+ <div class="media-controls">
+  <span>Scroll for more</span>
+  <button type="button" aria-label="Previous Education" aria-controls="educationCarousel" onclick="scrollCarousel('educationCarousel', -1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6" /></svg></button>
+  <button type="button" aria-label="Next Education" aria-controls="educationCarousel" onclick="scrollCarousel('educationCarousel', 1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" /></svg></button>
+ </div>
 </section>
 
 <!-- Industry Experience Section -->
 <section class="experience-section" aria-labelledby="industry-heading">
  <h2 id="industry-heading" class="section-heading">Industry Experience</h2>
+ <div id="industryCarousel" class="experience-carousel scroll-container" tabindex="0" role="region" aria-label="Industry Experience">
  <article class="affiliation-row">
   <div class="affiliation-logo"><img src="images/affiliations/microsoft.svg" alt="Microsoft Research Asia logo" loading="lazy" class="square-mark" /></div>
   <div><h3><span class="affiliation-date">Oct. 2026–Dec. 2026</span><br /><span class="affiliation-name">Microsoft Research Asia</span></h3>
@@ -396,6 +412,12 @@ body {
    <p>Research Intern.</p><p class="affiliation-detail">Shanghai, China (remote).<br />Research on DeFi, DAOs, and the Ethereum ecosystem.</p>
   </div>
  </article>
+ </div>
+ <div class="media-controls">
+  <span>Scroll for more</span>
+  <button type="button" aria-label="Previous Industry Experience" aria-controls="industryCarousel" onclick="scrollCarousel('industryCarousel', -1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6" /></svg></button>
+  <button type="button" aria-label="Next Industry Experience" aria-controls="industryCarousel" onclick="scrollCarousel('industryCarousel', 1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" /></svg></button>
+ </div>
 </section>
 
 <!-- Outreach Section -->
@@ -442,54 +464,79 @@ body {
 </div>
 
 <script>
-function scrollAboutMedia(direction) {
- const gallery = document.getElementById('aboutMediaGallery');
- const card = gallery.querySelector('figure');
- const gap = parseFloat(getComputedStyle(gallery).columnGap) || 0;
- gallery.scrollBy({ left: direction * (card.getBoundingClientRect().width + gap) });
+const carouselStates = new Map();
+function scrollCarousel(id, direction) {
+ const track = document.getElementById(id);
+ const card = track.firstElementChild;
+ const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+ track.scrollBy({ left: direction * (card.getBoundingClientRect().width + gap) });
+ const state = carouselStates.get(track);
+ if (state) state.nextAt = Date.now() + 9000;
 }
+function scrollAboutMedia(direction) { scrollCarousel('aboutMediaGallery', direction); }
+function scrollMediaLeft() { scrollCarousel('mediaScroll', -1); }
+function scrollMediaRight() { scrollCarousel('mediaScroll', 1); }
 
-function scrollMediaLeft() {
- const container = document.getElementById('mediaScroll');
- container.scrollBy({ left: -210, behavior: 'smooth' });
-}
-
-function scrollMediaRight() {
- const container = document.getElementById('mediaScroll');
- container.scrollBy({ left: 210, behavior: 'smooth' });
-}
-
-// 添加触摸滑动支持
-let isDown = false;
-let startX;
-let scrollLeft;
-
-const slider = document.getElementById('mediaScroll');
-
-slider.addEventListener('mousedown', (e) => {
- isDown = true;
- slider.style.cursor = 'grabbing';
- startX = e.pageX - slider.offsetLeft;
- scrollLeft = slider.scrollLeft;
+const motionPreference = matchMedia('(prefers-reduced-motion: reduce)');
+document.querySelectorAll('#aboutMediaGallery, #mediaScroll, .experience-carousel').forEach(track => {
+ const controls = track.nextElementSibling;
+ const state = { paused: false, nextAt: Date.now() + 6500 };
+ carouselStates.set(track, state);
+ const pause = document.createElement('button');
+ pause.type = 'button';
+ pause.setAttribute('aria-controls', track.id);
+ const title = track.getAttribute('aria-label') || 'carousel';
+ function updatePause() {
+  const stopped = state.paused || motionPreference.matches;
+  pause.disabled = motionPreference.matches;
+  pause.setAttribute('aria-label', (stopped ? 'Play ' : 'Pause ') + title + ' automatic scrolling');
+  pause.title = stopped ? 'Play automatic scrolling' : 'Pause automatic scrolling';
+  pause.innerHTML = stopped
+   ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 10 7-10 7z" /></svg>'
+   : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M9 5v14M15 5v14" /></svg>';
+ }
+ pause.addEventListener('click', () => { state.paused = !state.paused; state.nextAt = Date.now() + 6500; updatePause(); });
+ controls.append(pause);
+ updatePause();
+ motionPreference.addEventListener('change', updatePause);
+ const scope = track.parentElement;
+ scope.addEventListener('pointerleave', () => { state.nextAt = Date.now() + 6500; });
+ scope.addEventListener('focusout', e => { if (!scope.contains(e.relatedTarget)) { state.nextAt = Date.now() + 6500; } });
+ ['pointerdown', 'wheel', 'keydown'].forEach(event => track.addEventListener(event, () => { state.nextAt = Date.now() + 9000; }, { passive: true }));
+ let drag = null;
+ track.addEventListener('pointerdown', e => {
+  if (e.pointerType !== 'mouse' || e.button !== 0) return;
+  drag = { x: e.clientX, left: track.scrollLeft, moved: false };
+ });
+ track.addEventListener('pointermove', e => {
+  if (!drag) return;
+  const distance = e.clientX - drag.x;
+  if (!drag.moved && Math.abs(distance) > 6) { drag.moved = true; track.setPointerCapture(e.pointerId); }
+  if (drag.moved) { track.scrollTo({ left: drag.left - distance, behavior: 'instant' }); state.nextAt = Date.now() + 9000; }
+ });
+ track.addEventListener('click', e => { if (drag?.moved) { e.preventDefault(); e.stopPropagation(); } }, true);
+ track.addEventListener('pointerup', () => { setTimeout(() => { drag = null; }, 0); });
+ track.addEventListener('pointercancel', () => { drag = null; });
+ track.addEventListener('dragstart', e => e.preventDefault());
 });
-
-slider.addEventListener('mouseleave', () => {
- isDown = false;
- slider.style.cursor = 'grab';
-});
-
-slider.addEventListener('mouseup', () => {
- isDown = false;
- slider.style.cursor = 'grab';
-});
-
-slider.addEventListener('mousemove', (e) => {
- if (!isDown) return;
- e.preventDefault();
- const x = e.pageX - slider.offsetLeft;
- const walk = (x - startX) * 2;
- slider.scrollLeft = scrollLeft - walk;
-});
+setInterval(() => {
+ if (document.hidden || motionPreference.matches) return;
+ carouselStates.forEach((state, track) => {
+  const rect = track.getBoundingClientRect();
+  const visible = Math.min(innerHeight, rect.bottom) - Math.max(0, rect.top) > rect.height * .25;
+  if (!visible || state.paused || track.parentElement.matches(':hover, :focus-within') || Date.now() < state.nextAt) return;
+  const max = track.scrollWidth - track.clientWidth;
+  if (max > 1) {
+   track.dataset.autoAdvances = String(Number(track.dataset.autoAdvances || 0) + 1);
+   if (track.scrollLeft >= max - 2) track.scrollTo({ left: 0 });
+   else {
+    const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+    track.scrollBy({ left: track.firstElementChild.getBoundingClientRect().width + gap });
+   }
+  }
+  state.nextAt = Date.now() + 6500;
+ });
+}, 500);
 </script>
 </body>
 </html>
