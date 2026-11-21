@@ -81,21 +81,35 @@ body {
  word-spacing: normal;
  text-align: left;
 }
-.media-grid {
- display: grid;
- grid-template-columns: repeat(2, minmax(0, 1fr));
+.media-gallery {
+ display: flex;
  gap: 1.25rem;
  margin-top: 1.5rem;
+ overflow-x: auto;
+ scroll-snap-type: x proximity;
+ scroll-behavior: smooth;
 }
+.media-gallery > figure {
+ flex: 0 0 calc((100% - 1.25rem) / 2);
+ min-width: 0;
+ margin: 0;
+ scroll-snap-align: start;
+}
+.media-gallery:focus-visible { outline: 2px solid #6b7280; outline-offset: 4px; }
+.media-controls { display: flex; justify-content: flex-end; align-items: center; gap: .5rem; margin-top: .75rem; color: #6b7280; font-size: .75rem; }
+.media-controls button { border: 1px solid #e5e7eb; border-radius: 4px; padding: .2rem .5rem; color: #4b5563; }
+.media-controls button:focus-visible { outline: 2px solid #6b7280; outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { .media-gallery { scroll-behavior: auto; } }
 .media-frame { position: relative; aspect-ratio: 16 / 9; border-radius: 8px; overflow: hidden; }
 .media-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.media-frame img { width: 100%; height: 100%; object-fit: cover; object-position: center bottom; }
 .media-caption { color: #6b7280; font-size: 0.75rem; line-height: 1.5; margin-top: .5rem; }
 @media (max-width: 768px) {
  .main-content { grid-template-columns: 1fr; gap: 1.5rem; }
  .profile-image { display: flex; justify-content: center; }
 }
 @media (max-width: 480px) {
- .media-grid { grid-template-columns: 1fr; }
+ .media-gallery > figure { flex-basis: 85%; }
 }
 
 /* 移动端Outreach部分样式 */
@@ -278,33 +292,41 @@ body {
    </p>
  </div>
 
- <!-- Media Grid -->
- <div class="media-grid">
-   <!-- Vimeo Video 1 -->
-   <div>
+ <!-- Scrollable media gallery -->
+ <div id="aboutMediaGallery" class="media-gallery scroll-container" tabindex="0" role="region" aria-label="Research talks and interviews">
+   <figure>
      <div class="media-frame">
-       <iframe 
-         src="https://player.vimeo.com/video/1100920444?badge=0&autoplay=1&loop=1&muted=1&autopause=0&controls=0&player_id=0&app_id=58479" 
-         frameborder="0" 
-         allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
-         title="Leon gives a research talk about Tokenomics Design">
+       <iframe
+         src="https://player.vimeo.com/video/1100920444?badge=0&autoplay=1&loop=1&muted=1&autopause=0&controls=0&player_id=0&app_id=58479"
+         frameborder="0"
+         allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+         title="Leon gives a research talk about Tokenomics">
        </iframe>
      </div>
-     <p class="media-caption">Leon gives a research talk about Tokenomics Design</p>
-   </div>
-
-      <!-- Vimeo Video 2 -->
-   <div>
+     <figcaption class="media-caption">Leon gives a research talk about Tokenomics</figcaption>
+   </figure>
+   <figure>
      <div class="media-frame">
-       <iframe 
-         src="https://player.vimeo.com/video/1100926777?badge=0&autoplay=1&loop=1&muted=1&autopause=0&controls=0&player_id=0&app_id=58479" 
-         frameborder="0" 
-         allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
-         title="Leon was interviewed at ETH Denver at Media House">
+       <iframe
+         src="https://player.vimeo.com/video/1100926777?badge=0&autoplay=1&loop=1&muted=1&autopause=0&controls=0&player_id=0&app_id=58479"
+         frameborder="0"
+         allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+         title="Leon was interviewed at ETH Denver">
        </iframe>
      </div>
-     <p class="media-caption">Leon was interviewed at ETH Denver at Media House</p>
-   </div>
+     <figcaption class="media-caption">Leon was interviewed at ETH Denver</figcaption>
+   </figure>
+   <figure>
+     <div class="media-frame">
+       <img src="images/about/tencent-ai-experiment-talk.jpg" alt="Leon presenting his Tencent research on AI and experimental design" loading="lazy" />
+     </div>
+     <figcaption class="media-caption">Leon gives a talk about his work at Tencent on AI and experimental design.</figcaption>
+   </figure>
+ </div>
+ <div class="media-controls">
+   <span>Scroll for more</span>
+   <button type="button" aria-label="Previous media" aria-controls="aboutMediaGallery" onclick="scrollAboutMedia(-1)">Previous</button>
+   <button type="button" aria-label="Next media" aria-controls="aboutMediaGallery" onclick="scrollAboutMedia(1)">Next</button>
  </div>
 </div>
 
@@ -404,6 +426,13 @@ body {
 </div>
 
 <script>
+function scrollAboutMedia(direction) {
+ const gallery = document.getElementById('aboutMediaGallery');
+ const card = gallery.querySelector('figure');
+ const gap = parseFloat(getComputedStyle(gallery).columnGap) || 0;
+ gallery.scrollBy({ left: direction * (card.getBoundingClientRect().width + gap) });
+}
+
 function scrollMediaLeft() {
  const container = document.getElementById('mediaScroll');
  container.scrollBy({ left: -210, behavior: 'smooth' });
