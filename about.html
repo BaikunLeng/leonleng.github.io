@@ -720,11 +720,47 @@ document.getElementById('randomNews').addEventListener('click', () => {
 // The portrait cursor is a real button; the original image contains no baked-in arrow.
 const portraitButton = document.querySelector('.portrait-arrow');
 const portraitSpeech = document.getElementById('portraitSpeech');
-function closePortraitSpeech() { portraitSpeech.hidden = true; portraitButton.setAttribute('aria-expanded', 'false'); }
+const speechMessage = portraitSpeech.querySelector('.speech-message');
+const portraitLines = [
+ 'I study agents. They study my patience.',
+ 'Research, roll, repeat. 🥋',
+ 'My other peer review happens on the mat.',
+ 'Still training. Models and myself.'
+];
+let portraitDeck = [], lastPortraitLine = '', portraitVisits = 0, portraitBurst = 0, lastPortraitClick = 0;
+function nextPortraitLine() {
+ if (!portraitDeck.length) {
+  portraitDeck = [...portraitLines];
+  for (let i = portraitDeck.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [portraitDeck[i], portraitDeck[j]] = [portraitDeck[j], portraitDeck[i]]; }
+  if (portraitDeck[portraitDeck.length - 1] === lastPortraitLine) [portraitDeck[0], portraitDeck[portraitDeck.length - 1]] = [portraitDeck[portraitDeck.length - 1], portraitDeck[0]];
+ }
+ lastPortraitLine = portraitDeck.pop();
+ return lastPortraitLine;
+}
+function closePortraitSpeech() {
+ portraitSpeech.hidden = true;
+ portraitButton.setAttribute('aria-expanded', 'false');
+ portraitBurst = 0; lastPortraitClick = 0;
+}
 portraitButton.addEventListener('click', () => {
- const open = portraitSpeech.hidden;
- portraitSpeech.hidden = !open;
- portraitButton.setAttribute('aria-expanded', String(open));
+ const now = performance.now();
+ portraitBurst = now - lastPortraitClick < 900 ? portraitBurst + 1 : 1;
+ lastPortraitClick = now;
+ let line;
+ if (!portraitVisits) line = 'Hi, I’m Leon! 👋';
+ else if (portraitBurst >= 9) line = 'Okay, you have my attention. 👀';
+ else if (portraitBurst >= 6) line = 'My attention budget is running out.';
+ else if (portraitBurst >= 3) line = 'Is this an experiment? Am I the treatment group?';
+ else line = nextPortraitLine();
+ portraitVisits++;
+ speechMessage.textContent = line;
+ speechMessage.style.whiteSpace = 'normal';
+ speechMessage.style.top = '47%';
+ speechMessage.style.transform = 'translateY(-50%)';
+ speechMessage.style.lineHeight = '1.35';
+ speechMessage.style.fontSize = line.length > 42 ? '.8125rem' : '.875rem';
+ portraitSpeech.hidden = false;
+ portraitButton.setAttribute('aria-expanded', 'true');
 });
 document.addEventListener('click', event => { if (!event.target.closest('.portrait-interaction')) closePortraitSpeech(); });
 document.addEventListener('keydown', event => { if (event.key === 'Escape') closePortraitSpeech(); });
