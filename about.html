@@ -348,6 +348,31 @@ body {
  </div>
 </div>
 
+<!-- Education Section -->
+<section class="experience-section" aria-labelledby="education-heading">
+ <h2 id="education-heading" class="section-heading">Education</h2>
+ <div id="educationCarousel" class="experience-carousel scroll-container" tabindex="0" role="region" aria-label="Education">
+ <article class="affiliation-row">
+  <div class="affiliation-logo"><img src="images/affiliations/uw.png" alt="University of Washington, Seattle logo" loading="lazy" /></div>
+  <div><h3><span class="affiliation-date">2024–present</span><br /><span class="affiliation-name">University of Washington, Seattle</span></h3>
+   <p>Ph.D. student in Information Systems &amp; Operations Management, Foster School of Business.</p><p class="affiliation-detail">Minors: Computer Science and Economics.<br />Industry leave: June–December 2026.</p>
+  </div>
+ </article>
+ <article class="affiliation-row">
+  <div class="affiliation-logo"><img src="images/affiliations/berkeley.svg" alt="University of California, Berkeley logo" loading="lazy" /></div>
+  <div><h3><span class="affiliation-date">2022–2023</span><br /><span class="affiliation-name">University of California, Berkeley</span></h3>
+   <p>Visiting student, Electrical Engineering and Computer Sciences.</p>
+  </div>
+ </article>
+ <article class="affiliation-row">
+  <div class="affiliation-logo"><img src="images/affiliations/cuhk-shenzhen.png" alt="The Chinese University of Hong Kong, Shenzhen logo" loading="lazy" class="square-mark" /></div>
+  <div><h3><span class="affiliation-date">2020–2022; 2023–2024</span><br /><span class="affiliation-name">The Chinese University of Hong Kong, Shenzhen</span></h3>
+   <p>B.S. in Data Science.</p>
+  </div>
+ </article>
+ </div>
+</section>
+
 <!-- About Me Section -->
 <div class="about-section">
  <!-- About Me Text -->
@@ -390,31 +415,6 @@ body {
  </div>
 </div>
 
-<!-- Education Section -->
-<section class="experience-section" aria-labelledby="education-heading">
- <h2 id="education-heading" class="section-heading">Education</h2>
- <div id="educationCarousel" class="experience-carousel scroll-container" tabindex="0" role="region" aria-label="Education">
- <article class="affiliation-row">
-  <div class="affiliation-logo"><img src="images/affiliations/uw.png" alt="University of Washington, Seattle logo" loading="lazy" /></div>
-  <div><h3><span class="affiliation-date">2024–present</span><br /><span class="affiliation-name">University of Washington, Seattle</span></h3>
-   <p>Ph.D. student in Information Systems &amp; Operations Management, Foster School of Business.</p><p class="affiliation-detail">Minors: Computer Science and Economics.<br />Industry leave: June–December 2026.</p>
-  </div>
- </article>
- <article class="affiliation-row">
-  <div class="affiliation-logo"><img src="images/affiliations/berkeley.svg" alt="University of California, Berkeley logo" loading="lazy" /></div>
-  <div><h3><span class="affiliation-date">2022–2023</span><br /><span class="affiliation-name">University of California, Berkeley</span></h3>
-   <p>Visiting student, Electrical Engineering and Computer Sciences.</p>
-  </div>
- </article>
- <article class="affiliation-row">
-  <div class="affiliation-logo"><img src="images/affiliations/cuhk-shenzhen.png" alt="The Chinese University of Hong Kong, Shenzhen logo" loading="lazy" class="square-mark" /></div>
-  <div><h3><span class="affiliation-date">2020–2022; 2023–2024</span><br /><span class="affiliation-name">The Chinese University of Hong Kong, Shenzhen</span></h3>
-   <p>B.S. in Data Science.</p>
-  </div>
- </article>
- </div>
-</section>
-
 <!-- Industry Experience Section -->
 <section class="experience-section" aria-labelledby="industry-heading">
  <h2 id="industry-heading" class="section-heading">Industry Experience</h2>
@@ -443,6 +443,22 @@ body {
    <p>Research Intern.</p><p class="affiliation-detail">Shanghai, China (remote).<br />Research on DeFi, DAOs, and the Ethereum ecosystem.</p>
   </div>
  </article>
+ </div>
+</section>
+
+<!-- Beyond Research Section -->
+<section class="experience-section" aria-labelledby="interests-heading">
+ <h2 id="interests-heading" class="section-heading">Beyond Research</h2>
+ <p class="profile-copy">Outside research, Leon enjoys martial arts, particularly jiu-jitsu and boxing.</p>
+ <div id="personalMediaGallery" class="media-gallery scroll-container" tabindex="0" role="region" aria-label="Martial arts and training">
+  <figure>
+   <div class="media-frame"><img src="images/about/jiu-jitsu-training.jpg" alt="Jiu-jitsu training group at the gym" loading="lazy" /></div>
+   <figcaption class="media-caption">Jiu-jitsu training.</figcaption>
+  </figure>
+  <figure>
+   <div class="media-frame"><img src="images/about/boxing-training.jpg" alt="Boxing practice at the gym" loading="lazy" /></div>
+   <figcaption class="media-caption">Boxing practice.</figcaption>
+  </figure>
  </div>
 </section>
 
@@ -512,7 +528,7 @@ const observer = new IntersectionObserver(entries => {
   if (state) { state.visible = entry.isIntersecting && entry.intersectionRatio > .15; state.updatePlayback(); }
  });
 }, { threshold: [0, .15, .25] });
-document.querySelectorAll('#aboutMediaGallery, #mediaScroll, .experience-carousel').forEach(track => {
+document.querySelectorAll('#aboutMediaGallery, #personalMediaGallery, #mediaScroll, .experience-carousel').forEach(track => {
  const cards = [...track.children];
  cards.forEach(card => {
   if (card.tagName !== 'A') { card.tabIndex = 0; card.setAttribute('role', 'button'); card.setAttribute('aria-label', 'View ' + (card.querySelector('h3, figcaption, p')?.textContent.trim() || 'card')); }
