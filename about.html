@@ -660,8 +660,8 @@ document.getElementById('randomNews').addEventListener('click', () => {
 });
 
 // This is a hand-authored semantic illustration, not a model's attention matrix.
-const introParagraph = document.querySelector('.main-content .profile-copy');
-if (introParagraph) {
+document.querySelectorAll('.main-content .profile-copy, .about-text .profile-copy').forEach((introParagraph, paragraphIndex) => {
+ const markerId = 'attention-arrowhead-' + paragraphIndex;
  const originalText = introParagraph.textContent;
  const normalizeWord = value => value.toLowerCase().replace(/[^a-z0-9]/g, '');
  const groups = [
@@ -673,7 +673,12 @@ if (introParagraph) {
   ['digital', 'twins', 'simulation', 'systems', 'design'],
   ['ai', 'intelligent', 'agents', 'agent', 'reason', 'learn', 'rsi', 'simulation'],
   ['research', 'studies', 'work', 'design', 'deployment'],
-  ['leon', 'his']
+  ['leon', 'his', 'he'],
+  ['university', 'washington', 'foster', 'school', 'business', 'phd', 'student'],
+  ['microsoft', 'research', 'asia', 'visiting', 'researcher', 'scientist', 'tencent', 'wechat', 'experiment', 'platform'],
+  ['computer', 'science', 'data', 'eecs', 'bs', 'minors', 'economics'],
+  ['chinese', 'university', 'hong', 'kong', 'shenzhen'],
+  ['uc', 'berkeley', 'visiting', 'student', 'eecs']
  ];
  const direct = {
   agents: ['learn', 'reason', 'collaborate', 'agent', 'systems'],
@@ -686,7 +691,15 @@ if (introParagraph) {
   economics: ['finance', 'incentives', 'decisions', 'social', 'science'],
   finance: ['economics', 'incentives', 'decisions'],
   social: ['science', 'economics', 'behavior', 'collaborate'],
-  science: ['social', 'research', 'economics']
+  science: ['social', 'research', 'economics', 'computer', 'data', 'eecs'],
+  microsoft: ['research', 'asia', 'visiting', 'researcher', 'tencent'],
+  tencent: ['wechat', 'experiment', 'platform', 'scientist', 'research', 'microsoft'],
+  wechat: ['tencent', 'experiment', 'platform'],
+  washington: ['university', 'foster', 'school', 'business', 'phd'],
+  berkeley: ['uc', 'eecs', 'visiting', 'student'],
+  eecs: ['computer', 'science', 'berkeley'],
+  minors: ['computer', 'science', 'economics'],
+  chinese: ['university', 'hong', 'kong', 'shenzhen']
  };
  const fragment = document.createDocumentFragment();
  const words = [];
@@ -709,8 +722,6 @@ if (introParagraph) {
  const arrows = document.createElementNS(svgNS, 'svg');
  arrows.classList.add('attention-arrows'); arrows.setAttribute('aria-hidden', 'true');
  canvas.append(arrows);
- const probabilities = document.createElement('div'); probabilities.className = 'attention-probabilities'; probabilities.hidden = true;
- probabilities.setAttribute('aria-label', 'Illustrative probabilities for related words');
  const note = document.createElement('div'); note.className = 'attention-note';
  const status = document.createElement('span'); status.setAttribute('aria-live', 'polite');
  status.textContent = 'Select a word · Illustrative attention';
@@ -718,7 +729,7 @@ if (introParagraph) {
  const clear = document.createElement('button'); clear.type = 'button'; clear.textContent = 'Clear'; clear.hidden = true;
  const allArrows = document.createElement('button'); allArrows.type = 'button'; allArrows.textContent = 'All arrows'; allArrows.hidden = true;
  const actions = document.createElement('div'); actions.className = 'attention-actions'; actions.append(allArrows, clear);
- note.append(status, actions); introParagraph.after(note); note.after(probabilities);
+ note.append(status, actions); introParagraph.after(note);
  let selected = null, links = [], showAll = false, isolated = null;
  function drawArrows() {
   arrows.replaceChildren();
@@ -728,11 +739,13 @@ if (introParagraph) {
   arrows.setAttribute('viewBox', `0 0 ${p.width} ${p.height}`);
   const defs = document.createElementNS(svgNS, 'defs');
   const marker = document.createElementNS(svgNS, 'marker');
-  marker.id = 'intro-attention-arrowhead'; marker.setAttribute('viewBox', '0 0 8 8'); marker.setAttribute('refX', '7'); marker.setAttribute('refY', '4'); marker.setAttribute('markerWidth', '6'); marker.setAttribute('markerHeight', '6'); marker.setAttribute('orient', 'auto-start-reverse');
-  const head = document.createElementNS(svgNS, 'path'); head.setAttribute('d', 'M0 0 8 4 0 8z'); head.setAttribute('fill', '#5076a0'); marker.append(head); defs.append(marker); arrows.append(defs);
+  marker.id = markerId; marker.setAttribute('viewBox', '0 0 8 8'); marker.setAttribute('refX', '7'); marker.setAttribute('refY', '4'); marker.setAttribute('markerWidth', '7'); marker.setAttribute('markerHeight', '7'); marker.setAttribute('orient', 'auto-start-reverse');
+  const head = document.createElementNS(svgNS, 'path'); head.setAttribute('d', 'M0 0 8 4 0 8z'); head.setAttribute('fill', '#2563a6'); marker.append(head); defs.append(marker); arrows.append(defs);
   const from = selected.getBoundingClientRect();
   const visibleLinks = isolated ? [isolated] : showAll ? links : links.slice(0, 5);
-  visibleLinks.forEach(link => {
+  const usedLabels = [];
+  const wordBoxes = words.map(word => { const r = word.getBoundingClientRect(); return { left: r.left - p.left, top: r.top - p.top, right: r.right - p.left, bottom: r.bottom - p.top }; });
+  visibleLinks.forEach((link, linkIndex) => {
    const to = link.word.getBoundingClientRect();
    const sameLine = Math.abs(to.top - from.top) < 5;
    const down = to.top >= from.top;
@@ -743,10 +756,31 @@ if (introParagraph) {
    const path = document.createElementNS(svgNS, 'path');
    if (sameLine) path.setAttribute('d', `M${sx} ${sy} Q${(sx + tx) / 2} ${Math.max(sy, ty) + 10} ${tx} ${ty}`);
    else path.setAttribute('d', `M${sx} ${sy} C${sx} ${(sy + ty) / 2} ${tx} ${(sy + ty) / 2} ${tx} ${ty}`);
-   path.setAttribute('fill', 'none'); path.setAttribute('stroke', '#5076a0'); path.setAttribute('stroke-width', isolated ? '1.8' : '1.3'); path.setAttribute('opacity', isolated ? '.95' : '.7'); path.setAttribute('marker-end', 'url(#intro-attention-arrowhead)');
+   path.setAttribute('fill', 'none'); path.setAttribute('stroke', '#2563a6'); path.setAttribute('stroke-width', isolated ? '2.2' : '1.8'); path.setAttribute('opacity', '1'); path.setAttribute('marker-end', 'url(#' + markerId + ')');
    path.dataset.target = link.word.dataset.word;
    const title = document.createElementNS(svgNS, 'title'); title.textContent = selected.dataset.word + ' → ' + link.word.dataset.word + ': ' + link.percent + '% (illustrative)'; path.append(title); arrows.append(path);
+   const length = path.getTotalLength();
+   const labelWidth = link.percent.length * 5.7 + 13;
+   const labelHeight = 15;
+   let best = null;
+   for (const fraction of [.55, .75, .35, .9, .2]) {
+    const point = path.getPointAtLength(length * fraction);
+    for (const dy of [-10, 10, -19, 19, 0]) {
+     const x = Math.max(labelWidth / 2, Math.min(p.width - labelWidth / 2, point.x));
+     const y = Math.max(labelHeight / 2, Math.min(p.height - labelHeight / 2, point.y + dy));
+     const box = { left: x - labelWidth / 2, right: x + labelWidth / 2, top: y - labelHeight / 2, bottom: y + labelHeight / 2 };
+     const overlap = r => Math.max(0, Math.min(box.right, r.right) - Math.max(box.left, r.left)) * Math.max(0, Math.min(box.bottom, r.bottom) - Math.max(box.top, r.top));
+     const cost = usedLabels.reduce((sum, r) => sum + overlap(r) * 30, 0) + wordBoxes.reduce((sum, r) => sum + overlap(r), 0) + Math.abs(dy) * .2;
+     if (!best || cost < best.cost) best = { x, y, box, cost, point };
+    }
+   }
+   usedLabels.push({ left: best.box.left - 3, right: best.box.right + 3, top: best.box.top - 2, bottom: best.box.bottom + 2 });
+   const label = document.createElementNS(svgNS, 'g'); label.classList.add('attention-probability-label'); label.dataset.target = link.word.dataset.word;
+   const leader = document.createElementNS(svgNS, 'path'); leader.setAttribute('d', `M${best.point.x} ${best.point.y} L${best.x} ${best.y}`); leader.setAttribute('stroke', '#2563a6'); leader.setAttribute('stroke-width', '.8'); leader.setAttribute('fill', 'none'); label.append(leader);
+   const background = document.createElementNS(svgNS, 'rect'); background.setAttribute('x', best.box.left); background.setAttribute('y', best.box.top); background.setAttribute('width', labelWidth); background.setAttribute('height', labelHeight); background.setAttribute('rx', '3'); background.setAttribute('fill', 'white'); background.setAttribute('fill-opacity', '.96'); background.setAttribute('stroke', '#bfdbfe'); background.setAttribute('stroke-width', '.6'); label.append(background);
+   const text = document.createElementNS(svgNS, 'text'); text.setAttribute('x', best.x); text.setAttribute('y', best.y); text.setAttribute('text-anchor', 'middle'); text.setAttribute('dominant-baseline', 'central'); text.setAttribute('fill', '#1e40af'); text.setAttribute('font-size', '10.5'); text.setAttribute('font-weight', '600'); text.textContent = link.percent + '%'; label.append(text); arrows.append(label);
   });
+  arrows.querySelectorAll('.attention-probability-label').forEach(label => arrows.append(label));
  }
  allArrows.addEventListener('click', () => { showAll = !showAll; allArrows.textContent = showAll ? 'Top 5 arrows' : 'All arrows'; drawArrows(); });
  new ResizeObserver(drawArrows).observe(introParagraph);
@@ -760,7 +794,7 @@ if (introParagraph) {
   return linked ? .9 : shared ? Math.min(.75, .38 + .16 * shared) : 0;
  }
  function reset() {
-  selected = null; links = []; isolated = null; showAll = false; arrows.replaceChildren(); probabilities.replaceChildren(); probabilities.hidden = true; allArrows.hidden = true; allArrows.textContent = 'All arrows';
+  selected = null; links = []; isolated = null; showAll = false; arrows.replaceChildren(); allArrows.hidden = true; allArrows.textContent = 'All arrows';
   words.forEach(word => { word.classList.remove('is-query'); word.setAttribute('aria-pressed', 'false'); word.style.removeProperty('background-color'); word.removeAttribute('title'); });
   status.textContent = 'Select a word · Illustrative attention'; clear.hidden = true;
  }
@@ -782,18 +816,6 @@ if (introParagraph) {
    target.style.backgroundColor = target === word ? '' : weight ? `rgba(250, 204, 21, ${.12 + weight * .58})` : '';
    target.title = target === word ? 'Selected word' : link ? 'Illustrative probability: ' + link.percent + '%' : 'Illustrative probability: 0.00%';
    target.tabIndex = target === word ? 0 : -1;
-  });
-  probabilities.replaceChildren(); probabilities.hidden = false;
-  links.forEach(link => {
-   const button = document.createElement('button'); button.type = 'button';
-   button.textContent = link.word.dataset.word + ' ' + link.percent + '%';
-   button.setAttribute('aria-label', 'Show arrow to ' + link.word.dataset.word + ', ' + link.percent + ' percent');
-   button.addEventListener('pointerenter', () => { isolated = link; drawArrows(); });
-   button.addEventListener('pointerleave', () => { isolated = null; drawArrows(); });
-   button.addEventListener('focus', () => { isolated = link; drawArrows(); });
-   button.addEventListener('blur', () => { isolated = null; drawArrows(); });
-   button.addEventListener('click', () => { isolated = link; drawArrows(); });
-   probabilities.append(button);
   });
   status.textContent = links.length ? 'Illustrative probabilities · total 100%' : 'No related words in this sketch';
   clear.hidden = false; allArrows.hidden = links.length <= 5;
@@ -825,8 +847,8 @@ if (introParagraph) {
    next.focus(); highlight(next);
   }
  });
- document.addEventListener('click', event => { if (selected && !introParagraph.contains(event.target) && !note.contains(event.target) && !probabilities.contains(event.target)) reset(); });
-}
+ document.addEventListener('click', event => { if (selected && !introParagraph.contains(event.target) && !note.contains(event.target)) reset(); });
+});
 </script>
 </body>
 </html>
