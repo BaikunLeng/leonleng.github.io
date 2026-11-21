@@ -238,6 +238,24 @@ body {
 .experience-carousel .affiliation-logo { justify-content: flex-start; height: 80px; margin-bottom: 1rem; }
 .experience-carousel:focus-visible { outline: 2px solid #6b7280; outline-offset: 4px; }
 @media (prefers-reduced-motion: reduce) { .experience-carousel { scroll-behavior: auto; } }
+
+/* Continuous tracks pause for reading and retain native touch scrolling. */
+.media-gallery, .experience-carousel, #mediaScroll { scroll-behavior: auto !important; scroll-snap-type: none; cursor: grab; overflow-anchor: none; }
+.media-gallery:active, .experience-carousel:active, #mediaScroll:active { cursor: grabbing; }
+.media-gallery figure, .experience-carousel article, #mediaScroll > article { cursor: pointer; }
+.media-gallery iframe { pointer-events: none; }
+.carousel-detail { width: min(760px, 92vw); max-height: 88vh; border: 0; border-radius: 10px; padding: 1.5rem; color: #374151; font-family: inherit; }
+.carousel-detail::backdrop { background: rgb(17 24 39 / .6); }
+.carousel-detail-close { display: block; margin: 0 0 1rem auto; border: 0; background: transparent; font-size: .875rem; cursor: pointer; }
+.carousel-detail-body > * { width: 100%; margin: 0; display: block; }
+.carousel-detail .media-frame { aspect-ratio: 16 / 9; }
+.carousel-detail iframe { pointer-events: auto; }
+.carousel-detail .outreach-art { height: auto; padding: 0; background: transparent; }
+.carousel-detail .outreach-art img, .carousel-detail .media-frame img { width: 100%; height: auto; max-height: 65vh; object-fit: contain; }
+.carousel-detail .media-frame:has(img) { aspect-ratio: auto; }
+.carousel-detail .affiliation-row { display: block; }
+.carousel-detail .affiliation-logo { justify-content: flex-start; margin-bottom: 1rem; }
+.carousel-detail p, .carousel-detail figcaption { margin-top: .75rem; font-size: .95rem; line-height: 1.7; }
 </style>
 </head>
 <body class="bg-white">
@@ -346,11 +364,6 @@ body {
      <figcaption class="media-caption">Leon gives a talk about his work at Tencent on AI and experimental design.</figcaption>
    </figure>
  </div>
- <div class="media-controls">
-   <span>Scroll for more</span>
-   <button type="button" aria-label="Previous media" aria-controls="aboutMediaGallery" onclick="scrollAboutMedia(-1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6" /></svg></button>
-   <button type="button" aria-label="Next media" aria-controls="aboutMediaGallery" onclick="scrollAboutMedia(1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" /></svg></button>
- </div>
 </div>
 
 <!-- Education Section -->
@@ -375,11 +388,6 @@ body {
    <p>B.S. in Data Science.</p>
   </div>
  </article>
- </div>
- <div class="media-controls">
-  <span>Scroll for more</span>
-  <button type="button" aria-label="Previous Education" aria-controls="educationCarousel" onclick="scrollCarousel('educationCarousel', -1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6" /></svg></button>
-  <button type="button" aria-label="Next Education" aria-controls="educationCarousel" onclick="scrollCarousel('educationCarousel', 1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" /></svg></button>
  </div>
 </section>
 
@@ -412,11 +420,6 @@ body {
   </div>
  </article>
  </div>
- <div class="media-controls">
-  <span>Scroll for more</span>
-  <button type="button" aria-label="Previous Industry Experience" aria-controls="industryCarousel" onclick="scrollCarousel('industryCarousel', -1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6" /></svg></button>
-  <button type="button" aria-label="Next Industry Experience" aria-controls="industryCarousel" onclick="scrollCarousel('industryCarousel', 1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" /></svg></button>
- </div>
 </section>
 
 <!-- Outreach Section -->
@@ -434,11 +437,6 @@ body {
    <a class="outreach-card media-card flex-shrink-0" href="https://sites.google.com/uw.edu/fsbcohortof2024/home" target="_blank" rel="noopener noreferrer"><div class="outreach-art"><img src="images/about/outreach/Leon Joined UW Foster.png" alt="UW Foster doctoral cohort introduction" loading="lazy" /></div><p>Joined UW Foster’s doctoral program in 2024 and was featured in the cohort introduction.</p></a>
    <a class="outreach-card media-card flex-shrink-0" href="https://www.linkedin.com/posts/leonleng5_blockchain-adpotion-insurance-activity-7120631995088482304-LCgQ" target="_blank" rel="noopener noreferrer"><div class="outreach-art"><img src="images/about/outreach/Blockchain Insurance Design.png" alt="Blockchain insurance design talk" loading="lazy" /></div><p>Gave a talk on the insurance industry landscape and the future of blockchain-based insurance.</p></a>
    <a class="outreach-card media-card flex-shrink-0" href="https://www.linkedin.com/posts/kose-john-82486b1b_blockchain-literature-catalog-crypto-and-activity-7087510395120205824-ijUB" target="_blank" rel="noopener noreferrer"><div class="outreach-art"><img src="images/about/outreach/CBER Literature Database Set Up.png" alt="CBER literature database" loading="lazy" /></div><p>Helped build the CBER literature database with Prof. Gerry Tsoukalas and Prof. Fahad Saleh.</p></a>
-  </div>
-  <div class="outreach-controls">
-   <span class="text-xs text-gray-500">Scroll for more</span>
-   <button type="button" onclick="scrollMediaLeft()" aria-label="Scroll outreach left"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6" /></svg></button>
-   <button type="button" onclick="scrollMediaRight()" aria-label="Scroll outreach right"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" /></svg></button>
   </div>
  </div>
 </section>
@@ -463,79 +461,100 @@ body {
 </div>
 
 <script>
-const carouselStates = new Map();
-function scrollCarousel(id, direction) {
- const track = document.getElementById(id);
- const card = track.firstElementChild;
- const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
- track.scrollBy({ left: direction * (card.getBoundingClientRect().width + gap) });
- const state = carouselStates.get(track);
- if (state) state.nextAt = Date.now() + 9000;
+const detail = document.createElement('dialog');
+detail.className = 'carousel-detail';
+detail.setAttribute('aria-label', 'Card details');
+detail.innerHTML = '<button type="button" class="carousel-detail-close" autofocus>Close</button><div class="carousel-detail-body"></div>';
+document.body.append(detail);
+const detailBody = detail.querySelector('.carousel-detail-body');
+detail.querySelector('button').addEventListener('click', () => detail.close());
+detail.addEventListener('click', event => { if (event.target === detail) { const r = detail.getBoundingClientRect(); if (event.clientX < r.left || event.clientX > r.right || event.clientY < r.top || event.clientY > r.bottom) detail.close(); } });
+detail.addEventListener('close', () => detailBody.replaceChildren());
+function openCard(card) {
+ const copy = card.cloneNode(true);
+ copy.removeAttribute('tabindex'); copy.removeAttribute('role'); copy.removeAttribute('aria-label'); copy.removeAttribute('aria-hidden');
+ copy.querySelectorAll('iframe').forEach(frame => { const url = new URL(frame.src); url.searchParams.set('controls', '1'); frame.src = url.href; });
+ detailBody.replaceChildren(copy);
+ detail.showModal();
 }
-function scrollAboutMedia(direction) { scrollCarousel('aboutMediaGallery', direction); }
-function scrollMediaLeft() { scrollCarousel('mediaScroll', -1); }
-function scrollMediaRight() { scrollCarousel('mediaScroll', 1); }
-
-const motionPreference = matchMedia('(prefers-reduced-motion: reduce)');
+const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+const tracks = [];
 document.querySelectorAll('#aboutMediaGallery, #mediaScroll, .experience-carousel').forEach(track => {
- const controls = track.nextElementSibling;
- const state = { paused: false, nextAt: Date.now() + 6500 };
- carouselStates.set(track, state);
- const pause = document.createElement('button');
- pause.type = 'button';
- pause.setAttribute('aria-controls', track.id);
- const title = track.getAttribute('aria-label') || 'carousel';
- function updatePause() {
-  const stopped = state.paused || motionPreference.matches;
-  pause.disabled = motionPreference.matches;
-  pause.setAttribute('aria-label', (stopped ? 'Play ' : 'Pause ') + title + ' automatic scrolling');
-  pause.title = stopped ? 'Play automatic scrolling' : 'Pause automatic scrolling';
-  pause.innerHTML = stopped
-   ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 10 7-10 7z" /></svg>'
-   : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M9 5v14M15 5v14" /></svg>';
+ const cards = [...track.children];
+ cards.forEach(card => {
+  if (card.tagName !== 'A') { card.tabIndex = 0; card.setAttribute('role', 'button'); card.setAttribute('aria-label', 'View ' + (card.querySelector('h3, figcaption, p')?.textContent.trim() || 'card')); }
+ });
+ const cloneCard = card => {
+  const copy = card.cloneNode(true);
+  copy.removeAttribute('id'); copy.setAttribute('aria-hidden', 'true'); copy.tabIndex = -1;
+  copy.querySelectorAll('[id]').forEach(el => el.removeAttribute('id'));
+  copy.querySelectorAll('a, button, [tabindex], iframe').forEach(el => el.tabIndex = -1);
+  return copy;
+ };
+ track.prepend(...cards.map(cloneCard));
+ track.append(...cards.map(cloneCard));
+ const state = { track, cards, cycle: 0, position: 0, resumeAt: 0, dragging: false, dragStart: 0, dragLeft: 0, moved: false };
+ function measure() {
+  const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+  state.cycle = cards.reduce((sum, card) => sum + card.getBoundingClientRect().width + gap, 0);
+  state.position = state.cycle;
+  track.scrollLeft = state.position;
  }
- pause.addEventListener('click', () => { state.paused = !state.paused; state.nextAt = Date.now() + 6500; updatePause(); });
- controls.append(pause);
- updatePause();
- motionPreference.addEventListener('change', updatePause);
- const scope = track.parentElement;
- scope.addEventListener('pointerleave', () => { state.nextAt = Date.now() + 6500; });
- scope.addEventListener('focusout', e => { if (!scope.contains(e.relatedTarget)) { state.nextAt = Date.now() + 6500; } });
- ['pointerdown', 'wheel', 'keydown'].forEach(event => track.addEventListener(event, () => { state.nextAt = Date.now() + 9000; }, { passive: true }));
- let drag = null;
- track.addEventListener('pointerdown', e => {
-  if (e.pointerType !== 'mouse' || e.button !== 0) return;
-  drag = { x: e.clientX, left: track.scrollLeft, moved: false };
+ measure(); new ResizeObserver(measure).observe(track);
+ track.addEventListener('pointerleave', () => { state.resumeAt = performance.now() + 700; });
+ track.addEventListener('focusout', () => { state.resumeAt = performance.now() + 700; });
+ track.addEventListener('wheel', () => { state.resumeAt = performance.now() + 1400; }, { passive: true });
+ track.addEventListener('pointerdown', event => {
+  state.resumeAt = performance.now() + 1400;
+  state.moved = false;
+  if (event.pointerType !== 'mouse' || event.button !== 0) return;
+  state.dragging = true; state.dragStart = event.clientX; state.dragLeft = track.scrollLeft;
  });
- track.addEventListener('pointermove', e => {
-  if (!drag) return;
-  const distance = e.clientX - drag.x;
-  if (!drag.moved && Math.abs(distance) > 6) { drag.moved = true; track.setPointerCapture(e.pointerId); }
-  if (drag.moved) { track.scrollTo({ left: drag.left - distance, behavior: 'instant' }); state.nextAt = Date.now() + 9000; }
+ track.addEventListener('pointermove', event => {
+  if (!state.dragging) return;
+  const distance = event.clientX - state.dragStart;
+  if (!state.moved && Math.abs(distance) > 6) { state.moved = true; track.setPointerCapture(event.pointerId); }
+  if (state.moved) track.scrollLeft = state.dragLeft - distance;
  });
- track.addEventListener('click', e => { if (drag?.moved) { e.preventDefault(); e.stopPropagation(); } }, true);
- track.addEventListener('pointerup', () => { setTimeout(() => { drag = null; }, 0); });
- track.addEventListener('pointercancel', () => { drag = null; });
- track.addEventListener('dragstart', e => e.preventDefault());
+ const stopDrag = () => { state.dragging = false; state.resumeAt = performance.now() + 1400; };
+ track.addEventListener('pointerup', stopDrag);
+ track.addEventListener('pointercancel', stopDrag);
+ track.addEventListener('dragstart', event => event.preventDefault());
+ track.addEventListener('click', event => {
+  if (state.moved) { event.preventDefault(); event.stopPropagation(); state.moved = false; return; }
+  const card = event.target.closest('figure, article, a.outreach-card');
+  if (card && card.parentElement === track && card.tagName !== 'A') openCard(card);
+ });
+ track.addEventListener('keydown', event => {
+  if (event.key !== 'Enter' && event.key !== ' ') return;
+  const card = event.target.closest('figure, article');
+  if (card?.parentElement === track) { event.preventDefault(); openCard(card); }
+ });
+ tracks.push(state);
 });
-setInterval(() => {
- if (document.hidden || motionPreference.matches) return;
- carouselStates.forEach((state, track) => {
+let previousTime = 0;
+function animate(now) {
+ const elapsed = Math.min((now - (previousTime || now)) / 1000, .05);
+ previousTime = now;
+ tracks.forEach(state => {
+  const { track, cycle } = state;
+  if (!cycle) return;
   const rect = track.getBoundingClientRect();
-  const visible = Math.min(innerHeight, rect.bottom) - Math.max(0, rect.top) > rect.height * .25;
-  if (!visible || state.paused || track.parentElement.matches(':hover, :focus-within') || Date.now() < state.nextAt) return;
-  const max = track.scrollWidth - track.clientWidth;
-  if (max > 1) {
-   track.dataset.autoAdvances = String(Number(track.dataset.autoAdvances || 0) + 1);
-   if (track.scrollLeft >= max - 2) track.scrollTo({ left: 0 });
-   else {
-    const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
-    track.scrollBy({ left: track.firstElementChild.getBoundingClientRect().width + gap });
-   }
+  const visible = Math.min(innerHeight, rect.bottom) - Math.max(0, rect.top) > rect.height * .2;
+  const manual = state.dragging || track.matches(':hover, :focus-within') || now < state.resumeAt;
+  if (!document.hidden && !detail.open && !reducedMotion.matches && visible && !manual) {
+   state.position += 30 * elapsed;
+   track.scrollLeft = state.position;
+  } else state.position = track.scrollLeft;
+  if (!state.dragging && (state.position < cycle - 1 || state.position >= cycle * 2)) {
+   const offset = ((state.position - cycle) % cycle + cycle) % cycle;
+   state.position = cycle + offset;
+   track.scrollLeft = state.position;
   }
-  state.nextAt = Date.now() + 6500;
  });
-}, 500);
+ requestAnimationFrame(animate);
+}
+requestAnimationFrame(animate);
 </script>
 </body>
 </html>
