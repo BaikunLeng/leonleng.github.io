@@ -89,7 +89,7 @@ body {
  scroll-snap-type: x proximity;
  scroll-behavior: smooth;
 }
-.media-gallery > figure {
+.media-gallery figure {
  flex: 0 0 calc((100% - 1.25rem) / 2);
  min-width: 0;
  margin: 0;
@@ -123,7 +123,7 @@ body {
  .profile-image { display: flex; justify-content: center; }
 }
 @media (max-width: 480px) {
- .media-gallery > figure { flex-basis: 85%; }
+ .media-gallery figure { flex-basis: 85%; }
 }
 
 /* 移动端Outreach部分样式 */
@@ -256,7 +256,8 @@ body {
 .carousel-detail .affiliation-row { display: block; }
 .carousel-detail .affiliation-logo { justify-content: flex-start; margin-bottom: 1rem; }
 .carousel-detail p, .carousel-detail figcaption { margin-top: .75rem; font-size: .95rem; line-height: 1.7; }
-[data-reading="true"] > [data-carousel-copy] { display: none !important; }
+[data-reading="true"] > .carousel-belt > [data-carousel-copy] { display: none !important; }
+.carousel-belt { display: flex; flex: 0 0 100%; width: 100%; min-width: 0; gap: inherit; will-change: transform; }
 </style>
 </head>
 <body class="bg-white">
@@ -477,9 +478,17 @@ function openCard(card) {
  copy.querySelectorAll('iframe').forEach(frame => { const url = new URL(frame.src); url.searchParams.set('controls', '1'); frame.src = url.href; });
  detailBody.replaceChildren(copy);
  detail.showModal();
+ tracks.forEach(state => state.motion?.pause());
 }
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
 const tracks = [];
+const modulo = (value, cycle) => ((value % cycle) + cycle) % cycle;
+const observer = new IntersectionObserver(entries => {
+ entries.forEach(entry => {
+  const state = tracks.find(item => item.track === entry.target);
+  if (state) { state.visible = entry.isIntersecting && entry.intersectionRatio > .15; state.updatePlayback(); }
+ });
+}, { threshold: [0, .15, .25] });
 document.querySelectorAll('#aboutMediaGallery, #mediaScroll, .experience-carousel').forEach(track => {
  const cards = [...track.children];
  cards.forEach(card => {
@@ -492,111 +501,111 @@ document.querySelectorAll('#aboutMediaGallery, #mediaScroll, .experience-carouse
   copy.querySelectorAll('a, button, [tabindex], iframe').forEach(el => el.tabIndex = -1);
   return copy;
  };
- track.prepend(...cards.map(cloneCard));
- track.append(...cards.map(cloneCard));
- const state = { track, cards, cycle: 0, position: 0, resumeAt: 0, reading: false, dragging: false, dragStart: 0, dragLeft: 0, moved: false };
+ const belt = document.createElement('div'); belt.className = 'carousel-belt';
+ belt.append(...cards.map(cloneCard), ...cards, ...cards.map(cloneCard)); track.append(belt);
+ const state = { track, belt, cards, cycle: 0, baseScroll: 0, duration: 0, motion: null, reading: false, visible: false, dragging: false, moved: false, touching: false };
+ let resumeTimer, snapTimer, dragStart = 0, dragLeft = 0;
+ const keyboardFocused = () => track.matches(':focus-visible') || !!track.querySelector(':focus-visible');
+ function updatePlayback() {
+  if (!state.motion) return;
+  if (!state.visible || state.reading || document.hidden || detail.open || reducedMotion.matches) state.motion.pause();
+  else state.motion.play();
+ }
+ state.updatePlayback = updatePlayback;
+ function offset() {
+  if (!state.cycle) return 0;
+  if (state.reading) return track.scrollLeft;
+  const progress = state.motion ? modulo(Number(state.motion.currentTime || 0), state.duration) / state.duration : 0;
+  return modulo(track.scrollLeft - state.baseScroll + progress * state.cycle, state.cycle);
+ }
+ function measure(savedOffset) {
+  const saved = typeof savedOffset === 'number' ? savedOffset : offset();
+  state.motion?.cancel();
+  const gap = parseFloat(getComputedStyle(belt).columnGap) || 0;
+  state.cycle = cards.reduce((sum, card) => sum + card.getBoundingClientRect().width + gap, 0);
+  state.duration = state.cycle / 30 * 1000;
+  if (!state.cycle) return;
+  if (state.reading) { track.scrollLeft = saved; return; }
+  track.scrollLeft = state.cycle;
+  state.baseScroll = track.scrollLeft;
+  state.motion = belt.animate([{ transform: 'translate3d(0,0,0)' }, { transform: `translate3d(${-state.cycle}px,0,0)` }], { duration: state.duration, iterations: Infinity, easing: 'linear' });
+  state.motion.currentTime = modulo(saved, state.cycle) / state.cycle * state.duration;
+  updatePlayback();
+ }
  function snapReading() {
-  const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+  if (!state.reading || state.dragging || state.touching) return;
+  const gap = parseFloat(getComputedStyle(belt).columnGap) || 0;
   const step = cards[0].getBoundingClientRect().width + gap;
-  const max = Math.max(0, track.scrollWidth - track.clientWidth);
-  track.scrollLeft = Math.min(max, Math.max(0, Math.round(track.scrollLeft / step) * step));
-  state.position = track.scrollLeft;
+  const target = Math.min(Math.max(0, track.scrollWidth - track.clientWidth), Math.max(0, Math.round(track.scrollLeft / step) * step));
+  if (Math.abs(target - track.scrollLeft) > .75) track.scrollTo({ left: target, behavior: reducedMotion.matches ? 'instant' : 'smooth' });
  }
  function enterReading() {
-  if (state.reading || !state.cycle) return;
-  const offset = ((track.scrollLeft - state.cycle) % state.cycle + state.cycle) % state.cycle;
-  state.reading = true;
-  track.dataset.reading = 'true';
-  track.scrollLeft = offset;
+  clearTimeout(resumeTimer);
+  if (state.reading) return;
+  const saved = offset();
+  state.motion?.cancel(); state.motion = null;
+  state.reading = true; track.dataset.reading = 'true';
+  track.scrollLeft = saved;
+  if (saved > track.scrollWidth - track.clientWidth + 1 && !reducedMotion.matches) belt.animate([{ opacity: .65 }, { opacity: 1 }], { duration: 200, easing: 'ease-out' });
   snapReading();
  }
- function leaveReading() {
-  if (!state.reading) return;
-  const offset = track.scrollLeft;
-  state.reading = false;
-  track.removeAttribute('data-reading');
-  state.position = state.cycle + offset;
-  track.scrollLeft = state.position;
-  state.resumeAt = performance.now() + 700;
+ function resume(delay = 700) {
+  clearTimeout(resumeTimer);
+  resumeTimer = setTimeout(() => {
+   if (track.matches(':hover') || keyboardFocused() || state.dragging || state.touching || detail.open) return;
+   const saved = track.scrollLeft;
+   state.reading = false; track.removeAttribute('data-reading');
+   measure(saved);
+  }, delay);
  }
- state.enterReading = enterReading;
- state.leaveReading = leaveReading;
- function measure() {
-  const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
-  const offset = state.reading ? track.scrollLeft : 0;
-  state.cycle = cards.reduce((sum, card) => sum + card.getBoundingClientRect().width + gap, 0);
-  state.position = state.reading ? offset : state.cycle;
-  track.scrollLeft = state.position;
-  if (state.reading) snapReading();
- }
- measure(); new ResizeObserver(measure).observe(track);
+ state.resume = resume;
+ // Size changes preserve the visible position instead of restarting the loop.
+ let lastWidth = 0, lastHeight = 0;
+ const resize = new ResizeObserver(entries => {
+  const r = entries[0].contentRect;
+  if (Math.abs(r.width - lastWidth) > .5 || Math.abs(r.height - lastHeight) > .5) { lastWidth = r.width; lastHeight = r.height; measure(); }
+ });
+ measure(); tracks.push(state); observer.observe(track); resize.observe(track);
  track.addEventListener('pointerenter', event => { if (event.pointerType === 'mouse') enterReading(); });
- track.addEventListener('pointerleave', () => { state.resumeAt = performance.now() + 700; });
+ track.addEventListener('pointerleave', () => resume());
  track.addEventListener('focusin', enterReading);
- track.addEventListener('focusout', () => { state.resumeAt = performance.now() + 700; });
- let snapTimer;
+ track.addEventListener('focusout', () => resume());
  track.addEventListener('scroll', () => {
   if (!state.reading) return;
-  clearTimeout(snapTimer);
-  snapTimer = setTimeout(() => { if (state.reading && !state.dragging) snapReading(); }, 160);
+  clearTimeout(snapTimer); snapTimer = setTimeout(snapReading, 180);
  }, { passive: true });
- track.addEventListener('wheel', () => { state.resumeAt = performance.now() + 1400; }, { passive: true });
+ track.addEventListener('wheel', () => { enterReading(); if (!track.matches(':hover')) resume(1600); }, { passive: true });
  track.addEventListener('pointerdown', event => {
-  enterReading();
-  state.resumeAt = performance.now() + 1400;
-  state.moved = false;
-  if (event.pointerType !== 'mouse' || event.button !== 0) return;
-  state.dragging = true; state.dragStart = event.clientX; state.dragLeft = track.scrollLeft;
+  enterReading(); state.moved = false;
+  track.scrollTo({ left: track.scrollLeft, behavior: 'instant' });
+  if (event.pointerType !== 'mouse') { state.touching = true; return; }
+  if (event.button !== 0) return;
+  state.dragging = true; dragStart = event.clientX; dragLeft = track.scrollLeft;
  });
  track.addEventListener('pointermove', event => {
   if (!state.dragging) return;
-  const distance = event.clientX - state.dragStart;
+  const distance = event.clientX - dragStart;
   if (!state.moved && Math.abs(distance) > 6) { state.moved = true; track.setPointerCapture(event.pointerId); }
-  if (state.moved) track.scrollLeft = state.dragLeft - distance;
+  if (state.moved) track.scrollLeft = dragLeft - distance;
  });
- const stopDrag = () => { state.dragging = false; if (state.moved) snapReading(); state.resumeAt = performance.now() + 1400; };
- track.addEventListener('pointerup', stopDrag);
- track.addEventListener('pointercancel', stopDrag);
+ const stopDrag = () => { state.dragging = false; state.touching = false; snapReading(); resume(1400); };
+ track.addEventListener('pointerup', stopDrag); track.addEventListener('pointercancel', stopDrag);
+ window.addEventListener('pointerup', () => { if (state.dragging || state.touching) stopDrag(); });
  track.addEventListener('dragstart', event => event.preventDefault());
  track.addEventListener('click', event => {
   if (state.moved) { event.preventDefault(); event.stopPropagation(); state.moved = false; return; }
   const card = event.target.closest('figure, article, a.outreach-card');
-  if (card && card.parentElement === track && card.tagName !== 'A') openCard(card);
+  if (card?.parentElement === belt && card.tagName !== 'A') openCard(card);
  });
  track.addEventListener('keydown', event => {
   if (event.key !== 'Enter' && event.key !== ' ') return;
   const card = event.target.closest('figure, article');
-  if (card?.parentElement === track) { event.preventDefault(); openCard(card); }
+  if (card?.parentElement === belt) { event.preventDefault(); openCard(card); }
  });
- tracks.push(state);
 });
-let previousTime = 0;
-function animate(now) {
- const elapsed = Math.min((now - (previousTime || now)) / 1000, .05);
- previousTime = now;
- tracks.forEach(state => {
-  const { track, cycle } = state;
-  if (!cycle) return;
-  const rect = track.getBoundingClientRect();
-  const visible = Math.min(innerHeight, rect.bottom) - Math.max(0, rect.top) > rect.height * .2;
-  const focused = track.matches(':focus-visible') || !!track.querySelector(':focus-visible');
-  const hover = track.matches(':hover');
-  if ((hover || focused) && !state.reading) state.enterReading();
-  if (state.reading && !hover && !focused && !state.dragging && !detail.open && now >= state.resumeAt) state.leaveReading();
-  const manual = state.reading || state.dragging || now < state.resumeAt;
-  if (!document.hidden && !detail.open && !reducedMotion.matches && visible && !manual) {
-   state.position += 30 * elapsed;
-   track.scrollLeft = state.position;
-  } else state.position = track.scrollLeft;
-  if (!state.reading && !state.dragging && (state.position < cycle - 1 || state.position >= cycle * 2)) {
-   const offset = ((state.position - cycle) % cycle + cycle) % cycle;
-   state.position = cycle + offset;
-   track.scrollLeft = state.position;
-  }
- });
- requestAnimationFrame(animate);
-}
-requestAnimationFrame(animate);
+document.addEventListener('visibilitychange', () => tracks.forEach(state => state.updatePlayback()));
+reducedMotion.addEventListener('change', () => tracks.forEach(state => state.updatePlayback()));
+detail.addEventListener('close', () => tracks.forEach(state => { if (state.reading) state.resume(); else state.updatePlayback(); }));
 </script>
 </body>
 </html>
