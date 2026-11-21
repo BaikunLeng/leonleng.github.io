@@ -756,36 +756,266 @@ function typePortraitLine(line) {
  else tick();
 }
 const portraitLines = [
- 'I study agents. They study my patience.',
- 'Research, roll, repeat. 🥋',
- 'My other peer review happens on the mat.',
- 'Still training. Models and myself.'
-];
-let portraitDeck = [], lastPortraitLine = '', portraitVisits = 0;
-function nextPortraitLine() {
- if (!portraitDeck.length) {
-  portraitDeck = [...portraitLines];
-  for (let i = portraitDeck.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [portraitDeck[i], portraitDeck[j]] = [portraitDeck[j], portraitDeck[i]]; }
-  if (portraitDeck[portraitDeck.length - 1] === lastPortraitLine) [portraitDeck[0], portraitDeck[portraitDeck.length - 1]] = [portraitDeck[portraitDeck.length - 1], portraitDeck[0]];
+ {
+  "text": "Hi, I’m Leon! 👋",
+  "unlock": 0
+ },
+ {
+  "text": "I study agents. They study my patience.",
+  "unlock": 0
+ },
+ {
+  "text": "Research, roll, repeat. 🥋",
+  "unlock": 0
+ },
+ {
+  "text": "Still training. Models and myself.",
+  "unlock": 0
+ },
+ {
+  "text": "My other peer review happens on the mat.",
+  "unlock": 0
+ },
+ {
+  "text": "Coffee, code, causal questions.",
+  "unlock": 0
+ },
+ {
+  "text": "Good questions are my favorite research tools.",
+  "unlock": 0
+ },
+ {
+  "text": "Less guessing. More experiments.",
+  "unlock": 0
+ },
+ {
+  "text": "AI agents need better group projects.",
+  "unlock": 0
+ },
+ {
+  "text": "Jiu-jitsu: chess, with fewer personal boundaries.",
+  "unlock": 0
+ },
+ {
+  "text": "Tap early. Ask questions later.",
+  "unlock": 0
+ },
+ {
+  "text": "Keep your guard up. And your standards.",
+  "unlock": 0
+ },
+ {
+  "text": "Footwork first. Fancy moves later.",
+  "unlock": 0
+ },
+ {
+  "text": "I like my models curious and my sparring friendly.",
+  "unlock": 0
+ },
+ {
+  "text": "One more question. One more round.",
+  "unlock": 0
+ },
+ {
+  "text": "Is this an experiment? Am I the treatment group?",
+  "unlock": 8
+ },
+ {
+  "text": "Correlation is not a training partner.",
+  "unlock": 8
+ },
+ {
+  "text": "Control groups deserve more appreciation.",
+  "unlock": 8
+ },
+ {
+  "text": "Benchmarks are not personality tests.",
+  "unlock": 8
+ },
+ {
+  "text": "More agents. More coordination problems.",
+  "unlock": 8
+ },
+ {
+  "text": "Even AI teams need a decent org chart.",
+  "unlock": 8
+ },
+ {
+  "text": "Incentives: the plot twist in every system.",
+  "unlock": 8
+ },
+ {
+  "text": "Sometimes the best policy is to ask why.",
+  "unlock": 8
+ },
+ {
+  "text": "My favorite escape is not a keyboard key.",
+  "unlock": 8
+ },
+ {
+  "text": "Position before submission. Evidence before claims.",
+  "unlock": 8
+ },
+ {
+  "text": "Getting humbled is a surprisingly good curriculum.",
+  "unlock": 8
+ },
+ {
+  "text": "Boxing teaches a very direct feedback loop.",
+  "unlock": 8
+ },
+ {
+  "text": "Not every problem needs more compute.",
+  "unlock": 8
+ },
+ {
+  "text": "A clean jab. A clean identification strategy.",
+  "unlock": 8
+ },
+ {
+  "text": "My attention budget is running out.",
+  "unlock": 18
+ },
+ {
+  "text": "Okay, you have my attention. 👀",
+  "unlock": 18
+ },
+ {
+  "text": "We may need a larger sample size.",
+  "unlock": 18
+ },
+ {
+  "text": "That’s a promising retention curve.",
+  "unlock": 18
+ },
+ {
+  "text": "AI alignment starts with agreeing on the meeting time.",
+  "unlock": 18
+ },
+ {
+  "text": "The agents formed a committee. Send help.",
+  "unlock": 18
+ },
+ {
+  "text": "Post-training, but make it a lifestyle.",
+  "unlock": 18
+ },
+ {
+  "text": "My digital twin also has unfinished drafts.",
+  "unlock": 18
+ },
+ {
+  "text": "The simulator did not prepare me for leg day.",
+  "unlock": 18
+ },
+ {
+  "text": "More tokens will not fix bad incentives.",
+  "unlock": 18
+ },
+ {
+  "text": "No-gi, no problem. In theory.",
+  "unlock": 18
+ },
+ {
+  "text": "The mat is an excellent overconfidence detector.",
+  "unlock": 18
+ },
+ {
+  "text": "Sparring is peer review with gloves.",
+  "unlock": 18
+ },
+ {
+  "text": "Learning rate: steady. Ego: adjustable.",
+  "unlock": 18
+ },
+ {
+  "text": "You have explored more than the average agent.",
+  "unlock": 32
+ },
+ {
+  "text": "This is now a longitudinal study.",
+  "unlock": 32
+ },
+ {
+  "text": "You are now a very persistent visitor.",
+  "unlock": 32
+ },
+ {
+  "text": "Please do not overfit to my jokes.",
+  "unlock": 32
+ },
+ {
+  "text": "Your curiosity has excellent sample efficiency.",
+  "unlock": 32
+ },
+ {
+  "text": "No reward model was consulted for this joke.",
+  "unlock": 32
+ },
+ {
+  "text": "Even my Easter eggs have diminishing returns.",
+  "unlock": 32
+ },
+ {
+  "text": "The real multi-agent problem is picking dinner.",
+  "unlock": 32
+ },
+ {
+  "text": "Knowledge compounds. So do unread papers.",
+  "unlock": 32
+ },
+ {
+  "text": "I came for the ideas. Stayed for the counterexamples.",
+  "unlock": 32
+ },
+ {
+  "text": "Every black belt was once a confused beginner.",
+  "unlock": 32
+ },
+ {
+  "text": "Breathe. Frame. Escape. Revise.",
+  "unlock": 32
+ },
+ {
+  "text": "Defend the chin. Defend the assumptions.",
+  "unlock": 32
+ },
+ {
+  "text": "That’s the final round. Thanks for dropping by! 🥊",
+  "unlock": 32
  }
- lastPortraitLine = portraitDeck.pop();
- return lastPortraitLine;
+];
+const portraitSeenKey = 'leon-portrait-seen-v1';
+const portraitLineTexts = new Set(portraitLines.map(item => item.text));
+function loadPortraitSeen() {
+ try { const saved = JSON.parse(localStorage.getItem(portraitSeenKey) || '[]'); return Array.isArray(saved) ? saved.filter(text => portraitLineTexts.has(text)) : []; }
+ catch { return []; }
 }
+const portraitSeen = new Set(loadPortraitSeen());
+function updatePortraitAvailability() {
+ if (portraitSeen.size >= portraitLines.length) { portraitButton.disabled = true; portraitButton.title = 'All messages discovered. Thanks for visiting!'; }
+}
+function nextPortraitLine() {
+ // Merge the same browser's saved discoveries before every click.
+ loadPortraitSeen().forEach(text => portraitSeen.add(text));
+ const eligible = portraitLines.filter(item => !portraitSeen.has(item.text) && item.unlock <= portraitSeen.size);
+ if (!eligible.length) { updatePortraitAvailability(); return null; }
+ const greeting = portraitLines[0];
+ const chosen = !portraitSeen.has(greeting.text) ? greeting : eligible[Math.floor(Math.random() * eligible.length)];
+ portraitSeen.add(chosen.text);
+ try { localStorage.setItem(portraitSeenKey, JSON.stringify([...portraitSeen])); } catch { /* Keep discoveries for this page if browser storage is unavailable. */ }
+ updatePortraitAvailability();
+ return chosen.text;
+}
+updatePortraitAvailability();
 function closePortraitSpeech() {
  cancelPortraitTimers(); portraitTyping = false; portraitHovered = false; portraitDismissAt = 0;
  portraitSpeech.hidden = true;
  portraitButton.setAttribute('aria-expanded', 'false');
 }
 portraitButton.addEventListener('click', () => {
- let line;
- if (!portraitVisits) line = 'Hi, I’m Leon! 👋';
- else if (portraitVisits === 4) line = 'Is this an experiment? Am I the treatment group?';
- else if (portraitVisits === 8) line = 'My attention budget is running out.';
- else if (portraitVisits === 12) line = 'Okay, you have my attention. 👀';
- else if (portraitVisits > 12 && portraitVisits % 8 === 4) line = 'We may need a larger sample size.';
- else if (portraitVisits > 12 && portraitVisits % 8 === 0) line = 'Still here? That’s a promising retention curve.';
- else line = nextPortraitLine();
- portraitVisits++;
+ const line = nextPortraitLine();
+ if (!line) return;
  speechMessage.style.whiteSpace = 'normal';
  speechMessage.style.top = '47%';
  speechMessage.style.transform = 'translateY(-50%)';
