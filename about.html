@@ -272,6 +272,14 @@ body {
 .attention-note button { border: 0; padding: 0; background: transparent; color: #6b7280; font: inherit; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
 .attention-note button:focus-visible { outline: 1px solid #64748b; outline-offset: 3px; }
 @media (prefers-reduced-motion: reduce) { .attention-word { transition: none; } }
+
+.attention-canvas { position: relative; }
+.attention-arrows { position: absolute; top: 0; left: 0; overflow: visible; pointer-events: none; z-index: 2; }
+.attention-probabilities { display: flex; flex-wrap: wrap; gap: .35rem .65rem; margin-top: .6rem; font-size: .75rem; line-height: 1.5; }
+.attention-probabilities[hidden] { display: none; }
+.attention-probabilities button { border: 0; padding: 0; background: transparent; color: #64748b; font: inherit; cursor: pointer; }
+.attention-probabilities button:hover, .attention-probabilities button:focus-visible { color: #1d4ed8; text-decoration: underline; text-underline-offset: 2px; }
+.attention-actions { display: flex; flex-shrink: 0; gap: .7rem; }
 </style>
 </head>
 <body class="bg-white">
@@ -695,13 +703,55 @@ if (introParagraph) {
   words.push(word); fragment.append(word);
  });
  introParagraph.replaceChildren(fragment);
+ const canvas = document.createElement('div'); canvas.className = 'attention-canvas';
+ introParagraph.before(canvas); canvas.append(introParagraph);
+ const svgNS = 'http://www.w3.org/2000/svg';
+ const arrows = document.createElementNS(svgNS, 'svg');
+ arrows.classList.add('attention-arrows'); arrows.setAttribute('aria-hidden', 'true');
+ canvas.append(arrows);
+ const probabilities = document.createElement('div'); probabilities.className = 'attention-probabilities'; probabilities.hidden = true;
+ probabilities.setAttribute('aria-label', 'Illustrative probabilities for related words');
  const note = document.createElement('div'); note.className = 'attention-note';
  const status = document.createElement('span'); status.setAttribute('aria-live', 'polite');
  status.textContent = 'Select a word · Illustrative attention';
  status.title = 'Hand-authored semantic connections; not actual model attention weights.';
  const clear = document.createElement('button'); clear.type = 'button'; clear.textContent = 'Clear'; clear.hidden = true;
- note.append(status, clear); introParagraph.after(note);
- let selected = null;
+ const allArrows = document.createElement('button'); allArrows.type = 'button'; allArrows.textContent = 'All arrows'; allArrows.hidden = true;
+ const actions = document.createElement('div'); actions.className = 'attention-actions'; actions.append(allArrows, clear);
+ note.append(status, actions); introParagraph.after(note); note.after(probabilities);
+ let selected = null, links = [], showAll = false, isolated = null;
+ function drawArrows() {
+  arrows.replaceChildren();
+  if (!selected || !links.length) return;
+  const p = introParagraph.getBoundingClientRect();
+  arrows.setAttribute('width', p.width); arrows.setAttribute('height', p.height);
+  arrows.setAttribute('viewBox', `0 0 ${p.width} ${p.height}`);
+  const defs = document.createElementNS(svgNS, 'defs');
+  const marker = document.createElementNS(svgNS, 'marker');
+  marker.id = 'intro-attention-arrowhead'; marker.setAttribute('viewBox', '0 0 8 8'); marker.setAttribute('refX', '7'); marker.setAttribute('refY', '4'); marker.setAttribute('markerWidth', '6'); marker.setAttribute('markerHeight', '6'); marker.setAttribute('orient', 'auto-start-reverse');
+  const head = document.createElementNS(svgNS, 'path'); head.setAttribute('d', 'M0 0 8 4 0 8z'); head.setAttribute('fill', '#5076a0'); marker.append(head); defs.append(marker); arrows.append(defs);
+  const from = selected.getBoundingClientRect();
+  const visibleLinks = isolated ? [isolated] : showAll ? links : links.slice(0, 5);
+  visibleLinks.forEach(link => {
+   const to = link.word.getBoundingClientRect();
+   const sameLine = Math.abs(to.top - from.top) < 5;
+   const down = to.top >= from.top;
+   const sx = from.left - p.left + from.width / 2;
+   const tx = to.left - p.left + to.width / 2;
+   const sy = (sameLine || down ? from.bottom + 1 : from.top - 1) - p.top;
+   const ty = (sameLine || !down ? to.bottom + 1 : to.top - 1) - p.top;
+   const path = document.createElementNS(svgNS, 'path');
+   if (sameLine) path.setAttribute('d', `M${sx} ${sy} Q${(sx + tx) / 2} ${Math.max(sy, ty) + 10} ${tx} ${ty}`);
+   else path.setAttribute('d', `M${sx} ${sy} C${sx} ${(sy + ty) / 2} ${tx} ${(sy + ty) / 2} ${tx} ${ty}`);
+   path.setAttribute('fill', 'none'); path.setAttribute('stroke', '#5076a0'); path.setAttribute('stroke-width', isolated ? '1.8' : '1.3'); path.setAttribute('opacity', isolated ? '.95' : '.7'); path.setAttribute('marker-end', 'url(#intro-attention-arrowhead)');
+   path.dataset.target = link.word.dataset.word;
+   const title = document.createElementNS(svgNS, 'title'); title.textContent = selected.dataset.word + ' → ' + link.word.dataset.word + ': ' + link.percent + '% (illustrative)'; path.append(title); arrows.append(path);
+  });
+ }
+ allArrows.addEventListener('click', () => { showAll = !showAll; allArrows.textContent = showAll ? 'Top 5 arrows' : 'All arrows'; drawArrows(); });
+ new ResizeObserver(drawArrows).observe(introParagraph);
+ document.fonts?.ready.then(drawArrows);
+ window.addEventListener('resize', drawArrows);
  function score(query, target) {
   if (!query || !target) return 0;
   if (query === target) return 1;
@@ -710,25 +760,45 @@ if (introParagraph) {
   return linked ? .9 : shared ? Math.min(.75, .38 + .16 * shared) : 0;
  }
  function reset() {
-  selected = null;
+  selected = null; links = []; isolated = null; showAll = false; arrows.replaceChildren(); probabilities.replaceChildren(); probabilities.hidden = true; allArrows.hidden = true; allArrows.textContent = 'All arrows';
   words.forEach(word => { word.classList.remove('is-query'); word.setAttribute('aria-pressed', 'false'); word.style.removeProperty('background-color'); word.removeAttribute('title'); });
   status.textContent = 'Select a word · Illustrative attention'; clear.hidden = true;
  }
  function highlight(word) {
   selected = word;
   const query = word.dataset.word;
-  let count = 0;
+  const raw = words.filter(target => target !== word).map(target => ({ word: target, weight: score(query, target.dataset.word) })).filter(link => link.weight > 0);
+  const total = raw.reduce((sum, link) => sum + link.weight, 0);
+  const units = raw.map(link => { const exact = link.weight / total * 10000; return { ...link, units: Math.floor(exact), remainder: exact - Math.floor(exact) }; });
+  let missing = 10000 - units.reduce((sum, link) => sum + link.units, 0);
+  if (units.length) [...units].sort((a, b) => b.remainder - a.remainder).slice(0, missing).forEach(link => link.units++);
+  links = units.sort((a, b) => b.weight - a.weight).map(link => ({ ...link, percent: (link.units / 100).toFixed(2) }));
+  isolated = null;
   words.forEach(target => {
-   const weight = score(query, target.dataset.word);
+   const link = links.find(item => item.word === target);
+   const weight = link?.weight || 0;
    target.classList.toggle('is-query', target === word);
    target.setAttribute('aria-pressed', String(target === word));
    target.style.backgroundColor = target === word ? '' : weight ? `rgba(250, 204, 21, ${.12 + weight * .58})` : '';
-   if (target !== word && weight) count++;
-   target.title = target === word ? 'Selected word' : weight ? 'Illustrative semantic connection' : '';
+   target.title = target === word ? 'Selected word' : link ? 'Illustrative probability: ' + link.percent + '%' : 'Illustrative probability: 0.00%';
    target.tabIndex = target === word ? 0 : -1;
   });
-  status.textContent = 'Illustrative attention · ' + query + ' → ' + count + ' related words';
-  clear.hidden = false;
+  probabilities.replaceChildren(); probabilities.hidden = false;
+  links.forEach(link => {
+   const button = document.createElement('button'); button.type = 'button';
+   button.textContent = link.word.dataset.word + ' ' + link.percent + '%';
+   button.setAttribute('aria-label', 'Show arrow to ' + link.word.dataset.word + ', ' + link.percent + ' percent');
+   button.addEventListener('pointerenter', () => { isolated = link; drawArrows(); });
+   button.addEventListener('pointerleave', () => { isolated = null; drawArrows(); });
+   button.addEventListener('focus', () => { isolated = link; drawArrows(); });
+   button.addEventListener('blur', () => { isolated = null; drawArrows(); });
+   button.addEventListener('click', () => { isolated = link; drawArrows(); });
+   probabilities.append(button);
+  });
+  status.textContent = links.length ? 'Illustrative probabilities · total 100%' : 'No related words in this sketch';
+  clear.hidden = false; allArrows.hidden = links.length <= 5;
+  allArrows.textContent = showAll ? 'Top 5 arrows' : 'All arrows';
+  drawArrows();
  }
  clear.addEventListener('click', () => { window.getSelection()?.removeAllRanges(); reset(); });
  introParagraph.addEventListener('click', event => {
@@ -755,7 +825,7 @@ if (introParagraph) {
    next.focus(); highlight(next);
   }
  });
- document.addEventListener('click', event => { if (selected && !introParagraph.contains(event.target) && !note.contains(event.target)) reset(); });
+ document.addEventListener('click', event => { if (selected && !introParagraph.contains(event.target) && !note.contains(event.target) && !probabilities.contains(event.target)) reset(); });
 }
 </script>
 </body>
