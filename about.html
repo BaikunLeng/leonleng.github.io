@@ -234,10 +234,9 @@ body {
 
 /* Horizontal experience cards share the site's reading-column width. */
 .experience-carousel { display: flex; gap: 1.5rem; overflow-x: auto; scroll-snap-type: x proximity; scroll-behavior: smooth; padding: .25rem 0 .5rem; }
-.experience-carousel .affiliation-row { display: block; flex: 0 0 85%; min-width: 0; margin: 0; scroll-snap-align: start; }
+.experience-carousel .affiliation-row { display: block; flex: 0 0 calc((100% - 1.5rem) / 2); min-width: 0; margin: 0; scroll-snap-align: start; }
 .experience-carousel .affiliation-logo { justify-content: flex-start; height: 80px; margin-bottom: 1rem; }
 .experience-carousel:focus-visible { outline: 2px solid #6b7280; outline-offset: 4px; }
-@media (min-width: 769px) { .experience-carousel .affiliation-row { flex-basis: 75%; } }
 @media (prefers-reduced-motion: reduce) { .experience-carousel { scroll-behavior: auto; } }
 </style>
 </head>
