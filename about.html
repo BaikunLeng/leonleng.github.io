@@ -75,6 +75,16 @@ body {
 .speech-cloud .cloud-mobile { display: none; }
 .speech-message { position: absolute; left: 18px; right: 12px; top: 31px; white-space: nowrap; font-weight: 500; letter-spacing: .01em; }
 .portrait-speech[hidden] { display: none; }
+
+.portrait-feedback { position: absolute; top: 94px; left: 8px; right: 8px; display: flex; justify-content: center; align-items: center; gap: 12px; font-size: .75rem; line-height: 1.4; color: #64748b; }
+.portrait-feedback[hidden] { display: none; }
+.portrait-feedback button { display: inline-flex; align-items: center; gap: 4px; padding: 3px 0; border: 0; background: transparent; color: inherit; font: inherit; cursor: pointer; }
+.portrait-feedback button svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.portrait-feedback button:hover, .portrait-feedback button[aria-pressed="true"] { color: #2563a6; }
+.portrait-feedback button:focus-visible { outline: 1px solid #64748b; outline-offset: 3px; border-radius: 2px; }
+.portrait-feedback button:disabled { cursor: default; }
+.portrait-feedback-status { position: absolute; top: 27px; left: -6px; right: -6px; font-size: .6875rem; white-space: nowrap; }
+
 @keyframes speech-appear { from { opacity: 0; transform: translateY(5px) scale(.96); } to { opacity: 1; transform: none; } }
 @media (max-width: 480px) { .portrait-speech { right: auto; left: -45px; top: -82px; } .speech-cloud { height: 176px; } .speech-cloud .cloud-desktop { display: none; } .speech-cloud .cloud-mobile { display: block; } }
 @media (prefers-reduced-motion: reduce) { .portrait-speech { animation: none; } }
@@ -721,6 +731,66 @@ document.getElementById('randomNews').addEventListener('click', () => {
 const portraitButton = document.querySelector('.portrait-arrow');
 const portraitSpeech = document.getElementById('portraitSpeech');
 const speechMessage = portraitSpeech.querySelector('.speech-message');
+const portraitFeedbackEndpoint = ['127.0.0.1','localhost'].includes(location.hostname) ? 'http://127.0.0.1:8787/events' : 'https://leonleng-portrait-feedback.caramel-terrier.workers.dev/events';
+const portraitFeedback = document.createElement('div'); portraitFeedback.className = 'portrait-feedback'; portraitFeedback.hidden = true; portraitFeedback.setAttribute('role', 'group'); portraitFeedback.setAttribute('aria-label', 'Feedback on this message');
+const portraitFeedbackStatus = document.createElement('span'); portraitFeedbackStatus.className = 'portrait-feedback-status'; portraitFeedbackStatus.setAttribute('aria-live', 'polite');
+const portraitVoteButtons = ['like','dislike'].map(vote => {
+ const button = document.createElement('button'); button.type = 'button'; button.dataset.vote = vote; button.setAttribute('aria-label', vote === 'like' ? 'Like this message' : 'Dislike this message'); button.setAttribute('aria-pressed', 'false');
+ button.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"' + (vote === 'dislike' ? ' style="transform:rotate(180deg)"' : '') + '><path d="M7 10v11H3V10h4Zm0 0 5-7c2 0 3 1 2 4l-1 3h6a2 2 0 0 1 2 2l-2 7a2 2 0 0 1-2 2H7" /></svg><span>' + (vote === 'like' ? 'Like' : 'Dislike') + '</span>';
+ button.addEventListener('click', () => voteOnPortrait(vote)); portraitFeedback.append(button); return button;
+});
+portraitFeedback.append(portraitFeedbackStatus); portraitSpeech.append(portraitFeedback);
+let portraitFeedbackLine = null, portraitFeedbackBusy = false;
+let portraitVisitorId;
+try { portraitVisitorId = localStorage.getItem('leon-portrait-visitor-v1'); } catch {}
+if (!/^[a-f0-9-]{36}$/.test(portraitVisitorId || '')) { portraitVisitorId = crypto.randomUUID(); try { localStorage.setItem('leon-portrait-visitor-v1', portraitVisitorId); } catch {} }
+let portraitSavedVotes = {};
+try { const saved = JSON.parse(localStorage.getItem('leon-portrait-votes-v1') || '{}'); if (saved && typeof saved === 'object' && !Array.isArray(saved)) portraitSavedVotes = saved; } catch {}
+const portraitViewRequests = new Map();
+const portraitPhraseIds = new Map();
+async function portraitPhraseId(line) {
+ if (!portraitPhraseIds.has(line)) portraitPhraseIds.set(line, crypto.subtle.digest('SHA-256', new TextEncoder().encode(line)).then(buffer => [...new Uint8Array(buffer)].map(b => b.toString(16).padStart(2, '0')).join('').slice(0,16)));
+ return portraitPhraseIds.get(line);
+}
+async function sendPortraitEvent(line, kind, vote) {
+ const response = await fetch(portraitFeedbackEndpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ kind, phrase_id: await portraitPhraseId(line), visitor_id: portraitVisitorId, ...(vote ? { vote } : {}) }), credentials: 'omit', referrerPolicy: 'no-referrer' });
+ if (!response.ok) throw new Error('Feedback was not saved');
+ return response.json();
+}
+function ensurePortraitView(line) {
+ if (!portraitViewRequests.has(line)) portraitViewRequests.set(line, sendPortraitEvent(line, 'impression').catch(error => { portraitViewRequests.delete(line); throw error; }));
+ return portraitViewRequests.get(line);
+}
+function renderPortraitFeedback() {
+ const saved = portraitSavedVotes[portraitFeedbackLine];
+ portraitVoteButtons.forEach(button => { button.disabled = !!saved || portraitFeedbackBusy; button.setAttribute('aria-pressed', String(saved === button.dataset.vote)); });
+ portraitFeedbackStatus.textContent = saved ? 'Thanks!' : '';
+}
+function maybeRecordPortraitView() {
+ if (!portraitFeedbackLine || portraitSpeech.hidden || document.hidden) return;
+ const r = portraitSpeech.getBoundingClientRect();
+ if (r.bottom > 0 && r.top < innerHeight && r.right > 0 && r.left < innerWidth) ensurePortraitView(portraitFeedbackLine).catch(() => {});
+}
+function finishPortraitLine(line) {
+ portraitFeedbackLine = line; portraitFeedbackBusy = false; portraitFeedback.hidden = false; renderPortraitFeedback(); maybeRecordPortraitView(); resumePortraitDismiss();
+}
+new IntersectionObserver(maybeRecordPortraitView).observe(portraitSpeech);
+document.addEventListener('visibilitychange', maybeRecordPortraitView);
+window.addEventListener('online', maybeRecordPortraitView);
+async function voteOnPortrait(vote) {
+ const line = portraitFeedbackLine;
+ if (!line || portraitSavedVotes[line] || portraitFeedbackBusy) return;
+ portraitFeedbackBusy = true; renderPortraitFeedback(); portraitFeedbackStatus.textContent = 'Saving…';
+ try {
+  await ensurePortraitView(line);
+  const result = await sendPortraitEvent(line, 'vote', vote);
+  portraitSavedVotes[line] = result.vote;
+  try { localStorage.setItem('leon-portrait-votes-v1', JSON.stringify(portraitSavedVotes)); } catch {}
+  if (portraitFeedbackLine === line) { portraitFeedbackBusy = false; renderPortraitFeedback(); }
+ } catch {
+  if (portraitFeedbackLine === line) { portraitFeedbackBusy = false; renderPortraitFeedback(); portraitFeedbackStatus.textContent = 'Couldn’t save. Try again.'; }
+ }
+}
 let portraitTypingTimer, portraitDismissTimer, portraitDismissAt = 0, portraitRemaining = 4500;
 let portraitTyping = false, portraitHovered = false;
 function cancelPortraitTimers() { clearTimeout(portraitTypingTimer); clearTimeout(portraitDismissTimer); }
@@ -741,6 +811,7 @@ portraitSpeech.addEventListener('focusin', pausePortraitDismiss);
 portraitSpeech.addEventListener('focusout', () => queueMicrotask(resumePortraitDismiss));
 function typePortraitLine(line) {
  cancelPortraitTimers();
+ portraitFeedback.hidden = true; portraitFeedbackLine = null;
  portraitRemaining = 4500; portraitDismissAt = 0;
  const reserve = document.createElement('span'); reserve.textContent = line; reserve.style.visibility = 'hidden'; reserve.setAttribute('aria-hidden', 'true');
  const ink = document.createElement('span'); ink.style.position = 'absolute'; ink.style.inset = '0'; ink.setAttribute('aria-hidden', 'true');
@@ -750,9 +821,9 @@ function typePortraitLine(line) {
  function tick() {
   ink.textContent = characters.slice(0, ++index).join('');
   if (index < characters.length) portraitTypingTimer = setTimeout(tick, 32);
-  else { portraitTyping = false; resumePortraitDismiss(); }
+  else { portraitTyping = false; finishPortraitLine(line); }
  }
- if (matchMedia('(prefers-reduced-motion: reduce)').matches) { ink.textContent = line; portraitTyping = false; resumePortraitDismiss(); }
+ if (matchMedia('(prefers-reduced-motion: reduce)').matches) { ink.textContent = line; portraitTyping = false; finishPortraitLine(line); }
  else tick();
 }
 const portraitLines = [

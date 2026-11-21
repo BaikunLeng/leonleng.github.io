@@ -1,0 +1,11 @@
+{
+ "name": "leonleng-portrait-feedback",
+ "main": "index.js",
+ "compatibility_date": "2026-11-21",
+ "account_id": "18910a5e5dd366c91a4048701fcce2ea",
+ "workers_dev": true,
+ "limits": { "cpu_ms": 10 },
+ "durable_objects": { "bindings": [{ "name": "FEEDBACK", "class_name": "PortraitFeedback" }] },
+ "migrations": [{ "tag": "v1", "new_sqlite_classes": ["PortraitFeedback"] }],
+ "observability": { "enabled": false }
+}
