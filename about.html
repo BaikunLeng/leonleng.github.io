@@ -256,6 +256,7 @@ body {
 .carousel-detail .affiliation-row { display: block; }
 .carousel-detail .affiliation-logo { justify-content: flex-start; margin-bottom: 1rem; }
 .carousel-detail p, .carousel-detail figcaption { margin-top: .75rem; font-size: .95rem; line-height: 1.7; }
+[data-reading="true"] > [data-carousel-copy] { display: none !important; }
 </style>
 </head>
 <body class="bg-white">
@@ -486,25 +487,62 @@ document.querySelectorAll('#aboutMediaGallery, #mediaScroll, .experience-carouse
  });
  const cloneCard = card => {
   const copy = card.cloneNode(true);
-  copy.removeAttribute('id'); copy.setAttribute('aria-hidden', 'true'); copy.tabIndex = -1;
+  copy.removeAttribute('id'); copy.setAttribute('data-carousel-copy', ''); copy.setAttribute('aria-hidden', 'true'); copy.tabIndex = -1;
   copy.querySelectorAll('[id]').forEach(el => el.removeAttribute('id'));
   copy.querySelectorAll('a, button, [tabindex], iframe').forEach(el => el.tabIndex = -1);
   return copy;
  };
  track.prepend(...cards.map(cloneCard));
  track.append(...cards.map(cloneCard));
- const state = { track, cards, cycle: 0, position: 0, resumeAt: 0, dragging: false, dragStart: 0, dragLeft: 0, moved: false };
+ const state = { track, cards, cycle: 0, position: 0, resumeAt: 0, reading: false, dragging: false, dragStart: 0, dragLeft: 0, moved: false };
+ function snapReading() {
+  const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+  const step = cards[0].getBoundingClientRect().width + gap;
+  const max = Math.max(0, track.scrollWidth - track.clientWidth);
+  track.scrollLeft = Math.min(max, Math.max(0, Math.round(track.scrollLeft / step) * step));
+  state.position = track.scrollLeft;
+ }
+ function enterReading() {
+  if (state.reading || !state.cycle) return;
+  const offset = ((track.scrollLeft - state.cycle) % state.cycle + state.cycle) % state.cycle;
+  state.reading = true;
+  track.dataset.reading = 'true';
+  track.scrollLeft = offset;
+  snapReading();
+ }
+ function leaveReading() {
+  if (!state.reading) return;
+  const offset = track.scrollLeft;
+  state.reading = false;
+  track.removeAttribute('data-reading');
+  state.position = state.cycle + offset;
+  track.scrollLeft = state.position;
+  state.resumeAt = performance.now() + 700;
+ }
+ state.enterReading = enterReading;
+ state.leaveReading = leaveReading;
  function measure() {
   const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+  const offset = state.reading ? track.scrollLeft : 0;
   state.cycle = cards.reduce((sum, card) => sum + card.getBoundingClientRect().width + gap, 0);
-  state.position = state.cycle;
+  state.position = state.reading ? offset : state.cycle;
   track.scrollLeft = state.position;
+  if (state.reading) snapReading();
  }
  measure(); new ResizeObserver(measure).observe(track);
+ track.addEventListener('pointerenter', event => { if (event.pointerType === 'mouse') enterReading(); });
  track.addEventListener('pointerleave', () => { state.resumeAt = performance.now() + 700; });
+ track.addEventListener('focusin', enterReading);
  track.addEventListener('focusout', () => { state.resumeAt = performance.now() + 700; });
+ let snapTimer;
+ track.addEventListener('scroll', () => {
+  if (!state.reading) return;
+  clearTimeout(snapTimer);
+  snapTimer = setTimeout(() => { if (state.reading && !state.dragging) snapReading(); }, 160);
+ }, { passive: true });
  track.addEventListener('wheel', () => { state.resumeAt = performance.now() + 1400; }, { passive: true });
  track.addEventListener('pointerdown', event => {
+  enterReading();
   state.resumeAt = performance.now() + 1400;
   state.moved = false;
   if (event.pointerType !== 'mouse' || event.button !== 0) return;
@@ -516,7 +554,7 @@ document.querySelectorAll('#aboutMediaGallery, #mediaScroll, .experience-carouse
   if (!state.moved && Math.abs(distance) > 6) { state.moved = true; track.setPointerCapture(event.pointerId); }
   if (state.moved) track.scrollLeft = state.dragLeft - distance;
  });
- const stopDrag = () => { state.dragging = false; state.resumeAt = performance.now() + 1400; };
+ const stopDrag = () => { state.dragging = false; if (state.moved) snapReading(); state.resumeAt = performance.now() + 1400; };
  track.addEventListener('pointerup', stopDrag);
  track.addEventListener('pointercancel', stopDrag);
  track.addEventListener('dragstart', event => event.preventDefault());
@@ -541,12 +579,16 @@ function animate(now) {
   if (!cycle) return;
   const rect = track.getBoundingClientRect();
   const visible = Math.min(innerHeight, rect.bottom) - Math.max(0, rect.top) > rect.height * .2;
-  const manual = state.dragging || track.matches(':hover, :focus-within') || now < state.resumeAt;
+  const focused = track.matches(':focus-visible') || !!track.querySelector(':focus-visible');
+  const hover = track.matches(':hover');
+  if ((hover || focused) && !state.reading) state.enterReading();
+  if (state.reading && !hover && !focused && !state.dragging && !detail.open && now >= state.resumeAt) state.leaveReading();
+  const manual = state.reading || state.dragging || now < state.resumeAt;
   if (!document.hidden && !detail.open && !reducedMotion.matches && visible && !manual) {
    state.position += 30 * elapsed;
    track.scrollLeft = state.position;
   } else state.position = track.scrollLeft;
-  if (!state.dragging && (state.position < cycle - 1 || state.position >= cycle * 2)) {
+  if (!state.reading && !state.dragging && (state.position < cycle - 1 || state.position >= cycle * 2)) {
    const offset = ((state.position - cycle) % cycle + cycle) % cycle;
    state.position = cycle + offset;
    track.scrollLeft = state.position;
