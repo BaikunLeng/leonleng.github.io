@@ -52,8 +52,6 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 .research-figure { margin: 0 0 20px; background: #fff; }
 .research-figure img { display: block; width: 100%; height: auto; object-fit: contain; }
 .research-demo-video { display: block; width: 100%; margin-inline: auto; height: auto; border-radius: 8px; background: #f8fafc; }
-.hascidb-media a { display: block; border-radius: 10px; overflow: hidden; border: 1px solid #e5eae7; }
-.hascidb-demo-video { display: block; width: 100%; height: auto; background: #fff; }
 .research-item h3 { margin: 0 0 5px; font-size: 1.0625rem; line-height: 1.5; font-weight: 600; letter-spacing: -.015em; color: #111827; overflow-wrap: break-word; }
 .research-byline { margin: 0 0 6px; color: #6b7280; font-size: .75rem; line-height: 1.65; }
 .research-byline strong { color: #374151; font-weight: 600; }
@@ -195,13 +193,11 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
   </article>
 
   <article class="research-item" data-topic="social-economics" id="hascidb">
-   <figure class="research-figure hascidb-media">
-    <a href="images/research/hascidb-demo.mp4?v=case4" target="_blank" rel="noopener noreferrer" aria-label="Watch the HasciDB short film at full size">
-     <video class="hascidb-demo-video" width="1440" height="900" autoplay muted loop playsinline preload="metadata" poster="images/research/hascidb-demo-poster.jpg?v=film2" aria-label="One address appears in 14 airdrops and is flagged in 13. All its claimed tokens flowed to one receiver within 30 days. Three of five signals crossed threshold, and the address scored 72 out of 100.">
-      <source src="images/research/hascidb-demo.mp4?v=case4" type="video/mp4" />
-      <img src="images/research/hascidb-demo-poster.jpg?v=film2" width="1440" height="900" alt="HasciDB title beside a folded ribbon of light." />
-     </video>
-    </a>
+   <figure class="research-figure">
+    <video class="research-demo-video" width="1440" height="900" controls playsinline preload="metadata" poster="images/research/hascidb-demo-poster.jpg?v=film2" aria-label="HasciDB short film: one wallet across 14 airdrops">
+     <source src="images/research/hascidb-demo.mp4?v=case4" type="video/mp4" />
+     <a href="images/research/hascidb-demo.mp4?v=case4">Watch the HasciDB short film</a>
+    </video>
    </figure>
    <div class="research-caption">
    <h3>HasciDB: A Database for Identifying Cryptocurrency Airdrop Sybil Hunters</h3>
