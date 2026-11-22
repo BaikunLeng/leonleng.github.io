@@ -96,12 +96,9 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 .research-filter-status { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
 @media (max-width: 480px) { .research-heading-bar { display: block; } .research-view-tabs { margin-top: 12px; } .research-topic-nav { gap: 9px 14px; } }
 
-.film-player { position: relative; width: 100%; }
-.film-play { position: absolute; left: 5.5%; bottom: 9%; display: inline-flex; align-items: center; gap: .55rem; padding: .4rem .8rem; color: #252632; background: #fff; border: 1px solid #acadb5; border-radius: 2rem; font: inherit; font-size: .86rem; cursor: pointer; }
-.film-play[hidden] { display: none; }
-.film-play span { font-size: .7em; }
-.film-play small { color: #525767; }
-.film-play:focus-visible { outline: 2px solid #353846; outline-offset: 3px; }
+.film-player { width: 100%; }
+.film-player video[role="button"] { cursor: pointer; }
+.film-player video[role="button"]:focus-visible { outline: 2px solid #353846; outline-offset: 3px; }
 </style>
 </head>
 <body>
@@ -189,7 +186,6 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
      <track kind="captions" src="images/research/agentspec-narrated-en.vtt" srclang="en" label="English" />
      <a href="images/research/agentspec-narrated-en.mp4">Watch the AgentSpec narrated demo</a>
     </video>
-    <button class="film-play" type="button" aria-label="Play AgentSpec research film, 1 minute 33 seconds" hidden><span aria-hidden="true">▶</span> Play film <small>1:33</small></button>
    </figure>
    <div class="research-caption">
    <h3>AgentSpec: A Modular Specification Framework for Controlled Analysis of Embodied Agents</h3>
@@ -206,7 +202,6 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
      <source src="images/research/hascidb-research-film-ava.mp4" type="video/mp4" />
      <a href="images/research/hascidb-research-film-ava.mp4">Watch the HasciDB research film</a>
     </video>
-       <button class="film-play" type="button" aria-label="Play HasciDB research film, 2 minutes 3 seconds" hidden><span aria-hidden="true">▶</span> Play film <small>2:03</small></button>
    </figure>
    <div class="research-caption">
    <h3>HasciDB: A Database for Identifying Cryptocurrency Airdrop Sybil Hunters</h3>
@@ -316,22 +311,30 @@ document.getElementById('reset-research-filters').addEventListener('click',()=>{
 filterResearch();
 </script>
 <script>
-document.querySelectorAll('.film-player').forEach(player => {
- const video = player.querySelector('video');
- const playButton = player.querySelector('button');
+document.querySelectorAll('.film-player video').forEach(video => {
+ const description = video.getAttribute('aria-label');
  video.controls = false;
- playButton.hidden = false;
+ video.tabIndex = 0;
+ video.setAttribute('role', 'button');
+ video.setAttribute('aria-label', 'Play ' + description);
+
  function showControls() {
    video.controls = true;
-   playButton.hidden = true;
+   video.removeAttribute('role');
+   video.removeAttribute('tabindex');
+   video.setAttribute('aria-label', description);
+   video.removeEventListener('click', start);
+   video.removeEventListener('keydown', handleKey);
  }
- function start() {
-   showControls();
-   video.focus();
-   video.play().catch(() => { video.controls = true; });
+ function start(event) {
+   event.preventDefault();
+   video.play().catch(showControls);
  }
- playButton.addEventListener('click', start);
- video.addEventListener('click', () => { if (!video.controls) start(); });
+ function handleKey(event) {
+   if (event.key === 'Enter' || event.key === ' ') start(event);
+ }
+ video.addEventListener('click', start);
+ video.addEventListener('keydown', handleKey);
  video.addEventListener('play', showControls, { once: true });
 });
 </script>
