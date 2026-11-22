@@ -1,0 +1,77 @@
+WEBVTT
+
+00:00:00.100 --> 00:00:02.452
+What makes an AI agent work well?
+
+00:00:02.452 --> 00:00:04.468
+AgentSpec lets us test its parts.
+
+00:00:05.000 --> 00:00:10.928
+Standard interfaces connect five modules, so we can change one
+while keeping the others fixed.
+
+00:00:11.433 --> 00:00:15.129
+Perception turns observations into a usable state.
+
+00:00:15.633 --> 00:00:18.297
+Memory brings back relevant experience.
+
+00:00:18.800 --> 00:00:21.776
+Reasoning uses that information to propose a plan.
+
+00:00:22.300 --> 00:00:25.660
+Reflection checks the plan and suggests improvements.
+
+00:00:26.167 --> 00:00:27.378
+Action executes it.
+
+00:00:27.378 --> 00:00:30.607
+The environment returns feedback for the next step.
+
+00:00:31.133 --> 00:00:34.373
+This shared loop makes controlled comparisons possible.
+
+00:00:34.900 --> 00:00:41.116
+We can swap the model, memory, reasoning method, or reflection
+strategy, and measure what changes.
+
+00:00:41.633 --> 00:00:48.521
+The same framework supports delivery planning, household tasks,
+grid navigation, and three-dimensional environments.
+
+00:00:49.033 --> 00:00:51.846
+Each line here is a module combination.
+
+00:00:51.846 --> 00:00:54.256
+Higher means more profit on DeliveryBench.
+
+00:00:54.256 --> 00:00:58.273
+The agent's design changes how well the underlying model
+performs.
+
+00:00:58.800 --> 00:01:01.672
+This heatmap pairs reasoning methods with different memories.
+
+00:01:01.672 --> 00:01:03.467
+Darker cells mean higher profit.
+
+00:01:03.467 --> 00:01:07.416
+The best memory depends on the reasoning method it works with.
+
+00:01:07.933 --> 00:01:09.910
+The orange bars add self-refinement.
+
+00:01:09.910 --> 00:01:15.445
+Every configuration shown earns more profit when it checks and
+revises its own plan.
+
+00:01:15.967 --> 00:01:18.509
+Training also interacts with the modules.
+
+00:01:18.509 --> 00:01:25.711
+The green method, SUPO, learns to summarize history and works
+especially well with the starred memory combinations.
+
+00:01:26.233 --> 00:01:32.521
+AgentSpec helps us study which components work together, and
+build better agents through controlled experiments.
