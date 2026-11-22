@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="380" viewBox="0 0 800 380" role="img" aria-labelledby="title description">
+<title id="title">AgentSpec: a modular embodied-agent loop</title>
+<desc id="description">Conceptual animation: perception, memory, reasoning, reflection and action activate in sequence through standardized interfaces. Environment feedback closes the loop; optional learning can optimize the policy. This is an illustration, not a recorded experiment.</desc>
+<defs>
+ <marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="5" markerHeight="5" orient="auto"><path d="M1 1 7 4 1 7" fill="none" stroke="#9eb6ab" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></marker>
+ <filter id="lift" x="-25%" y="-25%" width="150%" height="160%"><feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#31464c" flood-opacity=".055"/></filter>
+ <linearGradient id="soft" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#f4faf7"/><stop offset="1" stop-color="#fff"/></linearGradient>
+</defs>
+<style>
+ text{font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;fill:#31464c}
+ .stage-card{fill:#fff;stroke:#d6e3dd;stroke-width:1.5;animation:activate 8s linear infinite;animation-delay:var(--delay)}
+ .stage-icon{fill:none;stroke:#648779;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+ .stage-bar{fill:#e5eee9;animation:bar 8s linear infinite;animation-delay:var(--delay)}
+ .stage-title{font-size:20px;font-weight:550;text-anchor:middle;letter-spacing:-.25px}
+ @keyframes activate{0%,13%{fill:#edf7f1;stroke:#648f7c;stroke-width:2}18%,100%{fill:#fff;stroke:#d6e3dd;stroke-width:1.5}}
+ @keyframes bar{0%,13%{fill:#608975}18%,100%{fill:#e5eee9}}
+ .signal{opacity:0}
+ @media(prefers-reduced-motion:reduce){.stage-card,.stage-bar{animation:none}.signal{display:none}}
+</style>
+<rect width="800" height="380" fill="#fff"/>
+<text x="400" y="38" font-size="26" font-weight="650" letter-spacing="-.7" text-anchor="middle">AgentSpec</text>
+<text x="400" y="66" font-size="17" text-anchor="middle" fill="#71847c" style="fill:#71847c">One policy. Swappable components.</text>
+<!-- The faint rail keeps the loop legible between animated stages. -->
+<path d="M168 171H188" stroke="#c8d9d0" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+<path d="M316 171H336" stroke="#c8d9d0" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+<path d="M464 171H484" stroke="#c8d9d0" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+<path d="M612 171H632" stroke="#c8d9d0" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+<path d="M696 228V249Q696 283 660 283H140Q104 283 104 249V228" fill="none" stroke="#c8d9d0" stroke-width="1.5" marker-end="url(#arrow)"/>
+<rect x="300" y="269" width="200" height="27" rx="13" fill="#fff"/>
+<text x="400" y="288" text-anchor="middle" font-size="16" style="fill:#789184">Environment feedback</text>
+<g style="--delay:0s" filter="url(#lift)">
+ <rect class="stage-card" x="40" y="111" width="128" height="118" rx="17"/>
+ <g class="stage-icon" transform="translate(104 149)"><path d="M-20 0Q0-22 20 0Q0 22-20 0Z"/><circle r="6"/></g>
+ <text class="stage-title" x="104" y="195">Perception</text>
+ <rect class="stage-bar" x="80" y="211" width="48" height="3" rx="1.5"/>
+</g>
+<g style="--delay:1.2s" filter="url(#lift)">
+ <rect class="stage-card" x="188" y="111" width="128" height="118" rx="17"/>
+ <g class="stage-icon" transform="translate(252 149)"><rect x="-16" y="-16" width="28" height="26" rx="5"/><path d="M-10 16h25a5 5 0 0 0 5-5v-20M-9-7H5M-9 1H1"/></g>
+ <text class="stage-title" x="252" y="195">Memory</text>
+ <rect class="stage-bar" x="228" y="211" width="48" height="3" rx="1.5"/>
+</g>
+<g style="--delay:2.4s" filter="url(#lift)">
+ <rect class="stage-card" x="336" y="111" width="128" height="118" rx="17"/>
+ <g class="stage-icon" transform="translate(400 149)"><circle cx="0" cy="-13" r="5"/><circle cx="-15" cy="13" r="5"/><circle cx="15" cy="13" r="5"/><path d="M0-8v9M-15 8V2H15v6"/></g>
+ <text class="stage-title" x="400" y="195">Reasoning</text>
+ <rect class="stage-bar" x="376" y="211" width="48" height="3" rx="1.5"/>
+</g>
+<g style="--delay:3.6s" filter="url(#lift)">
+ <rect class="stage-card" x="484" y="111" width="128" height="118" rx="17"/>
+ <g class="stage-icon" transform="translate(548 149)"><path d="M16-6A17 17 0 1 0 16 8M16-16v10H6"/><path d="m-7 1 5 5 10-12"/></g>
+ <text class="stage-title" x="548" y="195">Reflection</text>
+ <rect class="stage-bar" x="524" y="211" width="48" height="3" rx="1.5"/>
+</g>
+<g style="--delay:4.8s" filter="url(#lift)">
+ <rect class="stage-card" x="632" y="111" width="128" height="118" rx="17"/>
+ <g class="stage-icon" transform="translate(696 149)"><path d="M-17 0h34M5-12 17 0 5 12"/></g>
+ <text class="stage-title" x="696" y="195">Action</text>
+ <rect class="stage-bar" x="672" y="211" width="48" height="3" rx="1.5"/>
+</g>
+<g class="signal"><circle r="8" fill="#70a58b" fill-opacity=".13"/><circle r="3.4" fill="#4b8068"/>
+ <animateMotion path="M168 171H188" dur="8s" begin="1.05s" repeatCount="indefinite" keyTimes="0;.04;1" keyPoints="0;1;1" calcMode="linear"/>
+ <animate attributeName="opacity" values="1;1;0;0" keyTimes="0;.04;.041;1" dur="8s" begin="1.05s" repeatCount="indefinite"/>
+</g>
+<g class="signal"><circle r="8" fill="#70a58b" fill-opacity=".13"/><circle r="3.4" fill="#4b8068"/>
+ <animateMotion path="M316 171H336" dur="8s" begin="2.25s" repeatCount="indefinite" keyTimes="0;.04;1" keyPoints="0;1;1" calcMode="linear"/>
+ <animate attributeName="opacity" values="1;1;0;0" keyTimes="0;.04;.041;1" dur="8s" begin="2.25s" repeatCount="indefinite"/>
+</g>
+<g class="signal"><circle r="8" fill="#70a58b" fill-opacity=".13"/><circle r="3.4" fill="#4b8068"/>
+ <animateMotion path="M464 171H484" dur="8s" begin="3.45s" repeatCount="indefinite" keyTimes="0;.04;1" keyPoints="0;1;1" calcMode="linear"/>
+ <animate attributeName="opacity" values="1;1;0;0" keyTimes="0;.04;.041;1" dur="8s" begin="3.45s" repeatCount="indefinite"/>
+</g>
+<g class="signal"><circle r="8" fill="#70a58b" fill-opacity=".13"/><circle r="3.4" fill="#4b8068"/>
+ <animateMotion path="M612 171H632" dur="8s" begin="4.6499999999999995s" repeatCount="indefinite" keyTimes="0;.04;1" keyPoints="0;1;1" calcMode="linear"/>
+ <animate attributeName="opacity" values="1;1;0;0" keyTimes="0;.04;.041;1" dur="8s" begin="4.6499999999999995s" repeatCount="indefinite"/>
+</g>
+<g class="signal"><circle r="8" fill="#70a58b" fill-opacity=".13"/><circle r="3.4" fill="#4b8068"/>
+ <animateMotion path="M696 228V249Q696 283 660 283H140Q104 283 104 249V228" dur="8s" begin="6s" repeatCount="indefinite" keyTimes="0;.245;1" keyPoints="0;1;1" calcMode="linear"/>
+ <animate attributeName="opacity" values="1;1;0;0" keyTimes="0;.245;.246;1" dur="8s" begin="6s" repeatCount="indefinite"/>
+</g>
+<path d="M400 326V303" stroke="#b4c8bd" stroke-width="1.3" stroke-dasharray="3 4" marker-end="url(#arrow)"/>
+<rect x="307" y="326" width="186" height="36" rx="18" fill="url(#soft)" stroke="#d6e3dd" stroke-width="1" stroke-dasharray="4 4"/>
+<text x="400" y="350" text-anchor="middle" font-size="17" style="fill:#6b8778">Optional learning</text>
+</svg>
