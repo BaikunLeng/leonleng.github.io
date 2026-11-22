@@ -143,7 +143,8 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
  <div class="research-heading-bar">
   <h2 class="page-title">Research</h2>
   <div class="research-view-tabs" role="group" aria-label="Research status">
-   <button type="button" data-view="papers" aria-pressed="true">Papers / Preprints</button>
+   <button type="button" data-view="all" aria-pressed="true">All</button>
+   <button type="button" data-view="papers" aria-pressed="false">Papers / Preprints</button>
    <button type="button" data-view="working" aria-pressed="false">Working Papers</button>
    <button type="button" data-view="progress" aria-pressed="false">Work in Progress</button>
    <button type="button" data-view="applied" aria-pressed="false">Applied Work</button>
@@ -283,13 +284,13 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 <script>
 const topicButtons = [...document.querySelectorAll('.research-topic-nav button')];
 const viewButtons = [...document.querySelectorAll('.research-view-tabs button')];
-let selectedResearchTopic = 'all', selectedResearchView = 'papers';
+let selectedResearchTopic = 'all', selectedResearchView = 'all';
 function filterResearch() {
  let count=0;
  document.querySelectorAll('.research-section').forEach(section=>{
   let visible=0;
   section.querySelectorAll('.research-item').forEach(item=>{
-   const show=(section.dataset.section===selectedResearchView)&&(selectedResearchTopic==='all'||item.dataset.topic===selectedResearchTopic);
+   const show=(selectedResearchView==='all'||section.dataset.section===selectedResearchView)&&(selectedResearchTopic==='all'||item.dataset.topic===selectedResearchTopic);
    item.hidden=!show;if(show){visible++;count++;}
   });
   section.hidden=visible===0;
@@ -301,7 +302,7 @@ function filterResearch() {
 }
 topicButtons.forEach(button=>button.addEventListener('click',()=>{selectedResearchTopic=button.dataset.topic;filterResearch();}));
 viewButtons.forEach(button=>button.addEventListener('click',()=>{selectedResearchView=button.dataset.view;filterResearch();}));
-document.getElementById('reset-research-filters').addEventListener('click',()=>{selectedResearchTopic='all';selectedResearchView='papers';filterResearch();});
+document.getElementById('reset-research-filters').addEventListener('click',()=>{selectedResearchTopic='all';selectedResearchView='all';filterResearch();});
 filterResearch();
 </script>
 </body>
