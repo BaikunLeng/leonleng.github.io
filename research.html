@@ -141,9 +141,9 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
  <div class="research-heading-bar">
   <h2 class="page-title">Research</h2>
   <div class="research-view-tabs" role="group" aria-label="Research status">
-   <button type="button" data-view="all" aria-pressed="true">All work</button>
-   <button type="button" data-view="papers" aria-pressed="false">Papers</button>
-   <button type="button" data-view="progress" aria-pressed="false">In progress</button>
+   <button type="button" data-view="papers" aria-pressed="true">Papers / Preprints</button>
+   <button type="button" data-view="progress" aria-pressed="false">Work in Progress</button>
+   <button type="button" data-view="applied" aria-pressed="false">Applied Work</button>
   </div>
  </div>
  <p>Leon studies the design of intelligent systems, from individual AI agents to organizations. His work connects AI and economics through agent design, causal reasoning and experimentation, and incentive mechanisms.</p>
@@ -158,12 +158,10 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
   <button type="button" data-topic="economics" aria-pressed="false">Economics &amp; finance</button>
  </nav>
  <p class="research-filter-status" aria-live="polite"></p>
- <p class="research-empty" hidden>No work matches these filters.<button type="button" id="reset-research-filters">Show all work</button></p>
+ <p class="research-empty" hidden>No work matches these filters.<button type="button" id="reset-research-filters">Reset filters</button></p>
 
  <section class="research-section" aria-labelledby="papers-heading" data-section="papers">
-  <div class="section-label">
-  <h2 class="section-heading" id="papers-heading">Papers &amp; Working Papers</h2>
-  </div>
+  <h2 class="section-heading" id="papers-heading">Papers / Preprints</h2>
   <div class="research-grid">
 
   <article class="research-item" data-topic="agents" id="agentspec">
@@ -187,6 +185,12 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
    <p class="research-summary">A database of 3.5 million eligible addresses across 16 Ethereum airdrops for studying Sybil behavior and token allocation.</p>
    </div>
   </article>
+  </div>
+ </section>
+
+ <section class="research-section" aria-labelledby="progress-heading" data-section="progress">
+  <h2 class="section-heading" id="progress-heading">Work in Progress</h2>
+  <div class="research-grid">
 
   <article class="research-item" data-topic="causal" id="optimal-capping">
    <figure class="research-figure"><img src="images/research/optimal-capping.svg" width="800" height="380" alt="Conceptual diagram showing how capping limits the contribution of extreme metric values." loading="lazy" /></figure>
@@ -209,14 +213,6 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
    <p class="research-summary">How payment liability, information quality, and assessor incentives shape insurance claim assessment, reporting behavior, and welfare.</p>
    </div>
   </article>
-  </div>
- </section>
-
- <section class="research-section" aria-labelledby="projects-heading" data-section="progress">
-  <div class="section-label">
-  <h2 class="section-heading" id="projects-heading">Research in Progress</h2>
-  </div>
-  <div class="research-grid">
 
   <article class="research-item" data-topic="agents" id="agent-organizations">
    <figure class="research-figure"><img src="images/research/agent-organizations.svg" width="800" height="380" alt="Conceptual comparison of hierarchical and peer-based agent teams." loading="lazy" /></figure>
@@ -239,6 +235,12 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
    <p class="research-summary">Replaying agent checkpoints under alternative strategies to study when intervention can reduce compute without sacrificing task success.</p>
    </div>
   </article>
+  </div>
+ </section>
+
+ <section class="research-section" aria-labelledby="applied-heading" data-section="applied">
+  <h2 class="section-heading" id="applied-heading">Applied Work</h2>
+  <div class="research-grid">
 
   <article class="research-item" data-topic="causal" id="experiment-knowledge">
    <figure class="research-figure"><img src="images/research/experiment-knowledge.svg" width="800" height="380" alt="Conceptual diagram connecting experimental evidence, knowledge, evaluation, and reviewed repairs." loading="lazy" /></figure>
@@ -271,13 +273,13 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 <script>
 const topicButtons = [...document.querySelectorAll('.research-topic-nav button')];
 const viewButtons = [...document.querySelectorAll('.research-view-tabs button')];
-let selectedResearchTopic = 'all', selectedResearchView = 'all';
+let selectedResearchTopic = 'all', selectedResearchView = 'papers';
 function filterResearch() {
  let count=0;
  document.querySelectorAll('.research-section').forEach(section=>{
   let visible=0;
   section.querySelectorAll('.research-item').forEach(item=>{
-   const show=(selectedResearchView==='all'||section.dataset.section===selectedResearchView)&&(selectedResearchTopic==='all'||item.dataset.topic===selectedResearchTopic);
+   const show=(section.dataset.section===selectedResearchView)&&(selectedResearchTopic==='all'||item.dataset.topic===selectedResearchTopic);
    item.hidden=!show;if(show){visible++;count++;}
   });
   section.hidden=visible===0;
@@ -289,7 +291,7 @@ function filterResearch() {
 }
 topicButtons.forEach(button=>button.addEventListener('click',()=>{selectedResearchTopic=button.dataset.topic;filterResearch();}));
 viewButtons.forEach(button=>button.addEventListener('click',()=>{selectedResearchView=button.dataset.view;filterResearch();}));
-document.getElementById('reset-research-filters').addEventListener('click',()=>{selectedResearchTopic='all';selectedResearchView='all';filterResearch();});
+document.getElementById('reset-research-filters').addEventListener('click',()=>{selectedResearchTopic='all';selectedResearchView='papers';filterResearch();});
 filterResearch();
 </script>
 </body>
