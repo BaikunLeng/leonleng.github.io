@@ -51,6 +51,9 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 .research-item { min-width: 0; padding-bottom: 28px; border-bottom: 1px solid var(--line); }
 .research-figure { margin: 0 0 20px; background: #fff; }
 .research-figure img { display: block; width: 100%; height: auto; aspect-ratio: 40 / 19; object-fit: contain; }
+.research-demo-video { display: block; width: 100%; height: auto; border-radius: 8px; background: #f8fafc; }
+.research-demo-caption { margin-top: 8px; font-size: .75rem; line-height: 1.5; color: #6b7280; }
+.research-demo-caption a { text-decoration: none; border-bottom: 1px solid #d1d5db; }
 .research-item h3 { margin: 0 0 8px; font-size: 1.0625rem; line-height: 1.5; font-weight: 600; letter-spacing: -.015em; color: #111827; overflow-wrap: break-word; }
 .research-byline { margin: 0 0 10px; color: #6b7280; font-size: .875rem; line-height: 1.7; }
 .research-byline strong { color: #374151; font-weight: 600; }
@@ -170,7 +173,13 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
   <div class="research-grid">
 
   <article class="research-item" data-topic="agents" id="agentspec">
-   <figure class="research-figure"><img src="images/research/agentspec-animated.svg" width="800" height="380" alt="Animated conceptual overview of AgentSpec’s perception, memory, reasoning, reflection, action and feedback loop." loading="eager" fetchpriority="high" /></figure>
+   <figure class="research-figure">
+    <video class="research-demo-video" autoplay muted loop playsinline controls preload="metadata" aria-label="AgentSpec official video demo">
+     <source src="https://agentspec-embodied.github.io/assets/video/AgentSpec.mp4" type="video/mp4" />
+     <a href="https://agentspec-embodied.github.io/assets/video/AgentSpec.mp4">Watch the AgentSpec video demo</a>
+    </video>
+    <figcaption class="research-demo-caption"><a href="https://agentspec-embodied.github.io/" target="_blank" rel="noopener noreferrer">AgentSpec · Project demo</a></figcaption>
+   </figure>
    <div class="research-caption">
    <p class="research-topic-label">AI agent systems design</p>
    <h3>AgentSpec: A Modular Specification Framework for Controlled Analysis of Embodied Agents</h3>
