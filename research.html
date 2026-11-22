@@ -51,7 +51,7 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 .research-item { min-width: 0; padding-bottom: 28px; border-bottom: 1px solid var(--line); }
 .research-figure { margin: 0 0 20px; background: #fff; }
 .research-figure img { display: block; width: 100%; height: auto; object-fit: contain; }
-.research-demo-video { display: block; width: 80%; margin-inline: auto; height: auto; border-radius: 8px; background: #f8fafc; }
+.research-demo-video { display: block; width: 100%; margin-inline: auto; height: auto; border-radius: 8px; background: #f8fafc; }
 .hascidb-media a { display: block; border-radius: 10px; overflow: hidden; border: 1px solid #e5eae7; }
 .hascidb-demo-video { display: block; width: 100%; height: auto; background: #fff; }
 .research-item h3 { margin: 0 0 5px; font-size: 1.0625rem; line-height: 1.5; font-weight: 600; letter-spacing: -.015em; color: #111827; overflow-wrap: break-word; }
@@ -180,7 +180,7 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 
   <article class="research-item" data-topic="agents" id="agentspec">
    <figure class="research-figure">
-    <video class="research-demo-video" data-playback-rate="2" autoplay muted loop playsinline preload="metadata" aria-label="AgentSpec official video demo">
+    <video class="research-demo-video" width="2560" height="1440" controls playsinline preload="metadata" aria-label="AgentSpec official video demo">
      <source src="https://agentspec-embodied.github.io/assets/video/AgentSpec.mp4" type="video/mp4" />
      <a href="https://agentspec-embodied.github.io/assets/video/AgentSpec.mp4">Watch the AgentSpec video demo</a>
     </video>
@@ -286,12 +286,6 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 </main>
 </div>
 <script>
-const researchDemo = document.querySelector('.research-demo-video');
-if (researchDemo) {
- const setDemoSpeed = () => { researchDemo.defaultPlaybackRate = 2; researchDemo.playbackRate = 2; };
- setDemoSpeed();
- researchDemo.addEventListener('loadedmetadata', setDemoSpeed);
-}
 const topicButtons = [...document.querySelectorAll('.research-topic-nav button')];
 const viewButtons = [...document.querySelectorAll('.research-view-tabs button')];
 let selectedResearchTopic = 'all', selectedResearchView = 'all';
