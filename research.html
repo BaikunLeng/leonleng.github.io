@@ -52,10 +52,10 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 .research-figure { margin: 0 0 20px; background: #fff; }
 .research-figure img { display: block; width: 100%; height: auto; object-fit: contain; }
 .research-demo-video { display: block; width: 80%; margin-inline: auto; height: auto; border-radius: 8px; background: #f8fafc; }
-.research-item h3 { margin: 0 0 8px; font-size: 1.0625rem; line-height: 1.5; font-weight: 600; letter-spacing: -.015em; color: #111827; overflow-wrap: break-word; }
-.research-byline { margin: 0 0 10px; color: #6b7280; font-size: .875rem; line-height: 1.7; }
+.research-item h3 { margin: 0 0 5px; font-size: 1.0625rem; line-height: 1.5; font-weight: 600; letter-spacing: -.015em; color: #111827; overflow-wrap: break-word; }
+.research-byline { margin: 0 0 6px; color: #6b7280; font-size: .875rem; line-height: 1.7; }
 .research-byline strong { color: #374151; font-weight: 600; }
-.research-meta { margin: 0 0 10px; color: #6b7280; font-size: .875rem; line-height: 1.7; font-weight: 400; }
+.research-meta { margin: 0 0 6px; color: #6b7280; font-size: .875rem; line-height: 1.7; font-weight: 400; }
 .research-summary { margin: 0; font-size: .875rem; line-height: 1.75; color: #374151; }
 .figure-note { margin: 32px 0 0; font-size: .875rem; color: #6b7280; }
 .page-footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; margin-top: 40px; padding-top: 20px; border-top: 1px solid #e5e7eb; font-size: .875rem; color: #6b7280; }
@@ -83,7 +83,10 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 .research-topic-label { margin: 0 0 7px; font-size: .75rem; line-height: 1.5; color: #6b7280; }
 .research-item h3 { font-size: 1.125rem; line-height: 1.45; letter-spacing: -.02em; margin-bottom: 10px; }
 .research-byline, .research-meta { margin-bottom: 6px; }
-.research-status { margin: 0 0 10px; color: #374151; font-size: .8125rem; font-weight: 500; line-height: 1.6; }
+.research-status { display: flex; align-items: baseline; flex-wrap: wrap; gap: 0 8px; margin: 0; color: #374151; font-size: .875rem; font-weight: 600; line-height: 1.6; }
+.research-status a { color: #32715b; text-decoration: none; font-weight: 400; }
+.research-status a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.research-link-separator { color: #b0b6bc; font-weight: 400; }
 .research-summary { margin-top: 8px; }
 .research-empty { margin: 32px 0; color: #6b7280; font-size: .875rem; }
 .research-empty button { text-decoration: underline; margin-left: 6px; }
@@ -178,22 +181,20 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
     </video>
    </figure>
    <div class="research-caption">
-   <p class="research-topic-label">AI agent systems design</p>
    <h3>AgentSpec: A Modular Specification Framework for Controlled Analysis of Embodied Agents</h3>
-   <p class="research-byline" title="J. Chen, J. Shen, H. Kang, Z. Hong, Q. Jiang, S. Bose, Y. Zhang, L. Leng, A. Vyas, L. Mao, S. Ouyang, K. Zhou, and L. Qin">J. Chen et al. (including <strong>L. Leng</strong>)</p>
-   <p class="research-status">Manuscript</p>
-   <p class="research-summary">A modular framework for controlled comparisons of how reasoning, memory, reflection, and learning interact in embodied agents.</p>
+   <p class="research-byline">Jixuan Chen, Jianzhi Shen, Haoqiang Kang, Zhi Hong, Qingyi Jiang, Soham Bose, Yiming Zhang, <strong>Leon Leng</strong>, Amit Vyas, Lingjun Mao, Siru Ouyang, Kun Zhou, Lianhui Qin</p>
+   <p class="research-topic-label">2026 · AI agent systems design</p>
+   <p class="research-status"><span>Manuscript</span> <span class="research-link-separator" aria-hidden="true">/</span> <a href="https://agentspec-embodied.github.io/" target="_blank" rel="noopener noreferrer">Website</a> <span class="research-link-separator" aria-hidden="true">/</span> <a href="https://arxiv.org/abs/2606.14674v1" target="_blank" rel="noopener noreferrer">Paper</a> <span class="research-link-separator" aria-hidden="true">/</span> <a href="https://github.com/chenjix/AgentSpec" target="_blank" rel="noopener noreferrer">Code</a></p>
    </div>
   </article>
 
   <article class="research-item" data-topic="social-economics" id="hascidb">
    <figure class="research-figure"><img src="images/research/hascidb-paper.png" width="2385" height="1914" alt="System architecture reproduced from the HasciDB manuscript." loading="lazy" /></figure>
    <div class="research-caption">
-   <p class="research-topic-label">AI for social science, economics and finance</p>
    <h3>HasciDB: A Database for Identifying Cryptocurrency Airdrop Sybil Hunters</h3>
    <p class="research-byline">A. Wen, C. Li, S. Qu, <strong>L. Leng</strong>, and W. Cai</p>
-   <p class="research-status">Accepted at Nanyang Blockchain Conference 2026</p>
-   <p class="research-summary">A database of 3.5 million eligible addresses across 16 Ethereum airdrops for studying Sybil behavior and token allocation.</p>
+   <p class="research-topic-label">2026 · AI for social science, economics and finance</p>
+   <p class="research-status"><span>Accepted at Nanyang Blockchain Conference 2026</span> <span class="research-link-separator" aria-hidden="true">/</span> <a href="https://hascidb.org/" target="_blank" rel="noopener noreferrer">Website</a></p>
    </div>
   </article>
   </div>
@@ -206,22 +207,20 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
   <article class="research-item" data-topic="social-economics" id="optimal-capping">
    <figure class="research-figure"><img src="images/research/optimal-capping-paper.png" width="2000" height="1505" alt="Capping and design-noise distributions reproduced from the capping manuscript." loading="lazy" /></figure>
    <div class="research-caption">
-   <p class="research-topic-label">AI for social science, economics and finance</p>
    <h3>Optimal Capping Theory for Heavy-Tailed Metrics in Experimentation</h3>
    <p class="research-byline">H. Deng, <strong>L. Leng</strong>, and T. Ni</p>
+   <p class="research-topic-label">AI for social science, economics and finance</p>
    <p class="research-status">Working paper</p>
-   <p class="research-summary">Choosing capping thresholds for heavy-tailed experiment metrics to balance sensitivity, uncertainty, and false-positive control.</p>
    </div>
   </article>
 
   <article class="research-item" data-topic="social-economics" id="centralized-decentralized-evaluation">
    <figure class="research-figure"><img src="images/research/insurance-talk.png" width="660" height="549" alt="Approval and classification accuracy figure from Leon’s insurance research presentation." loading="lazy" /></figure>
    <div class="research-caption">
-   <p class="research-topic-label">AI for social science, economics and finance</p>
    <h3>Centralized Evaluation vs. Decentralized Evaluation</h3>
    <p class="research-byline"><strong>L. Leng</strong>, R. J. Gan, and S. Chen</p>
+   <p class="research-topic-label">AI for social science, economics and finance</p>
    <p class="research-status">Working paper · Presented at INFORMS and POMS, 2025–2026</p>
-   <p class="research-summary">How payment liability, information quality, and assessor incentives shape insurance claim assessment, reporting behavior, and welfare.</p>
    </div>
   </article>
   </div>
@@ -233,11 +232,10 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 
   <article class="research-item" data-topic="agents" id="agent-organizations">
    <div class="research-caption">
-   <p class="research-topic-label">AI agent systems design</p>
    <h3>Organizational Design and Compute Allocation for AI Agents</h3>
    <p class="research-meta">Microsoft Research Asia</p>
+   <p class="research-topic-label">2026 · AI agent systems design</p>
    <p class="research-status">Ongoing research</p>
-   <p class="research-summary">Controlled experiments studying how team structures and compute allocation shape agent performance. The work compares organizational structures under matched conditions and replays agent checkpoints to identify interventions that reduce compute without sacrificing task success.</p>
    </div>
   </article>
 
@@ -251,22 +249,20 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
   <article class="research-item" data-topic="knowledge" id="experiment-knowledge">
    <figure class="research-figure"><img src="images/research/experiment-knowledge-paper.jpeg" width="1606" height="928" alt="Experiment Wiki system architecture reproduced from the Experiment Agents paper." loading="lazy" /></figure>
    <div class="research-caption">
-   <p class="research-topic-label">Knowledge RSI</p>
    <h3>Learning from Experimental Evidence</h3>
    <p class="research-meta">Tencent</p>
+   <p class="research-topic-label">2026 · Knowledge RSI</p>
    <p class="research-status">Experiment knowledge systems</p>
-   <p class="research-summary">Turning past experiments into evidence-linked knowledge, with evaluation and human-reviewed repairs guiding improvements.</p>
    </div>
   </article>
 
   <article class="research-item" data-topic="social-economics" id="causal-ai">
    <figure class="research-figure"><img src="images/research/causal-posttraining-paper.jpeg" width="1302" height="612" alt="Causal and tool-calling evaluation results reproduced from the Experiment Agents paper." loading="lazy" /></figure>
    <div class="research-caption">
-   <p class="research-topic-label">AI for social science, economics and finance</p>
    <h3>Evaluating and Improving Causal Reasoning</h3>
    <p class="research-meta">Tencent</p>
+   <p class="research-topic-label">2026 · AI for social science, economics and finance</p>
    <p class="research-status">Benchmarks, post-training, and interpretability</p>
-   <p class="research-summary">Executable benchmarks, post-training, and interpretability studies of causal reasoning, including identification failures and tool-use regressions.</p>
    </div>
   </article>
   </div>
