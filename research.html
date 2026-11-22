@@ -52,6 +52,8 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 .research-figure { margin: 0 0 20px; background: #fff; }
 .research-figure img { display: block; width: 100%; height: auto; object-fit: contain; }
 .research-demo-video { display: block; width: 80%; margin-inline: auto; height: auto; border-radius: 8px; background: #f8fafc; }
+.hascidb-media a { display: block; border-radius: 10px; overflow: hidden; border: 1px solid #e5eae7; }
+.hascidb-demo-video { display: block; width: 100%; height: auto; background: #fff; }
 .research-item h3 { margin: 0 0 5px; font-size: 1.0625rem; line-height: 1.5; font-weight: 600; letter-spacing: -.015em; color: #111827; overflow-wrap: break-word; }
 .research-byline { margin: 0 0 6px; color: #6b7280; font-size: .75rem; line-height: 1.65; }
 .research-byline strong { color: #374151; font-weight: 600; }
@@ -193,7 +195,14 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
   </article>
 
   <article class="research-item" data-topic="social-economics" id="hascidb">
-   <figure class="research-figure"><img src="images/research/hascidb-paper.png" width="2385" height="1914" alt="System architecture reproduced from the HasciDB manuscript." loading="lazy" /></figure>
+   <figure class="research-figure hascidb-media">
+    <a href="images/research/hascidb-demo.mp4" target="_blank" rel="noopener noreferrer" aria-label="Open the HasciDB screenshot walkthrough at full size">
+     <video class="hascidb-demo-video" width="1440" height="960" autoplay muted loop playsinline preload="metadata" poster="images/research/hascidb-demo-poster.jpg" aria-label="HasciDB screenshot walkthrough: address scoring, cross-project network, behavioral indicators, and project comparison">
+      <source src="images/research/hascidb-demo.mp4" type="video/mp4" />
+      <img src="images/research/hascidb-demo-poster.jpg" width="1440" height="960" alt="HasciDB risk score and cross-project indicator profile from the paper." />
+     </video>
+    </a>
+   </figure>
    <div class="research-caption">
    <h3>HasciDB: A Database for Identifying Cryptocurrency Airdrop Sybil Hunters</h3>
    <p class="research-byline">Adeline Wen, Chunyang Li, Shutong Qu, <strong>Leon Leng</strong>, Wei Cai</p>
