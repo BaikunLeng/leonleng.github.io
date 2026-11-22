@@ -50,7 +50,7 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 .research-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; }
 .research-item { min-width: 0; padding-bottom: 28px; border-bottom: 1px solid var(--line); }
 .research-figure { margin: 0 0 20px; background: #fff; }
-.research-figure img { display: block; width: 100%; height: auto; aspect-ratio: 40 / 19; object-fit: contain; }
+.research-figure img { display: block; width: 100%; height: auto; object-fit: contain; }
 .research-demo-video { display: block; width: 80%; margin-inline: auto; height: auto; border-radius: 8px; background: #f8fafc; }
 .research-item h3 { margin: 0 0 8px; font-size: 1.0625rem; line-height: 1.5; font-weight: 600; letter-spacing: -.015em; color: #111827; overflow-wrap: break-word; }
 .research-byline { margin: 0 0 10px; color: #6b7280; font-size: .875rem; line-height: 1.7; }
@@ -172,7 +172,7 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 
   <article class="research-item" data-topic="agents" id="agentspec">
    <figure class="research-figure">
-    <video class="research-demo-video" autoplay muted loop playsinline preload="metadata" aria-label="AgentSpec official video demo">
+    <video class="research-demo-video" data-playback-rate="2" autoplay muted loop playsinline preload="metadata" aria-label="AgentSpec official video demo">
      <source src="https://agentspec-embodied.github.io/assets/video/AgentSpec.mp4" type="video/mp4" />
      <a href="https://agentspec-embodied.github.io/assets/video/AgentSpec.mp4">Watch the AgentSpec video demo</a>
     </video>
@@ -187,7 +187,7 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
   </article>
 
   <article class="research-item" data-topic="social-economics" id="hascidb">
-   <figure class="research-figure"><img src="images/research/hascidb.svg" width="800" height="380" alt="Conceptual diagram of transaction patterns linking cryptocurrency addresses." loading="lazy" /></figure>
+   <figure class="research-figure"><img src="images/research/hascidb-paper.png" width="2385" height="1914" alt="System architecture reproduced from the HasciDB manuscript." loading="lazy" /></figure>
    <div class="research-caption">
    <p class="research-topic-label">AI for social science, economics and finance</p>
    <h3>HasciDB: A Database for Identifying Cryptocurrency Airdrop Sybil Hunters</h3>
@@ -204,7 +204,7 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
   <div class="research-grid">
 
   <article class="research-item" data-topic="social-economics" id="optimal-capping">
-   <figure class="research-figure"><img src="images/research/optimal-capping.svg" width="800" height="380" alt="Conceptual diagram showing how capping limits the contribution of extreme metric values." loading="lazy" /></figure>
+   <figure class="research-figure"><img src="images/research/optimal-capping-paper.png" width="2000" height="1505" alt="Capping and design-noise distributions reproduced from the capping manuscript." loading="lazy" /></figure>
    <div class="research-caption">
    <p class="research-topic-label">AI for social science, economics and finance</p>
    <h3>Optimal Capping Theory for Heavy-Tailed Metrics in Experimentation</h3>
@@ -215,7 +215,7 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
   </article>
 
   <article class="research-item" data-topic="social-economics" id="centralized-decentralized-evaluation">
-   <figure class="research-figure"><img src="images/research/centralized-decentralized-evaluation.svg" width="800" height="380" alt="Conceptual comparison of centralized and independent peer assessment." loading="lazy" /></figure>
+   <figure class="research-figure"><img src="images/research/insurance-talk.png" width="660" height="549" alt="Approval and classification accuracy figure from Leon’s insurance research presentation." loading="lazy" /></figure>
    <div class="research-caption">
    <p class="research-topic-label">AI for social science, economics and finance</p>
    <h3>Centralized Evaluation vs. Decentralized Evaluation</h3>
@@ -232,7 +232,6 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
   <div class="research-grid">
 
   <article class="research-item" data-topic="agents" id="agent-organizations">
-   <figure class="research-figure"><img src="images/research/agent-organizations.svg" width="800" height="380" alt="Conceptual comparison of hierarchical and peer-based agent teams." loading="lazy" /></figure>
    <div class="research-caption">
    <p class="research-topic-label">AI agent systems design</p>
    <h3>Organizational Design for AI Agents</h3>
@@ -243,7 +242,6 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
   </article>
 
   <article class="research-item" data-topic="agents" id="agent-compute">
-   <figure class="research-figure"><img src="images/research/agent-compute.svg" width="800" height="380" alt="Conceptual diagram of checkpointed agent strategies and compute decisions." loading="lazy" /></figure>
    <div class="research-caption">
    <p class="research-topic-label">AI agent systems design</p>
    <h3>Adaptive Compute Allocation for Agents</h3>
@@ -260,7 +258,7 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
   <div class="research-grid">
 
   <article class="research-item" data-topic="knowledge" id="experiment-knowledge">
-   <figure class="research-figure"><img src="images/research/experiment-knowledge.svg" width="800" height="380" alt="Conceptual diagram connecting experimental evidence, knowledge, evaluation, and reviewed repairs." loading="lazy" /></figure>
+   <figure class="research-figure"><img src="images/research/experiment-knowledge-paper.jpeg" width="1606" height="928" alt="Experiment Wiki system architecture reproduced from the Experiment Agents paper." loading="lazy" /></figure>
    <div class="research-caption">
    <p class="research-topic-label">Knowledge RSI</p>
    <h3>Learning from Experimental Evidence</h3>
@@ -271,7 +269,7 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
   </article>
 
   <article class="research-item" data-topic="social-economics" id="causal-ai">
-   <figure class="research-figure"><img src="images/research/causal-ai.svg" width="800" height="380" alt="Conceptual causal graph and workflow for evaluating and improving causal reasoning." loading="lazy" /></figure>
+   <figure class="research-figure"><img src="images/research/causal-posttraining-paper.jpeg" width="1302" height="612" alt="Causal and tool-calling evaluation results reproduced from the Experiment Agents paper." loading="lazy" /></figure>
    <div class="research-caption">
    <p class="research-topic-label">AI for social science, economics and finance</p>
    <h3>Evaluating and Improving Causal Reasoning</h3>
@@ -283,11 +281,16 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
   </div>
  </section>
 
- <p class="figure-note">Illustrations show conceptual overviews of the research.</p>
  <footer class="page-footer"><p>Research inquiries: <a href="mailto:leonleng@uw.edu">leonleng@uw.edu</a></p><p><a href="index.html">About Leon</a></p></footer>
 </main>
 </div>
 <script>
+const researchDemo = document.querySelector('.research-demo-video');
+if (researchDemo) {
+ const setDemoSpeed = () => { researchDemo.defaultPlaybackRate = 2; researchDemo.playbackRate = 2; };
+ setDemoSpeed();
+ researchDemo.addEventListener('loadedmetadata', setDemoSpeed);
+}
 const topicButtons = [...document.querySelectorAll('.research-topic-nav button')];
 const viewButtons = [...document.querySelectorAll('.research-view-tabs button')];
 let selectedResearchTopic = 'all', selectedResearchView = 'all';
