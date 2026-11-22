@@ -30,3 +30,10 @@ npx wrangler dev --config feedback/worker/wrangler.jsonc --port 8787 --var ALLOW
 Serve the website on localhost port 8782 for preview. Local previews use the local Worker and separate local data. `/admin/test/events` and `/admin/test/report` require admin authorization and use an isolated test object. Live reporting uses `/admin/report`.
 
 The service uses features available in Cloudflare's Workers Free plan; no paid subscription was enabled for this change. Free quotas apply. See https://developers.cloudflare.com/durable-objects/platform/pricing/ .
+
+## Private dashboard
+
+Bookmark https://leonleng.com/feedback.html (redirects to the protected Worker dashboard).
+Use the existing private admin access key to sign in; the key is never embedded in page source or a URL. A signed, Secure, HttpOnly, SameSite=Lax cookie keeps the browser signed in for seven days. Sign out clears it. Login and logout forms additionally require a matching SameSite=Strict anti-CSRF cookie and form token. Rotating the Worker admin token invalidates all sessions.
+
+The dashboard has overall totals, all 57 message rows, search, sorting, refresh, and CSV export. Both the report data and CSV download require a valid session; knowing the URL alone does not reveal totals. The dashboard uses the live dataset; isolated tests remain separate.

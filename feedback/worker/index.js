@@ -1,5 +1,6 @@
 import { DurableObject } from 'cloudflare:workers';
 import catalog from './catalog.json';
+import { dashboard } from './dashboard-auth.js';
 const json = (value, status = 200) => Response.json(value, { status });
 export class PortraitFeedback extends DurableObject {
  constructor(ctx, env) {
@@ -31,6 +32,8 @@ export class PortraitFeedback extends DurableObject {
 }
 export default {
  async fetch(request, env) {
+  const dashboardResponse = await dashboard(request, env);
+  if (dashboardResponse) return dashboardResponse;
   const url = new URL(request.url);
   const origin = request.headers.get('Origin');
   const allowed = ['https://leonleng.com','https://www.leonleng.com'];

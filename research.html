@@ -44,25 +44,25 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 .research-content { max-width: 552px; margin: 0 auto; }
 .research-intro { margin: 0 0 40px; }
 .page-title { margin: 0 0 16px; color: #111827; font-size: 1.5rem; font-weight: 700; line-height: 1.4; letter-spacing: -.015em; }
-.research-intro p { margin: 0; font-size: 1rem; line-height: 1.75; }
-.section-heading { margin: 0 0 24px; color: #111827; font-size: 1.25rem; font-weight: 600; line-height: 1.4; letter-spacing: -.015em; }
+.research-intro p { margin: 0; font-size: .875rem; line-height: 1.75; }
+.section-heading { padding-bottom: 12px; border-bottom: 1px solid var(--line); margin: 0 0 24px; color: #111827; font-size: 1.25rem; font-weight: 600; line-height: 1.4; letter-spacing: -.015em; }
 .research-section + .research-section { margin-top: 48px; }
-.research-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 48px; }
-.research-item { min-width: 0; }
+.research-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; }
+.research-item { min-width: 0; padding-bottom: 28px; border-bottom: 1px solid var(--line); }
 .research-figure { margin: 0 0 20px; background: #fff; }
 .research-figure img { display: block; width: 100%; height: auto; aspect-ratio: 40 / 19; object-fit: contain; }
 .research-item h3 { margin: 0 0 8px; font-size: 1.0625rem; line-height: 1.5; font-weight: 600; letter-spacing: -.015em; color: #111827; overflow-wrap: break-word; }
 .research-byline { margin: 0 0 10px; color: #6b7280; font-size: .875rem; line-height: 1.7; }
 .research-byline strong { color: #374151; font-weight: 600; }
 .research-meta { margin: 0 0 10px; color: #6b7280; font-size: .875rem; line-height: 1.7; font-weight: 400; }
-.research-summary { margin: 0; font-size: 1rem; line-height: 1.75; color: #374151; }
+.research-summary { margin: 0; font-size: .875rem; line-height: 1.75; color: #374151; }
 .figure-note { margin: 32px 0 0; font-size: .875rem; color: #6b7280; }
 .page-footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; margin-top: 40px; padding-top: 20px; border-top: 1px solid #e5e7eb; font-size: .875rem; color: #6b7280; }
 .page-footer p { margin: 0; }
 @media (max-width: 768px) {
  .nav-container { margin-left: 0; text-align: center; }
- .research-content { max-width: none; }
- .research-grid { gap: 40px; }
+ .research-content { max-width: 552px; }
+ .research-grid { gap: 28px; }
  .research-section + .research-section { margin-top: 40px; }
 }
 </style>
@@ -127,7 +127,7 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
   <div class="research-grid">
 
   <article class="research-item" id="agentspec">
-   <figure class="research-figure"><img src="images/research/agentspec.svg" width="800" height="380" alt="Conceptual diagram of reasoning, memory, reflection, and action components in a modular agent." loading="lazy" /></figure>
+   <figure class="research-figure"><img src="images/research/agentspec.svg" width="800" height="380" alt="Conceptual diagram of reasoning, memory, reflection, and action components in a modular agent." loading="eager" fetchpriority="high" /></figure>
    <h3>AgentSpec: A Modular Specification Framework for Controlled Analysis of Embodied Agents</h3>
    <p class="research-byline" title="J. Chen, J. Shen, H. Kang, Z. Hong, Q. Jiang, S. Bose, Y. Zhang, L. Leng, A. Vyas, L. Mao, S. Ouyang, K. Zhou, and L. Qin">J. Chen et al. (including <strong>L. Leng</strong>) · Manuscript</p>
    <p class="research-summary">A modular framework for controlled comparisons of how reasoning, memory, reflection, and learning interact in embodied agents.</p>
