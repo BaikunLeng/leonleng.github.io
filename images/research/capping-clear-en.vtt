@@ -1,0 +1,100 @@
+WEBVTT
+
+00:00:00.103 --> 00:00:03.638
+Two product changes each add thirty dollars in revenue
+
+00:00:04.228 --> 00:00:08.175
+But the same cap can preserve one gain and erase the other
+
+00:00:09.228 --> 00:00:13.781
+Why cap at all A few big spenders can dominate the difference between
+
+00:00:13.661 --> 00:00:14.902
+experimental groups
+
+00:00:15.452 --> 00:00:19.889
+Even an unchanged customer can shift that difference simply by landing
+
+00:00:19.769 --> 00:00:21.745
+in one group rather than the other
+
+00:00:22.757 --> 00:00:26.833
+A cap replaces every amount above a threshold with that threshold
+
+00:00:27.462 --> 00:00:31.964
+Here a thousand dollars becomes fifty That reduces the influence of
+
+00:00:31.844 --> 00:00:33.059
+extreme spending
+
+00:00:34.103 --> 00:00:35.486
+But it changes what you measure
+
+00:00:36.264 --> 00:00:40.688
+Thirty dollars of growth among ordinary customers survives this cap
+
+00:00:41.270 --> 00:00:45.436
+The same growth from a customer already above fifty disappears
+
+00:00:46.491 --> 00:00:50.838
+The paper asks how to choose a cap without making the final test misleading
+
+00:00:51.436 --> 00:00:55.757
+A working belief such as two percent growth for each customer predicts
+
+00:00:55.637 --> 00:00:58.631
+which cap best balances signal and noise
+
+00:00:59.228 --> 00:01:02.041
+Then the actual experiment supplies the estimate
+
+00:01:03.061 --> 00:01:04.277
+The belief can be wrong
+
+00:01:05.145 --> 00:01:09.788
+If the selected cap settles toward a fixed value as samples grow standard
+
+00:01:09.668 --> 00:01:13.937
+confidence intervals can remain valid for the effect at that cap under
+
+00:01:13.817 --> 00:01:15.071
+the paper's conditions
+
+00:01:15.645 --> 00:01:17.543
+Stable does not mean optimal
+
+00:01:18.549 --> 00:01:22.006
+Choosing whichever cap looks most significant is different
+
+00:01:22.561 --> 00:01:27.102
+When there is no effect that can pick the luckiest random fluctuation
+
+00:01:27.686 --> 00:01:31.312
+More data alone does not remove this selection problem
+
+00:01:32.340 --> 00:01:36.687
+In the paper's simulation at one hundred thousand users this rule
+
+00:01:36.670 --> 00:01:39.664
+falsely rejects twelve point two percent of the time
+
+00:01:40.228 --> 00:01:45.258
+Belief selection rejects five point one percent against a five percent
+
+00:01:45.138 --> 00:01:45.709
+target
+
+00:01:46.757 --> 00:01:49.080
+These results concern capped revenue
+
+00:01:49.686 --> 00:01:53.170
+A reliable test can still miss growth above the cap
+
+00:01:53.757 --> 00:01:58.233
+The contribution is to explain when data-driven capping supports valid
+
+00:01:58.113 --> 00:02:02.511
+inference and where conclusions about total revenue still need more
+
+00:02:02.404 --> 00:02:02.910
+work
