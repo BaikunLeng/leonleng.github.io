@@ -239,6 +239,24 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
    </div>
   </article>
 
+  <article class="research-item" data-topic="knowledge" id="experiment-knowledge">
+   <figure class="research-figure film-player">
+    <video class="research-demo-video" width="1200" height="780" controls playsinline preload="metadata" poster="images/research/experimentwiki-film-poster.jpg" aria-label="ExperimentWiki research film with English narration and captions">
+     <source src="images/research/experimentwiki-film-en.mp4" type="video/mp4" />
+     <track kind="captions" src="images/research/experimentwiki-film-en.vtt" srclang="en" label="English" />
+     <a href="images/research/experimentwiki-film-en.mp4">Watch the ExperimentWiki research film</a>
+    </video>
+   </figure>
+   <div class="research-caption">
+   <h3>ExperimentWiki</h3>
+   <p class="research-topic-label">2026 · Knowledge RSI</p>
+   <p class="research-tldr"><strong>TL;DR:</strong> ExperimentWiki compiles 4,386 past A/B experiments into a knowledge base that grades the evidence an agent reads before giving advice. Programs compute the statistics and write 4,444 pages from about 1.23 million rows of effect estimates. A table records 762 links between metrics. The language model reads the pages without vector search.</p>
+   <p class="research-tldr">In a blind writing test, the model reversed the direction of 46% of checkable causal claims when it wrote first. After it saw the computed data, 147 of 150 claims held. On later experiments, the share of directions that held was 0.81 for high-confidence findings, 0.70 for evidence-grade findings, and 0.53 for preliminary findings. An audit ran 318 checks and opened 149 tickets. Of 28 fixes tried, 19 were kept and 9 rejected.</p>
+   <p class="research-meta"><em>From Scientists to Agents</em> · CODE@MIT 2026 talk · <a href="images/research/experimentwiki-mit-slides.gif">View talk slides</a></p>
+   <p class="research-byline">Talk authors: <strong>Leon Leng</strong>, Shichao Han, Daimin Tang, Yong Wang, Shi Chen · University of Washington · Tencent</p>
+   </div>
+  </article>
+
   <article class="research-item" data-topic="social-economics" id="centralized-decentralized-evaluation">
    <figure class="research-figure"><img src="images/research/insurance-talk.png" width="660" height="549" alt="Approval and classification accuracy figure from Leon’s insurance research presentation." loading="lazy" /></figure>
    <div class="research-caption">
@@ -246,6 +264,24 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
    <p class="research-byline"><strong>Leon Leng</strong>, Rowena Gan, Shi Chen</p>
    <p class="research-topic-label">AI for social science, economics and finance</p>
    <p class="research-status">Working paper · Presented at INFORMS and POMS, 2025–2026</p>
+   </div>
+  </article>
+
+  <article class="research-item" data-topic="social-economics" id="causal-bench">
+   <figure class="research-figure">
+    <a href="images/research/causal-bench-mit-slides.gif" target="_blank" rel="noopener" aria-label="View the Causal Bench slides at full size">
+     <picture>
+      <source media="(prefers-reduced-motion: reduce)" srcset="images/research/causal-bench-mit-slides.png" />
+      <img src="images/research/causal-bench-mit-slides.gif" width="1440" height="810" alt="Research question and the Causal Bench workflow, from questions and model testing to programmatic scoring and ranking." loading="lazy" />
+     </picture>
+    </a>
+   </figure>
+   <div class="research-caption">
+   <h3>Causal Bench</h3>
+   <p class="research-topic-label">2026 · AI for social science, economics and finance</p>
+   <p class="research-tldr"><strong>TL;DR:</strong> Causal Bench tests models on realistic causal-inference tasks with known answers. Programs score the responses. In a blind test, the top models passed 93–95% of v1 tasks. At those pass rates, v1 no longer distinguishes the top models. Harder versions are in development.</p>
+   <p class="research-meta"><em>From Scientists to Agents</em> · CODE@MIT 2026 talk</p>
+   <p class="research-byline">Talk authors: <strong>Leon Leng</strong>, Shichao Han, Daimin Tang, Yong Wang, Shi Chen · University of Washington · Tencent</p>
    </div>
   </article>
   </div>
@@ -269,26 +305,40 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 
  <section class="research-section" aria-labelledby="applied-heading" data-section="applied">
   <h2 class="section-heading" id="applied-heading">Applied Work</h2>
+  <p class="research-meta"><strong>From Scientists to Agents</strong> · CODE@MIT 2026 talk</p>
+  <p class="research-byline"><strong>Leon Leng</strong>, Shichao Han, Daimin Tang, Yong Wang, Shi Chen</p>
+  <p class="research-meta">University of Washington · Tencent</p>
   <div class="research-grid">
 
-  <article class="research-item" data-topic="knowledge" id="experiment-knowledge">
-   <figure class="research-figure"><img src="images/research/experiment-knowledge-paper.jpeg" width="1606" height="928" alt="Experiment Wiki system architecture reproduced from the Experiment Agents paper." loading="lazy" /></figure>
+  <article class="research-item" data-topic="social-economics" id="causal-ai">
+   <figure class="research-figure">
+    <a href="images/research/causal-post-training-mit-slides.gif" target="_blank" rel="noopener" aria-label="View the Causal Post-training slides at full size">
+     <picture>
+      <source media="(prefers-reduced-motion: reduce)" srcset="images/research/causal-post-training-mit-slides.png" />
+      <img src="images/research/causal-post-training-mit-slides.gif" width="1440" height="810" alt="Research question and the continued pretraining, supervised fine-tuning, and reinforcement learning stages." loading="lazy" />
+     </picture>
+    </a>
+   </figure>
    <div class="research-caption">
-   <h3>Learning from Experimental Evidence</h3>
-   <p class="research-byline"><strong>Leon Leng</strong>, Shichao Han, Daimin Tang, Yong Wang, Shi Chen</p>
-   <p class="research-meta">Tencent</p>
-   <p class="research-topic-label">2026 · Knowledge RSI</p>
-   <p class="research-status">Experiment knowledge systems</p>
+   <h3>Causal Post-training</h3>
+   <p class="research-topic-label">2026 · AI for social science, economics and finance</p>
+   <p class="research-tldr"><strong>TL;DR:</strong> Can post-training improve causal analysis while preserving a model’s other skills? We compare two training runs on a 27B open model. Both use LoRA through continued pretraining, supervised fine-tuning, and reinforcement learning with GRPO. A fixed rule drops a version if performance on two or more held-out skills falls beyond a preset threshold.</p>
    </div>
   </article>
 
-  <article class="research-item" data-topic="social-economics" id="causal-ai">
-   <figure class="research-figure"><img src="images/research/causal-posttraining-paper.jpeg" width="1302" height="612" alt="Causal and tool-calling evaluation results reproduced from the Experiment Agents paper." loading="lazy" /></figure>
+  <article class="research-item" data-topic="social-economics" id="mechanistic-interpretability">
+   <figure class="research-figure">
+    <a href="images/research/mechanistic-interpretability-mit-slides.gif" target="_blank" rel="noopener" aria-label="View the Mechanistic Interpretability slides at full size">
+     <picture>
+      <source media="(prefers-reduced-motion: reduce)" srcset="images/research/mechanistic-interpretability-mit-slides.png" />
+      <img src="images/research/mechanistic-interpretability-mit-slides.gif" width="1440" height="810" alt="Research question and three methods for studying causal concepts in a model: probing, activation patching, and steering." loading="lazy" />
+     </picture>
+    </a>
+   </figure>
    <div class="research-caption">
-   <h3>Evaluating and Improving Causal Reasoning</h3>
-   <p class="research-meta">Tencent</p>
+   <h3>Mechanistic Interpretability</h3>
    <p class="research-topic-label">2026 · AI for social science, economics and finance</p>
-   <p class="research-status">Benchmarks, post-training, and interpretability</p>
+   <p class="research-tldr"><strong>TL;DR:</strong> Does a model use a causal concept when it answers a question correctly? We study ATT versus ATE, pre- versus post-treatment variables, and identifiability. Probes test whether the model encodes each distinction. Activation patching and steering test whether changing those representations changes its answers.</p>
    </div>
   </article>
   </div>

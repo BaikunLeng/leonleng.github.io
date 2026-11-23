@@ -1,0 +1,85 @@
+WEBVTT
+
+00:00:00.103 --> 00:00:03.711
+Suppose an analyst asks whether an effect they saw before
+
+00:00:03.711 --> 00:00:05.512
+will hold in the next experiment.
+
+00:00:06.145 --> 00:00:10.317
+ExperimentWiki grades the evidence behind each prediction.
+
+00:00:10.604 --> 00:00:14.338
+In later experiments, high-confidence predictions kept their direction
+
+00:00:14.508 --> 00:00:16.889
+more often than preliminary ones.
+
+00:00:17.936 --> 00:00:20.617
+To build the wiki, programs read the results
+
+00:00:20.617 --> 00:00:25.240
+of 4,386 past A/B experiments.
+
+00:00:25.853 --> 00:00:30.554
+They calculate the statistics and write pages that link related metrics.
+
+00:00:30.879 --> 00:00:32.293
+When someone asks a question,
+
+00:00:32.554 --> 00:00:36.082
+the agent reads the pages before giving advice.
+
+00:00:37.145 --> 00:00:38.830
+Why do the calculations first?
+
+00:00:39.116 --> 00:00:42.609
+In a blind writing test, the model made causal claims
+
+00:00:42.609 --> 00:00:44.771
+before seeing the computed results.
+
+00:00:45.433 --> 00:00:49.799
+Forty-six percent of the checkable claims had the direction backwards.
+
+00:00:50.124 --> 00:00:52.930
+Once the model saw the computed evidence,
+
+00:00:53.049 --> 00:00:56.796
+147 out of 150 claims held.
+
+00:00:57.853 --> 00:00:59.383
+The harder test comes later.
+
+00:00:59.709 --> 00:01:02.966
+The team graded predictions using earlier experiments,
+
+00:01:03.278 --> 00:01:06.136
+then checked whether their directions held in new ones.
+
+00:01:06.770 --> 00:01:11.019
+The direction held for 81 percent of high-confidence findings,
+
+00:01:11.203 --> 00:01:13.867
+70 percent of evidence-grade findings,
+
+00:01:14.025 --> 00:01:17.115
+and 53 percent of preliminary findings.
+
+00:01:18.199 --> 00:01:21.431
+The system also checks how its own answers were produced.
+
+00:01:21.730 --> 00:01:27.436
+An audit ran 318 checks and opened 149 tickets.
+
+00:01:28.074 --> 00:01:30.365
+The team tried 28 fixes.
+
+00:01:30.690 --> 00:01:33.368
+Nineteen were kept, and nine were rejected.
+
+00:01:33.680 --> 00:01:35.829
+New experiments test the knowledge.
+
+00:01:36.154 --> 00:01:38.445
+Audits help repair the programs that write it.
