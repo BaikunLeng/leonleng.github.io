@@ -102,7 +102,13 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 
 #optimal-capping .research-collaboration { margin: 0 0 10px; color: #1d4ed8; font-size: .875rem; font-weight: 600; line-height: 1.6; }
 #optimal-capping .research-collaboration a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
-#experiment-knowledge .wiki-diagram a { display: block; cursor: zoom-in; }
+#experiment-knowledge .film-player { position: relative; }
+#experiment-knowledge video { border-radius: 0; background: white; }
+#experiment-knowledge video[role="button"] { aspect-ratio: 2206 / 1175; }
+#experiment-knowledge .film-cover { display: none; }
+#experiment-knowledge video[role="button"] + .film-cover {
+ display: block; position: absolute; inset: 0; pointer-events: none;
+}
 
 .research-keywords { display: contents; }
 .research-keywords[hidden] { display: none; }
@@ -248,10 +254,13 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
   </article>
 
   <article class="research-item" data-topic="knowledge" id="experiment-knowledge">
-   <figure class="research-figure wiki-diagram">
-    <a href="images/research/experimentwiki-mit/system-map.html" aria-label="Enlarge the ExperimentWiki system diagram">
-     <img src="images/research/experimentwiki-mit/system-map.svg" width="2206" height="1175" loading="lazy" alt="ExperimentWiki system diagram showing experiment memory, wiki judgment layers, research and maintenance, and the audit loop." />
-    </a>
+   <figure class="research-figure film-player">
+    <video class="research-demo-video" width="1920" height="1080" controls playsinline preload="metadata" poster="images/research/experimentwiki-mit/system-map.svg" aria-label="ExperimentWiki, CODE@MIT slides 3 through 8 with English narration and captions">
+     <source src="images/research/experimentwiki-mit/talk.mp4?v=slides-only" type="video/mp4" />
+     <track kind="captions" src="images/research/experimentwiki-mit/captions.vtt" srclang="en" label="English" default />
+     <a href="images/research/experimentwiki-mit/talk.mp4?v=slides-only">Watch the ExperimentWiki talk</a>
+    </video>
+    <img class="film-cover" src="images/research/experimentwiki-mit/system-map.svg" width="2206" height="1175" alt="" aria-hidden="true" />
    </figure>
    <div class="research-caption">
    <h3>ExperimentWiki</h3>
