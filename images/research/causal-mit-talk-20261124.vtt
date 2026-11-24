@@ -1,0 +1,298 @@
+WEBVTT
+
+00:00:00.103 --> 00:00:03.032
+Now let’s move to our second project Causal Bench
+
+00:00:03.603 --> 00:00:07.833
+After building ExperimentWiki we wanted to know how well frontier
+
+00:00:07.843 --> 00:00:12.628
+models can actually perform causal inference and experimentation tasks
+
+00:00:13.267 --> 00:00:17.768
+For our first version we focus on well-specified causal questions
+
+00:00:18.811 --> 00:00:23.803
+We constructed 328 questions covering 16 topics
+
+00:00:24.395 --> 00:00:26.731
+These questions come from three sources
+
+00:00:27.337 --> 00:00:32.095
+First our own data-generating processes where we explicitly define
+
+00:00:32.105 --> 00:00:35.163
+the causal structure and know the underlying truth
+
+00:00:35.770 --> 00:00:39.691
+Second questions adapted from real research datasets
+
+00:00:40.270 --> 00:00:44.075
+And third questions taken from public causal benchmarks
+
+00:00:44.645 --> 00:00:49.197
+During testing we give the model a clear task description including
+
+00:00:49.207 --> 00:00:52.883
+the meaning of each column and the first five rows of the data
+
+00:00:53.491 --> 00:00:57.927
+The data is clean and the relevant assumptions are specified or follow
+
+00:00:57.937 --> 00:00:59.436
+a standard textbook setting
+
+00:01:00.033 --> 00:01:03.953
+However the model may still need to select the appropriate causal
+
+00:01:03.963 --> 00:01:04.908
+inference method
+
+00:01:05.478 --> 00:01:09.914
+Importantly the model cannot access the full dataset or execute its
+
+00:01:09.924 --> 00:01:10.637
+own code
+
+00:01:11.228 --> 00:01:15.137
+Instead it produces an analysis script and a structured answer
+
+00:01:15.686 --> 00:01:20.676
+We then execute the script on hidden data and evaluate it using programmatic
+
+00:01:20.686 --> 00:01:26.116
+checks including identification method selection estimates intervals
+
+00:01:26.202 --> 00:01:27.327
+and diagnostics
+
+00:01:27.895 --> 00:01:31.789
+This helps us evaluate whether models can implement correct causal
+
+00:01:31.799 --> 00:01:34.922
+analysis rather than simply guessing an answer
+
+00:01:35.965 --> 00:01:40.789
+Models generally perform very well on textbook causal concepts
+
+00:01:41.446 --> 00:01:46.140
+For example their average performance on causal graphs and identifiability
+
+00:01:46.150 --> 00:01:50.187
+questions is around 97 to 98 percent
+
+00:01:50.783 --> 00:01:56.056
+However experiment design and diagnosis are more difficult with average
+
+00:01:56.066 --> 00:01:59.421
+pass rates of 74 and 77 percent
+
+00:02:00.436 --> 00:02:02.477
+Here are the results from eleven models
+
+00:02:03.061 --> 00:02:07.279
+We find that the strongest frontier models perform remarkably well
+
+00:02:07.853 --> 00:02:13.719
+The top five models achieve approximately 93 to 95 percent pass rates
+
+00:02:13.729 --> 00:02:17.766
+on well-specified tasks and their differences are not statistically
+
+00:02:17.776 --> 00:02:18.721
+distinguishable
+
+00:02:19.311 --> 00:02:21.622
+But several interesting patterns emerge
+
+00:02:22.267 --> 00:02:26.741
+First weaker models often fail because of engineering issues rather
+
+00:02:26.751 --> 00:02:29.487
+than purely conceptual misunderstandings
+
+00:02:30.061 --> 00:02:34.330
+Around 40 percent of their failures involve crashing scripts truncated
+
+00:02:34.340 --> 00:02:36.663
+outputs or incorrect formatting
+
+00:02:37.215 --> 00:02:41.935
+Second coding requirements create a larger gap between strong and
+
+00:02:41.945 --> 00:02:42.992
+weak models
+
+00:02:43.536 --> 00:02:48.707
+On tasks requiring scripts the top five models achieve around 90 percent
+
+00:02:48.871 --> 00:02:51.594
+compared with 65 percent for the others
+
+00:02:52.186 --> 00:02:56.777
+So our main takeaway is that knowing causal concepts is no longer
+
+00:02:56.787 --> 00:03:00.926
+the main challenge for frontier models Applying those concepts to
+
+00:03:00.936 --> 00:03:02.951
+actual analysis is harder
+
+00:03:03.561 --> 00:03:07.520
+And this motivates our next version of Causal Bench where models have
+
+00:03:07.530 --> 00:03:12.224
+greater autonomy but must deal with more realistic problems including
+
+00:03:12.234 --> 00:03:17.174
+noisy data data-quality issues and potential violations of assumptions
+
+00:03:18.228 --> 00:03:20.242
+Now let’s move to our third project
+
+00:03:20.799 --> 00:03:25.094
+Many companies cannot directly deploy closed-source frontier models
+
+00:03:25.244 --> 00:03:30.274
+on sensitive internal data They often need locally deployed open models
+
+00:03:30.853 --> 00:03:34.438
+So we want to know whether post-training can improve their causal
+
+00:03:34.448 --> 00:03:35.870
+inference capabilities
+
+00:03:36.895 --> 00:03:43.225
+We start with Qwen3 . 8-27B and use three training stages continued
+
+00:03:43.235 --> 00:03:46.899
+pre-training supervised fine-tuning and reinforcement learning
+
+00:03:47.517 --> 00:03:53.333
+For continued pre-training we use text from DoWhy and EconML documentation
+
+00:03:53.908 --> 00:03:59.954
+However the initial corpus contains only around 77,000 tokens and
+
+00:03:59.964 --> 00:04:03.280
+we observe almost no downstream improvement
+
+00:04:03.840 --> 00:04:09.964
+Next we perform supervised fine-tuning using approximately 13,800
+
+00:04:09.974 --> 00:04:14.153
+question-answer examples covering causal graphs full analysis cases
+
+00:04:14.240 --> 00:04:15.275
+and tool use
+
+00:04:15.840 --> 00:04:21.424
+Our in-domain performance improves substantially from around 0.59
+
+00:04:21.549 --> 00:04:23.022
+to 0.87
+
+00:04:23.603 --> 00:04:25.927
+But the external results are much worse
+
+00:04:26.520 --> 00:04:31.420
+Performance on CLadder drops by 0.30 and tool-calling performance
+
+00:04:31.430 --> 00:04:33.624
+drops by 0.21
+
+00:04:34.645 --> 00:04:36.904
+We identify two problems
+
+00:04:37.517 --> 00:04:42.842
+First the model learns our training-data format too strongly reducing
+
+00:04:42.852 --> 00:04:45.794
+its ability to follow different output formats
+
+00:04:46.353 --> 00:04:51.304
+Second every tool-calling example in our training data contains exactly
+
+00:04:51.314 --> 00:04:52.478
+one tool call
+
+00:04:53.049 --> 00:04:57.807
+As a result the model learns a very narrow pattern It struggles when
+
+00:04:57.817 --> 00:05:01.996
+a task requires no tool calls or multiple tool calls
+
+00:05:02.629 --> 00:05:07.774
+Finally we try reinforcement learning using GRPO but observe almost
+
+00:05:07.784 --> 00:05:09.553
+no additional improvement
+
+00:05:10.103 --> 00:05:14.359
+A possible explanation is that the combination of LoRA a small learning
+
+00:05:14.369 --> 00:05:18.780
+rate and KL regularization restricts how much the model can change
+
+00:05:19.799 --> 00:05:23.732
+To address these problems we conduct a second independent training
+
+00:05:23.742 --> 00:05:25.550
+run which we call Line B
+
+00:05:26.145 --> 00:05:30.724
+We first expand the continued pre-training corpus to approximately
+
+00:05:30.810 --> 00:05:33.958
+1.57 million tokens
+
+00:05:34.520 --> 00:05:39.445
+During supervised fine-tuning we also introduce replay data from general-purpose
+
+00:05:39.455 --> 00:05:42.836
+tasks to help preserve existing capabilities
+
+00:05:43.408 --> 00:05:46.324
+However tool-calling performance still drops
+
+00:05:47.353 --> 00:05:52.201
+We then identify that our replay data contains too few examples of
+
+00:05:52.211 --> 00:05:54.290
+the missing tool-use patterns
+
+00:05:54.853 --> 00:06:00.629
+So we create approximately 1,600 targeted counterexamples including
+
+00:06:00.639 --> 00:06:05.218
+cases requiring no tool calls and multiple parallel tool calls
+
+00:06:05.799 --> 00:06:10.764
+After two targeted patches tool-calling performance recovers substantially
+
+00:06:11.043 --> 00:06:15.455
+while our in-domain causal performance remains almost unchanged
+
+00:06:16.007 --> 00:06:18.382
+We also observe some recovery on CLadder
+
+00:06:19.395 --> 00:06:22.761
+The key lesson is that post-training can improve performance on the
+
+00:06:22.771 --> 00:06:26.757
+target domain but it can also damage existing capabilities
+
+00:06:27.353 --> 00:06:31.661
+And importantly some of this damage comes from the training-data distribution
+
+00:06:31.683 --> 00:06:36.119
+and output-format patterns rather than necessarily from losing causal
+
+00:06:36.129 --> 00:06:36.867
+knowledge
+
+00:06:37.436 --> 00:06:41.782
+So we need to evaluate models across multiple dimensions not just
+
+00:06:41.792 --> 00:06:42.982
+the target benchmark

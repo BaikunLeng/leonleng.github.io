@@ -272,13 +272,12 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
   </article>
 
   <article class="research-item" data-topic="social-economics" id="causal-bench">
-   <figure class="research-figure">
-    <a href="images/research/causal-benchmark-posttraining-20261124.html" target="_blank" rel="noopener" aria-label="View the integrated Causal Benchmark and Post-training presentation">
-     <picture>
-      <source media="(prefers-reduced-motion: reduce)" srcset="images/research/causal-benchmark-posttraining-20261124.png" />
-      <img src="images/research/causal-benchmark-posttraining-20261124.gif" width="1440" height="810" alt="An integrated research story: benchmark causal analysis, post-train an open model, diagnose skill regressions, and test targeted training-data repairs." loading="lazy" />
-     </picture>
-    </a>
+   <figure class="research-figure film-player">
+    <video class="research-demo-video" controls playsinline preload="metadata" width="1920" height="1080" poster="images/research/causal-mit-talk-20261124-cover.png" aria-label="Causal Benchmark and Post-training: original MIT slides with English AI narration">
+     <source src="images/research/causal-mit-talk-20261124.mp4" type="video/mp4" />
+     <track default kind="captions" srclang="en" label="English" src="images/research/causal-mit-talk-20261124.vtt" />
+     <a href="images/research/causal-mit-talk-20261124.mp4">Watch the narrated MIT presentation</a>
+    </video>
    </figure>
    <div class="research-caption">
     <span id="causal-ai"></span>
@@ -287,7 +286,7 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
     <p class="research-topic-label">2026 · AI for social science, economics and finance <span class="research-tag">Causal Inference</span> <span class="research-tag">Benchmarking</span> <span class="research-tag">Post-training</span> <span class="research-tag">Industry</span></p>
     <p class="research-collaboration">Working with <a href="https://www.tencent.com/en-us/" target="_blank" rel="noopener noreferrer">Tencent</a></p>
     <p class="research-tldr"><strong>TL;DR:</strong> Can language models carry out causal analysis reliably, and can post-training improve open models without damaging other skills? We combine Causal Bench, which checks answers and analysis code on causal tasks with known ground truth, with two post-training runs on a 27B open model. The benchmark exposes gaps between frontier and open models. Training raises accuracy on our in-domain test, but also harms tool use and performance on an external causal test. We trace a tool-use failure to training examples that always make exactly one call. Targeted examples for zero-call and multi-call cases recover much of the lost tool performance while preserving the in-domain gain. The lesson is to judge training by both what improves and what it preserves: broader benchmark gains remain unestablished, and RL adds no measurable in-domain improvement in these runs.</p>
-    <p class="research-status"><span>Presented at CODE@MIT 2026</span> <span class="research-link-separator" aria-hidden="true">/</span> <a href="images/research/causal-benchmark-posttraining-20261124.html" target="_blank" rel="noopener">Slides</a></p>
+    <p class="research-status"><span>Presented at CODE@MIT 2026</span> <span class="research-link-separator" aria-hidden="true">/</span> <a href="images/research/causal-mit-talk-20261124-slides.pdf" target="_blank" rel="noopener">Slides</a></p>
    </div>
   </article>
 
