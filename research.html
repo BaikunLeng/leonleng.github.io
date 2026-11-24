@@ -103,6 +103,11 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 #optimal-capping .research-collaboration { margin: 0 0 10px; color: #1d4ed8; font-size: .875rem; font-weight: 600; line-height: 1.6; }
 #optimal-capping .research-collaboration a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
 #experiment-knowledge .wiki-diagram a { display: block; cursor: zoom-in; }
+
+.research-keywords { display: contents; }
+.research-keywords[hidden] { display: none; }
+.research-topic-nav #research-keywords-toggle { color: #32715b; text-decoration: underline; }
+.research-topic-nav button:focus-visible { outline: 2px solid #32715b; outline-offset: 3px; border-radius: 2px; }
 </style>
 </head>
 <body>
@@ -175,6 +180,8 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
   <button type="button" data-topic="simulation" aria-pressed="false">Digital twins and simulation</button>
   <button type="button" data-topic="social-economics" aria-pressed="false">AI for social science, economics and finance</button>
   <button type="button" data-topic="others" aria-pressed="false">Others</button>
+  <span id="research-keywords" class="research-keywords" hidden></span>
+  <button type="button" id="research-keywords-toggle" aria-expanded="false" aria-controls="research-keywords">More</button>
  </nav>
  <p class="research-filter-status" aria-live="polite"></p>
  <p class="research-empty" hidden>No work is listed for this combination yet.<button type="button" id="reset-research-filters">Reset filters</button></p>
@@ -346,27 +353,71 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 </main>
 </div>
 <script>
-const topicButtons = [...document.querySelectorAll('.research-topic-nav button')];
+const topicButtons = [...document.querySelectorAll('.research-topic-nav button[data-topic]')];
+const keywordContainer = document.getElementById('research-keywords');
+const keywordToggle = document.getElementById('research-keywords-toggle');
+const keywordKey = label => label.trim().replace(/\s+/g, ' ').toLowerCase();
+const itemKeywords = new Map();
+const keywordLabels = new Map();
+document.querySelectorAll('.research-item').forEach(item => {
+ const keys = new Set();
+ item.querySelectorAll('.research-tag').forEach(tag => {
+  const label = tag.textContent.trim().replace(/\s+/g, ' ');
+  if (!label) return;
+  const key = keywordKey(label);
+  keys.add(key);
+  if (!keywordLabels.has(key)) keywordLabels.set(key, label);
+ });
+ itemKeywords.set(item, keys);
+});
+keywordLabels.forEach((label, key) => {
+ const button = document.createElement('button');
+ button.type = 'button';
+ button.dataset.keyword = key;
+ button.textContent = label;
+ button.setAttribute('aria-pressed', 'false');
+ keywordContainer.appendChild(button);
+});
+const keywordButtons = [...keywordContainer.querySelectorAll('button')];
+keywordToggle.hidden = keywordButtons.length === 0;
 const viewButtons = [...document.querySelectorAll('.research-view-tabs button')];
-let selectedResearchTopic = 'all', selectedResearchView = 'all';
+let selectedResearchTopic = 'all', selectedResearchView = 'all', selectedResearchKeyword = null;
 function filterResearch() {
  let count=0;
  document.querySelectorAll('.research-section').forEach(section=>{
   let visible=0;
   section.querySelectorAll('.research-item').forEach(item=>{
-   const show=(selectedResearchView==='all'||section.dataset.section===selectedResearchView)&&(selectedResearchTopic==='all'||item.dataset.topic===selectedResearchTopic);
+   const matchesTopic = selectedResearchKeyword !== null ? itemKeywords.get(item).has(selectedResearchKeyword) : (selectedResearchTopic==='all'||item.dataset.topic===selectedResearchTopic);
+   const show=(selectedResearchView==='all'||section.dataset.section===selectedResearchView)&&matchesTopic;
    item.hidden=!show;if(show){visible++;count++;}
   });
   section.hidden=visible===0;
  });
- topicButtons.forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.topic===selectedResearchTopic)));
+ topicButtons.forEach(button=>button.setAttribute('aria-pressed',String(selectedResearchKeyword===null&&button.dataset.topic===selectedResearchTopic)));
+ keywordButtons.forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.keyword===selectedResearchKeyword)));
  viewButtons.forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.view===selectedResearchView)));
  document.querySelector('.research-empty').hidden=count!==0;
  document.querySelector('.research-filter-status').textContent=count+' research items shown';
 }
-topicButtons.forEach(button=>button.addEventListener('click',()=>{selectedResearchTopic=button.dataset.topic;filterResearch();}));
+topicButtons.forEach(button=>button.addEventListener('click',()=>{selectedResearchTopic=button.dataset.topic;selectedResearchKeyword=null;filterResearch();}));
 viewButtons.forEach(button=>button.addEventListener('click',()=>{selectedResearchView=button.dataset.view;filterResearch();}));
-document.getElementById('reset-research-filters').addEventListener('click',()=>{selectedResearchTopic='all';selectedResearchView='all';filterResearch();});
+document.getElementById('reset-research-filters').addEventListener('click',()=>{selectedResearchTopic='all';selectedResearchView='all';selectedResearchKeyword=null;filterResearch();});
+keywordButtons.forEach(button => button.addEventListener('click', () => {
+ selectedResearchKeyword = button.dataset.keyword;
+ selectedResearchTopic = 'all';
+ filterResearch();
+}));
+keywordToggle.addEventListener('click', () => {
+ const expanded = keywordToggle.getAttribute('aria-expanded') !== 'true';
+ keywordToggle.setAttribute('aria-expanded', String(expanded));
+ keywordToggle.textContent = expanded ? 'Less' : 'More';
+ keywordContainer.hidden = !expanded;
+ if (!expanded && selectedResearchKeyword !== null) {
+  selectedResearchKeyword = null;
+  selectedResearchTopic = 'all';
+  filterResearch();
+ }
+});
 filterResearch();
 </script>
 <script>
