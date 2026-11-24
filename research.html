@@ -271,6 +271,34 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
    </div>
   </article>
 
+  <article class="research-item" data-topic="social-economics" id="causal-bench">
+   <figure class="research-figure">
+    <a href="images/research/causal-bench-mit-slides.gif" target="_blank" rel="noopener" aria-label="View the Causal Bench slides at full size">
+     <picture>
+      <source media="(prefers-reduced-motion: reduce)" srcset="images/research/causal-bench-mit-slides.png" />
+      <img src="images/research/causal-bench-mit-slides.gif" width="1440" height="810" alt="Research question and the Causal Bench workflow, from questions and model testing to programmatic scoring and ranking." loading="lazy" />
+     </picture>
+    </a>
+   </figure>
+   <figure class="research-figure">
+    <a href="images/research/causal-post-training-mit-slides.gif" target="_blank" rel="noopener" aria-label="View the Causal Post-training slides at full size">
+     <picture>
+      <source media="(prefers-reduced-motion: reduce)" srcset="images/research/causal-post-training-mit-slides.png" />
+      <img src="images/research/causal-post-training-mit-slides.gif" width="1440" height="810" alt="Research question and the continued pretraining, supervised fine-tuning, and reinforcement learning stages." loading="lazy" />
+     </picture>
+    </a>
+   </figure>
+  <div class="research-caption">
+   <span id="causal-ai"></span>
+   <h3>Causal Benchmark and Post-training</h3>
+   <p class="research-topic-label">2026 · AI for social science, economics and finance</p>
+   <p class="research-tldr"><strong>TL;DR:</strong> Causal Bench tests models on realistic causal-inference tasks with known answers. Programs score the responses. In a blind test, the top models passed 93–95% of v1 tasks. At those pass rates, v1 no longer distinguishes the top models. Harder versions are in development.</p>
+   <p class="research-tldr"><strong>Post-training:</strong> Can post-training improve causal analysis while preserving a model’s other skills? We compare two training runs on a 27B open model. Both use LoRA through continued pretraining, supervised fine-tuning, and reinforcement learning with GRPO. A fixed rule drops a version if performance on two or more held-out skills falls beyond a preset threshold.</p>
+   <p class="research-meta"><em>From Scientists to Agents</em> · CODE@MIT 2026 talk</p>
+   <p class="research-byline">Talk authors: <strong>Leon Leng</strong>, Shichao Han, Daimin Tang, Yong Wang, Shi Chen · University of Washington · Tencent</p>
+   </div>
+  </article>
+
   <article class="research-item" data-topic="social-economics" id="centralized-decentralized-evaluation">
    <figure class="research-figure"><img src="images/research/insurance-talk.png" width="660" height="549" alt="Approval and classification accuracy figure from Leon’s insurance research presentation." loading="lazy" /></figure>
    <div class="research-caption">
@@ -281,23 +309,7 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
    </div>
   </article>
 
-  <article class="research-item" data-topic="social-economics" id="causal-bench">
-   <figure class="research-figure">
-    <a href="images/research/causal-bench-mit-slides.gif" target="_blank" rel="noopener" aria-label="View the Causal Bench slides at full size">
-     <picture>
-      <source media="(prefers-reduced-motion: reduce)" srcset="images/research/causal-bench-mit-slides.png" />
-      <img src="images/research/causal-bench-mit-slides.gif" width="1440" height="810" alt="Research question and the Causal Bench workflow, from questions and model testing to programmatic scoring and ranking." loading="lazy" />
-     </picture>
-    </a>
-   </figure>
-   <div class="research-caption">
-   <h3>Causal Bench</h3>
-   <p class="research-topic-label">2026 · AI for social science, economics and finance</p>
-   <p class="research-tldr"><strong>TL;DR:</strong> Causal Bench tests models on realistic causal-inference tasks with known answers. Programs score the responses. In a blind test, the top models passed 93–95% of v1 tasks. At those pass rates, v1 no longer distinguishes the top models. Harder versions are in development.</p>
-   <p class="research-meta"><em>From Scientists to Agents</em> · CODE@MIT 2026 talk</p>
-   <p class="research-byline">Talk authors: <strong>Leon Leng</strong>, Shichao Han, Daimin Tang, Yong Wang, Shi Chen · University of Washington · Tencent</p>
-   </div>
-  </article>
+
   </div>
  </section>
 
@@ -324,21 +336,7 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
   <p class="research-meta">University of Washington · Tencent</p>
   <div class="research-grid">
 
-  <article class="research-item" data-topic="social-economics" id="causal-ai">
-   <figure class="research-figure">
-    <a href="images/research/causal-post-training-mit-slides.gif" target="_blank" rel="noopener" aria-label="View the Causal Post-training slides at full size">
-     <picture>
-      <source media="(prefers-reduced-motion: reduce)" srcset="images/research/causal-post-training-mit-slides.png" />
-      <img src="images/research/causal-post-training-mit-slides.gif" width="1440" height="810" alt="Research question and the continued pretraining, supervised fine-tuning, and reinforcement learning stages." loading="lazy" />
-     </picture>
-    </a>
-   </figure>
-   <div class="research-caption">
-   <h3>Causal Post-training</h3>
-   <p class="research-topic-label">2026 · AI for social science, economics and finance</p>
-   <p class="research-tldr"><strong>TL;DR:</strong> Can post-training improve causal analysis while preserving a model’s other skills? We compare two training runs on a 27B open model. Both use LoRA through continued pretraining, supervised fine-tuning, and reinforcement learning with GRPO. A fixed rule drops a version if performance on two or more held-out skills falls beyond a preset threshold.</p>
-   </div>
-  </article>
+
 
   <article class="research-item" data-topic="social-economics" id="mechanistic-interpretability">
    <figure class="research-figure">
