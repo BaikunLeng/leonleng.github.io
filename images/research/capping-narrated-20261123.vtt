@@ -1,0 +1,325 @@
+WEBVTT
+
+00:00:00.103 --> 00:00:03.922
+How can we choose a revenue cap from an experiment and still trust
+
+00:00:03.802 --> 00:00:05.094
+the test that follows
+
+00:00:05.674 --> 00:00:09.866
+Start with the problem A few big spenders can dominate an experiment
+
+00:00:10.424 --> 00:00:15.170
+In this toy example treatment changes nobody's revenue Nine people
+
+00:00:15.050 --> 00:00:17.966
+spend ten dollars and one spends two hundred
+
+00:00:18.561 --> 00:00:22.032
+Whichever group receives that big spender has an average of forty
+
+00:00:21.912 --> 00:00:27.045
+eight dollars The other group averages ten Random assignment alone
+
+00:00:27.015 --> 00:00:28.282
+creates the difference
+
+00:00:29.311 --> 00:00:33.723
+Capping limits each person's contribution Here a two hundred dollar
+
+00:00:33.603 --> 00:00:38.400
+observation is counted as fifty dollars reducing its influence
+
+00:00:38.978 --> 00:00:43.557
+But capping can also remove real growth If treatment raises a person's
+
+00:00:43.553 --> 00:00:47.410
+spending from two hundred to two hundred forty dollars a fifty dollar
+
+00:00:47.290 --> 00:00:49.266
+cap makes both outcomes fifty
+
+00:00:49.866 --> 00:00:54.419
+The question is which cap preserves useful signal while reducing noise
+
+00:00:54.737 --> 00:00:58.066
+Capped revenue is a different outcome from total revenue
+
+00:00:59.090 --> 00:01:03.437
+Our method starts with a belief fixed before random assignment For
+
+00:01:03.317 --> 00:01:08.038
+example suppose treatment increases everyone's spending by two percent
+
+00:01:08.683 --> 00:01:13.133
+For a control user who spends ten dollars the belief supplies a treated
+
+00:01:13.026 --> 00:01:15.840
+outcome of ten dollars and twenty cents
+
+00:01:16.433 --> 00:01:20.458
+For a treated user who spends twenty dollars it supplies a control
+
+00:01:20.338 --> 00:01:23.886
+outcome of about nineteen dollars and sixty one cents
+
+00:01:24.478 --> 00:01:29.083
+Solid cells are observed Outlined cells are imputed This completed
+
+00:01:28.976 --> 00:01:33.941
+table guides selection it does not reveal the true missing outcomes
+
+00:01:34.978 --> 00:01:40.910
+We enumerate candidate caps For each cap truncate both completed columns
+
+00:01:40.983 --> 00:01:44.763
+and calculate the predicted effect divided by its predicted standard
+
+00:01:44.643 --> 00:01:45.150
+error
+
+00:01:45.728 --> 00:01:50.655
+This is the belief's predicted signal to noise ratio Select the candidate
+
+00:01:50.548 --> 00:01:51.866
+with the largest score
+
+00:01:52.424 --> 00:01:57.389
+In this toy example that candidate is twenty dollars The paper's reported
+
+00:01:57.282 --> 00:02:01.732
+simulations compare six hundred candidates on a logarithmic grid
+
+00:02:02.311 --> 00:02:06.942
+This finds the best candidate under the belief-based score not necessarily
+
+00:02:06.835 --> 00:02:08.127
+the true best cap
+
+00:02:09.186 --> 00:02:13.894
+Once the cap is selected return to the actual treatment and control
+
+00:02:13.774 --> 00:02:14.757
+observations
+
+00:02:15.353 --> 00:02:20.486
+Apply the same cap to both groups The treatment mean minus the control
+
+00:02:20.675 --> 00:02:22.651
+mean estimates the capped effect
+
+00:02:23.228 --> 00:02:26.815
+Divide that difference by the standard error computed from the observed
+
+00:02:26.695 --> 00:02:29.933
+capped groups to obtain the final test statistic
+
+00:02:30.507 --> 00:02:35.343
+Imputed outcomes do not enter this final calculation The belief affects
+
+00:02:35.236 --> 00:02:36.864
+it through the selected cap
+
+00:02:37.895 --> 00:02:41.468
+These are two distinct calculations using the same experiment
+
+00:02:42.036 --> 00:02:46.859
+On the left observations and a fixed belief form the completed table
+
+00:02:47.139 --> 00:02:51.473
+In the middle grid search chooses the largest predicted signal to
+
+00:02:51.353 --> 00:02:52.658
+noise ratio
+
+00:02:53.270 --> 00:02:57.823
+On the right only the selected cap carries forward Actual observed
+
+00:02:57.703 --> 00:02:59.936
+incomes are capped and tested
+
+00:03:00.520 --> 00:03:05.550
+Because the observations influence both stages this is not automatically
+
+00:03:05.442 --> 00:03:09.983
+equivalent to choosing the cap before the experiment The theory must
+
+00:03:09.875 --> 00:03:11.503
+account for that dependence
+
+00:03:12.561 --> 00:03:16.831
+The two theorems answer different questions Theorem one bounds the
+
+00:03:16.724 --> 00:03:21.779
+probability of losing too much score relative to the best deterministic
+
+00:03:21.672 --> 00:03:24.408
+belief score The belief may be wrong
+
+00:03:24.978 --> 00:03:29.054
+This is a score guarantee not a guarantee of being close to the true
+
+00:03:28.947 --> 00:03:33.732
+optimal cap Multiple peaks are allowed With a separated best candidate
+
+00:03:33.999 --> 00:03:38.294
+a further bound compares rejection probabilities with a fixed belief-best
+
+00:03:38.187 --> 00:03:38.706
+cap
+
+00:03:39.308 --> 00:03:44.145
+Theorem two concerns false positives With quantitative localization
+
+00:03:44.270 --> 00:03:48.410
+variance bounds and nonpositive capped effects in the local region
+
+00:03:48.690 --> 00:03:52.753
+the limiting upper rejection probability is at most the nominal level
+
+00:03:53.353 --> 00:03:58.306
+Distant near-ties fall outside this localization guarantee though
+
+00:03:58.186 --> 00:04:03.847
+inflation is not inevitable A single peak in a picture does not verify
+
+00:04:03.740 --> 00:04:08.550
+the assumptions Interpreting the result for total revenue additionally
+
+00:04:08.611 --> 00:04:11.295
+needs the paper's sign-preservation assumption
+
+00:04:12.311 --> 00:04:16.826
+Now consider a simulation where treatment affects nobody Every positive
+
+00:04:16.706 --> 00:04:18.797
+detection is a false positive
+
+00:04:19.353 --> 00:04:24.035
+The orange method tries every cap using the actual group comparison
+
+00:04:24.327 --> 00:04:28.661
+and chooses the largest observed test statistic Its false-positive
+
+00:04:28.541 --> 00:04:31.458
+rate is about thirty to thirty four percent
+
+00:04:32.061 --> 00:04:35.661
+The green method selects using the fixed belief's predicted signal
+
+00:04:35.618 --> 00:04:40.841
+to noise ratio then tests the observed data Its rate is about ten
+
+00:04:40.734 --> 00:04:42.748
+percent in these simulations
+
+00:04:43.353 --> 00:04:48.254
+Both use the same nominal ten percent test threshold Importantly the
+
+00:04:48.134 --> 00:04:52.983
+green method's belief assumes two percent growth so that belief is
+
+00:04:52.863 --> 00:04:55.303
+wrong in this no-effect experiment
+
+00:04:55.882 --> 00:05:00.628
+Repeated random assignments estimate these actual false-positive rates
+
+00:05:00.921 --> 00:05:04.984
+These reported simulations have not been rerun for this presentation
+
+00:05:05.994 --> 00:05:11.707
+Next treatment really increases total revenue by two percent in all
+
+00:05:11.600 --> 00:05:15.882
+three panels The same proportional belief is used throughout
+
+00:05:16.465 --> 00:05:21.688
+On the left everyone grows proportionally matching the belief In the
+
+00:05:21.581 --> 00:05:26.173
+middle a subset of payers receives a fixed increment On the right
+
+00:05:26.607 --> 00:05:31.173
+only heavy spenders grow Those two patterns do not match the belief
+
+00:05:31.741 --> 00:05:36.784
+The horizontal axis is sample size The vertical axis is the share
+
+00:05:36.677 --> 00:05:40.650
+of repeated experiments rejecting the null in the positive direction
+
+00:05:40.955 --> 00:05:43.343
+The blue curve is the belief method
+
+00:05:43.936 --> 00:05:48.592
+The original paper figure shows that equal total growth does not imply
+
+00:05:48.588 --> 00:05:52.768
+equal detectability What matters is where the growth occurs and what
+
+00:05:52.648 --> 00:05:54.469
+the selected cap preserves
+
+00:05:55.520 --> 00:06:00.356
+The rightmost case illustrates an important limitation Total revenue
+
+00:06:00.249 --> 00:06:05.047
+grows two percent but rejection with the belief cap remains near ten
+
+00:06:04.927 --> 00:06:07.083
+percent the nominal level
+
+00:06:07.686 --> 00:06:12.033
+The numerical example on the right explains the mechanism Two hundred
+
+00:06:11.913 --> 00:06:16.595
+dollars becoming two hundred forty is real growth After a fifty dollar
+
+00:06:16.475 --> 00:06:21.827
+cap fifty becoming fifty contains no growth These numbers are illustrative
+
+00:06:22.132 --> 00:06:23.863
+not simulation parameters
+
+00:06:24.504 --> 00:06:29.379
+Here the selected cap can remove the signal Controlling false positives
+
+00:06:29.427 --> 00:06:34.250
+does not guarantee detecting a positive effect on total revenue
+
+00:06:35.270 --> 00:06:39.269
+Our next step is to learn a useful belief from the experiment itself
+
+00:06:39.574 --> 00:06:42.696
+This is work in progress not a completed result
+
+00:06:43.308 --> 00:06:48.364
+First can a simple belief represent different effect shapes including
+
+00:06:48.244 --> 00:06:50.155
+growth concentrated in the tail
+
+00:06:50.728 --> 00:06:55.951
+Second can we preserve false-positive control when learning selection
+
+00:06:56.102 --> 00:06:58.864
+and testing all use the same sample
+
+00:06:59.501 --> 00:07:04.827
+Third how does belief error affect power and when does sample splitting
+
+00:07:04.707 --> 00:07:05.188
+help
+
+00:07:05.783 --> 00:07:10.310
+The current theorems assume a fixed belief They do not establish the
+
+00:07:10.190 --> 00:07:15.258
+full learned-belief pipeline or a general guarantee of power Near-tie
+
+00:07:15.151 --> 00:07:20.155
+calibration fixed-target inference assumption diagnostics and full
+
+00:07:20.035 --> 00:07:22.784
+simulation reproduction also remain open
