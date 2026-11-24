@@ -1,0 +1,118 @@
+WEBVTT
+
+00:00:00.103 --> 00:00:03.972
+Can an agent learn something reliable from past experiments?
+
+00:00:04.603 --> 00:00:07.608
+ExperimentWiki asks three questions.
+
+00:00:07.954 --> 00:00:09.232
+What knowledge can we keep?
+
+00:00:09.577 --> 00:00:10.830
+How do we repair the system?
+
+00:00:11.162 --> 00:00:14.799
+And when new experiments arrive, do our conclusions hold up?
+
+00:00:15.895 --> 00:00:17.238
+This is the system overview.
+
+00:00:17.557 --> 00:00:22.299
+Start on the left, where programs compare treatment and control groups and record
+
+00:00:22.299 --> 00:00:23.153
+the effects.
+
+00:00:23.808 --> 00:00:25.693
+Follow the arrows to the middle.
+
+00:00:26.025 --> 00:00:30.615
+Programs turn the evidence into wiki pages that an agent can read.
+
+00:00:30.960 --> 00:00:34.765
+On the right, new experiments test earlier predictions.
+
+00:00:35.097 --> 00:00:39.839
+Along the bottom, an audit traces mistakes back to the programs and rules that
+
+00:00:39.839 --> 00:00:40.551
+produced them.
+
+00:00:41.658 --> 00:00:44.457
+Here is the same system in a simpler view.
+
+00:00:44.789 --> 00:00:48.065
+Within one experiment, compare treatment with control.
+
+00:00:48.397 --> 00:00:53.709
+Across experiments, look for the same change and check whether its effect repeats.
+
+00:00:54.353 --> 00:00:57.887
+The wiki records the direction and strength of the evidence.
+
+00:00:58.219 --> 00:01:02.227
+When it makes a prediction, the system registers that prediction before a new
+
+00:01:02.227 --> 00:01:05.451
+experiment can confirm or contradict it.
+
+00:01:06.520 --> 00:01:09.422
+Two different mechanisms keep the system up to date.
+
+00:01:09.754 --> 00:01:14.641
+On the left, new experiments test the knowledge while the programs stay fixed.
+
+00:01:15.257 --> 00:01:20.489
+In later experiments, the predicted direction held for 81 percent of high-confidence
+
+00:01:20.489 --> 00:01:24.100
+findings, 70 percent of evidence-grade findings,
+
+00:01:24.277 --> 00:01:27.270
+and 53 percent of preliminary findings.
+
+00:01:27.576 --> 00:01:30.607
+On the right, the system audits how an answer was produced.
+
+00:01:31.674 --> 00:01:32.926
+The distinction matters.
+
+00:01:33.233 --> 00:01:38.375
+A new result can change what the wiki says, even when the programs work exactly as
+
+00:01:38.375 --> 00:01:38.970
+intended.
+
+00:01:39.603 --> 00:01:42.106
+A faulty calculation is a different problem.
+
+00:01:42.490 --> 00:01:46.912
+Fix the program, then check that the repair works on cases it has not seen.
+
+00:01:47.258 --> 00:01:49.670
+The first mechanism updates knowledge.
+
+00:01:50.003 --> 00:01:53.459
+The second improves how that knowledge is produced.
+
+00:01:54.520 --> 00:01:55.528
+Why use a wiki here?
+
+00:01:55.873 --> 00:02:00.167
+A question about an experiment may depend on several earlier tests,
+
+00:02:00.512 --> 00:02:02.435
+including tests that disagree.
+
+00:02:03.049 --> 00:02:07.330
+Retrieval brings passages to the model when someone asks a question.
+
+00:02:07.675 --> 00:02:12.188
+ExperimentWiki uses programs to compare the evidence ahead of time.
+
+00:02:12.533 --> 00:02:17.559
+The agent can read the resulting page, and later experiments can change what that
+
+00:02:17.559 --> 00:02:18.528
+page says.
