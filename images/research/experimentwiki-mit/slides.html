@@ -12,12 +12,22 @@ figure { margin: 0; }
 figure img { display: block; background: white; max-height: calc(100svh - 74px); width: 100%; height: auto; object-fit: contain; }
 nav { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 10px 0; }
 button { cursor: pointer; background: white; color: inherit; font: inherit; padding: 6px 10px; border: 1px solid #c8d3d4; border-radius: 4px; }
+details { max-width: 960px; margin: 16px auto; }
+summary { cursor: pointer; }
+details video { display: block; width: 100%; height: auto; margin-top: 8px; }
 </style>
 </head>
 <body>
 <main>
  <figure><img id="slide" src="page-3.webp" width="1920" height="1080" alt="ExperimentWiki research questions"></figure>
  <nav aria-label="Slide controls"><button id="prev">Previous</button><span id="position">MIT slide 3</span><button id="next">Next</button><button id="loop">Play loop</button></nav>
+ <details>
+  <summary>Watch the narrated talk</summary>
+  <video controls playsinline preload="none" width="1920" height="1080" poster="page-4.webp">
+   <source src="talk.mp4?v=slides-only" type="video/mp4">
+   <track kind="captions" src="captions.vtt" srclang="en" label="English" default>
+  </video>
+ </details>
 </main>
 <script>
 const titles = ['Research questions', 'System overview', 'System overview, simplified', 'Two mechanisms', 'The two mechanisms compared', 'Why a wiki, not RAG?'];
@@ -42,9 +52,15 @@ document.getElementById('prev').onclick = () => step(-1);
 document.getElementById('next').onclick = () => step(1);
 document.getElementById('loop').onclick = () => playback(!timer);
 document.addEventListener('keydown', e => {
+  if (e.target.closest('details')) return;
   if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); step(e.key === 'ArrowRight' ? 1 : -1); }
 });
 motion.addEventListener('change', () => { playback(false); show(); });
+const talk = document.querySelector('details');
+talk.addEventListener('toggle', () => {
+  if (talk.open) playback(false);
+  else talk.querySelector('video').pause();
+});
 show();
 playback(!motion.matches);
 </script>
