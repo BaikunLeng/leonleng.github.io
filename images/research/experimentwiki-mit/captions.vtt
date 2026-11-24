@@ -1,118 +1,196 @@
 WEBVTT
 
-00:00:00.103 --> 00:00:03.972
-Can an agent learn something reliable from past experiments?
+00:00:00.064 --> 00:00:04.307
+Large experimentation platforms run A/B tests all the time.
 
-00:00:04.603 --> 00:00:07.608
-ExperimentWiki asks three questions.
+00:00:04.626 --> 00:00:09.436
+Yet what teams learn from them is often scattered across reports and dashboards.
 
-00:00:07.954 --> 00:00:09.232
-What knowledge can we keep?
+00:00:09.768 --> 00:00:14.784
+Can we turn those results into an institutional memory that an agent can rely on?
 
-00:00:09.577 --> 00:00:10.830
-How do we repair the system?
+00:00:15.395 --> 00:00:17.859
+That question motivates ExperimentWiki.
 
-00:00:11.162 --> 00:00:14.799
-And when new experiments arrive, do our conclusions hold up?
+00:00:18.191 --> 00:00:22.727
+We also want to know whether the system can update its conclusions as new evidence
 
-00:00:15.895 --> 00:00:17.238
-This is the system overview.
+00:00:22.727 --> 00:00:27.150
+arrives, and whether it can spot and repair mistakes in its own workflow.
 
-00:00:17.557 --> 00:00:22.299
-Start on the left, where programs compare treatment and control groups and record
+00:00:28.228 --> 00:00:31.143
+This diagram shows how the pieces fit together.
 
-00:00:22.299 --> 00:00:23.153
-the effects.
+00:00:31.488 --> 00:00:33.901
+Start on the left, with Experiment Memory.
 
-00:00:23.808 --> 00:00:25.693
-Follow the arrows to the middle.
+00:00:34.246 --> 00:00:38.179
+Within each experiment, we compare the treatment groups with the control group.
 
-00:00:26.025 --> 00:00:30.615
-Programs turn the evidence into wiki pages that an agent can read.
+00:00:38.512 --> 00:00:41.530
+We record what changed, which outcomes moved,
 
-00:00:30.960 --> 00:00:34.765
-On the right, new experiments test earlier predictions.
+00:00:41.811 --> 00:00:43.824
+the size and direction of the effects,
 
-00:00:35.097 --> 00:00:39.839
-Along the bottom, an audit traces mistakes back to the programs and rules that
+00:00:44.014 --> 00:00:45.628
+and the uncertainty around them.
 
-00:00:39.839 --> 00:00:40.551
-produced them.
+00:00:46.270 --> 00:00:48.308
+Now follow the arrows into the wiki.
 
-00:00:41.658 --> 00:00:44.457
-Here is the same system in a simpler view.
+00:00:48.628 --> 00:00:51.401
+Deterministic programs compute the statistics,
 
-00:00:44.789 --> 00:00:48.065
-Within one experiment, compare treatment with control.
+00:00:51.553 --> 00:00:54.713
+store the results, and use templates to write pages.
 
-00:00:48.397 --> 00:00:53.709
-Across experiments, look for the same change and check whether its effect repeats.
+00:00:55.058 --> 00:00:59.685
+The language model reads those pages when it reasons about a question or advises a
 
-00:00:54.353 --> 00:00:57.887
-The wiki records the direction and strength of the evidence.
+00:00:59.685 --> 00:01:00.138
+team.
 
-00:00:58.219 --> 00:01:02.227
-When it makes a prediction, the system registers that prediction before a new
+00:01:01.241 --> 00:01:02.275
+Here is a simpler view.
 
-00:01:02.227 --> 00:01:05.451
-experiment can confirm or contradict it.
+00:01:02.607 --> 00:01:06.282
+Suppose a setting was changed in several experiments.
 
-00:01:06.520 --> 00:01:09.422
-Two different mechanisms keep the system up to date.
+00:01:06.628 --> 00:01:07.764
+Did clicks tend to rise?
 
-00:01:09.754 --> 00:01:14.641
-On the left, new experiments test the knowledge while the programs stay fixed.
+00:01:08.110 --> 00:01:12.671
+The experiments may have served different populations or received different
 
-00:01:15.257 --> 00:01:20.489
-In later experiments, the predicted direction held for 81 percent of high-confidence
+00:01:12.671 --> 00:01:13.692
+amounts of traffic.
 
-00:01:20.489 --> 00:01:24.100
-findings, 70 percent of evidence-grade findings,
+00:01:14.037 --> 00:01:19.027
+We examine how strong and consistent the evidence is across those settings.
 
-00:01:24.277 --> 00:01:27.270
-and 53 percent of preliminary findings.
+00:01:19.632 --> 00:01:23.604
+A page for a parameter shows which outcomes moved when it changed.
 
-00:01:27.576 --> 00:01:30.607
-On the right, the system audits how an answer was produced.
+00:01:23.923 --> 00:01:27.251
+A page for an outcome lets us ask the reverse question:
 
-00:01:31.674 --> 00:01:32.926
-The distinction matters.
+00:01:27.647 --> 00:01:29.789
+which changes have affected this metric?
 
-00:01:33.233 --> 00:01:38.375
-A new result can change what the wiki says, even when the programs work exactly as
+00:01:30.096 --> 00:01:32.933
+A recurring pattern may suggest a mechanism.
 
-00:01:38.375 --> 00:01:38.970
-intended.
+00:01:33.279 --> 00:01:35.820
+That explanation is still a hypothesis.
 
-00:01:39.603 --> 00:01:42.106
-A faulty calculation is a different problem.
+00:01:36.436 --> 00:01:39.145
+The researcher agent can also identify a gap.
 
-00:01:42.490 --> 00:01:46.912
-Fix the program, then check that the repair works on cases it has not seen.
+00:01:39.478 --> 00:01:42.380
+Suppose two settings have always changed together.
 
-00:01:47.258 --> 00:01:49.670
-The first mechanism updates knowledge.
+00:01:42.738 --> 00:01:44.880
+Their separate effects are unknown.
 
-00:01:50.003 --> 00:01:53.459
-The second improves how that knowledge is produced.
+00:01:45.212 --> 00:01:50.125
+The agent can propose a factorial experiment that varies them independently.
 
-00:01:54.520 --> 00:01:55.528
-Why use a wiki here?
+00:01:50.457 --> 00:01:53.836
+It can also register a prediction before the next result arrives,
 
-00:01:55.873 --> 00:02:00.167
-A question about an experiment may depend on several earlier tests,
+00:01:54.143 --> 00:01:57.096
+so we can check it against evidence it has never seen.
 
-00:02:00.512 --> 00:02:02.435
-including tests that disagree.
+00:01:58.186 --> 00:01:59.388
+How does the system learn?
 
-00:02:03.049 --> 00:02:07.330
-Retrieval brings passages to the model when someone asks a question.
+00:01:59.720 --> 00:02:03.885
+On the left, new data arrives while the programs stay fixed.
 
-00:02:07.675 --> 00:02:12.188
-ExperimentWiki uses programs to compare the evidence ahead of time.
+00:02:04.192 --> 00:02:07.029
+We grade findings using earlier experiments,
 
-00:02:12.533 --> 00:02:17.559
-The agent can read the resulting page, and later experiments can change what that
+00:02:07.362 --> 00:02:09.916
+then check their predictions against later results.
 
-00:02:17.559 --> 00:02:18.528
-page says.
+00:02:10.235 --> 00:02:14.246
+We can also set historical experiments aside for an independent check.
+
+00:02:14.853 --> 00:02:16.711
+The chart shows why the grades matter.
+
+00:02:17.082 --> 00:02:21.168
+Findings with stronger evidence were more likely to hold in the predicted
+
+00:02:21.168 --> 00:02:21.763
+direction.
+
+00:02:22.095 --> 00:02:26.258
+On the right, the data can stay fixed while we investigate how an answer was
+
+00:02:26.258 --> 00:02:26.969
+produced.
+
+00:02:28.049 --> 00:02:31.956
+Consider a question that needs evidence from across experiments.
+
+00:02:32.301 --> 00:02:34.701
+If the agent looks up just one experiment,
+
+00:02:35.033 --> 00:02:38.760
+its answer can miss the point even when the arithmetic is correct.
+
+00:02:39.395 --> 00:02:41.962
+We record the path from the question to the answer.
+
+00:02:42.294 --> 00:02:45.673
+An independent program recomputes the statistics.
+
+00:02:45.993 --> 00:02:49.616
+A language model checks the trace for mistakes in tool use.
+
+00:02:49.975 --> 00:02:53.560
+Human users judge whether the answer addresses their question.
+
+00:02:54.228 --> 00:02:58.816
+When a check flags a routing error, the system can propose a fix and test it on
+
+00:02:58.816 --> 00:02:59.952
+held-out cases.
+
+00:03:00.298 --> 00:03:03.445
+It keeps the change only if those checks still pass.
+
+00:03:03.777 --> 00:03:06.512
+New evidence revises what the wiki says.
+
+00:03:06.857 --> 00:03:10.339
+These audits repair how the system reaches an answer.
+
+00:03:11.395 --> 00:03:12.209
+Why build a wiki?
+
+00:03:12.555 --> 00:03:15.457
+With a typical retrieval-augmented generation system,
+
+00:03:15.750 --> 00:03:20.727
+the agent retrieves passages and interprets them when a question comes in.
+
+00:03:21.060 --> 00:03:25.083
+A related question can require the same analysis all over again.
+
+00:03:25.674 --> 00:03:30.506
+ExperimentWiki does the cross-experiment comparison ahead of time and keeps the
+
+00:03:30.506 --> 00:03:32.158
+synthesis on a page.
+
+00:03:32.478 --> 00:03:34.607
+An agent can consult that page again,
+
+00:03:34.952 --> 00:03:39.604
+see where the evidence conflicts, and revisit the conclusion when a new experiment
+
+00:03:39.604 --> 00:03:40.212
+comes in.
