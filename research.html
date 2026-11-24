@@ -51,7 +51,7 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 .research-item { min-width: 0; padding-bottom: 28px; border-bottom: 1px solid var(--line); }
 .research-figure { margin: 0 0 20px; background: #fff; }
 .research-figure img { display: block; width: 100%; height: auto; object-fit: contain; }
-.research-demo-video { display: block; width: 100%; margin-inline: auto; height: auto; border-radius: 8px; background: #f8fafc; }
+.research-demo-video { display: block; width: 100%; margin-inline: auto; height: auto; aspect-ratio: 16 / 9; object-fit: contain; border-radius: 8px; background: white; }
 .research-item h3 { margin: 0 0 5px; font-size: 1.0625rem; line-height: 1.5; font-weight: 600; letter-spacing: -.015em; color: #111827; overflow-wrap: break-word; }
 .research-byline { margin: 0 0 6px; color: #6b7280; font-size: .75rem; line-height: 1.65; }
 .research-byline strong { color: #374151; font-weight: 600; }
@@ -104,10 +104,9 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 .research-collaboration a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
 #experiment-knowledge .film-player { position: relative; }
 #experiment-knowledge video { border-radius: 0; background: white; }
-#experiment-knowledge video[role="button"] { aspect-ratio: 2206 / 1175; }
 #experiment-knowledge .film-cover { display: none; }
 #experiment-knowledge video[role="button"] + .film-cover {
- display: block; position: absolute; inset: 0; pointer-events: none;
+ display: block; position: absolute; inset: 0; height: 100%; background: white; pointer-events: none;
 }
 
 .research-keywords { display: contents; }
@@ -246,7 +245,7 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
    <div class="research-caption">
    <h3>Optimal Capping Theory for Heavy-Tailed Metrics in Experimentation</h3>
    <p class="research-byline">Haonan Deng, <strong>Leon Leng</strong>, and Tu Ni</p>
-   <p class="research-topic-label">2026 · Others <span class="research-tag">Experiment Design</span> <span class="research-tag">Capping</span> <span class="research-tag">Industry Collaboration</span></p>
+   <p class="research-topic-label">2026 · Others <span class="research-tag">Experiment Design</span> <span class="research-tag">Capping</span> <span class="research-tag">Industry</span></p>
    <p class="research-collaboration">Working with <a href="https://www.bellstatistics.com/" target="_blank" rel="noopener noreferrer">Bell Statistics</a></p>
    <p class="research-tldr"><strong>TL;DR:</strong> A few big spenders can make revenue experiments noisy. Capping their spending reduces noise, but may also remove real treatment gains. We use a prespecified belief about how treatment changes spending to choose the cap with the highest predicted signal-to-noise ratio, then estimate and test the capped effect using the same experiment’s observed data. Our first theorem bounds selection loss relative to the best score under that belief—not the true optimal cap. Our second shows that, under additional conditions including localization of near-optimal caps and a local capped-effect null, the test asymptotically controls false positives despite reusing the data. The belief need not be correct, but must be fixed independently of treatment assignment. Simulations show why this distinction matters: choosing the largest observed t-statistic inflates false positives, while a poorly matched belief can miss genuine revenue growth. Learning the belief from the same experiment remains work in progress.</p>
    <p class="research-status">Working paper · Draft available upon request</p>
@@ -265,7 +264,7 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
    <div class="research-caption">
    <h3>ExperimentWiki</h3>
    <p class="research-byline"><strong>Leon Leng</strong>, Shichao Han, Daimin Tang, Yong Wang, Shi Chen</p>
-   <p class="research-topic-label">2026 · Knowledge RSI <span class="research-tag">Experiment Design</span> <span class="research-tag">Knowledge Base Construction</span> <span class="research-tag">Industry Collaboration</span></p>
+   <p class="research-topic-label">2026 · Knowledge RSI <span class="research-tag">Experiment Design</span> <span class="research-tag">Knowledge Base Construction</span> <span class="research-tag">Industry</span></p>
    <p class="research-collaboration">Working with <a href="https://www.tencent.com/en-us/" target="_blank" rel="noopener noreferrer">Tencent</a></p>
    <p class="research-tldr"><strong>TL;DR:</strong> A/B test results often end up in separate reports and dashboards. ExperimentWiki brings them together so a team can ask whether a product change had a consistent effect across experiments. Programs compute treatment effects and their uncertainty, then write wiki pages that show where the evidence agrees and where it conflicts. An AI agent reads those pages to advise the team. If product settings have always changed together, for example, the agent can propose varying them independently to learn which setting affected clicks. It registers predictions before new results arrive. Later experiments test what the wiki has learned, while audits trace mistakes in an answer back to the programs or rules that need repair.</p>
    <p class="research-status"><span>Accepted at MIT CODE 2026</span> <span class="research-link-separator" aria-hidden="true">/</span> <a href="images/research/experimentwiki-mit/slides.html?v=mit-talk-script">Slides</a></p>
