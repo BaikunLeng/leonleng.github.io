@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ExperimentWiki · System diagram</title>
+<style>
+* { box-sizing: border-box; }
+body { margin: 0; background: white; }
+main { height: 100vh; height: 100dvh; overflow: auto; }
+button {
+  display: block; border: 0; padding: 0; margin: 0 auto; background: white;
+  width: 100%; height: 100%; cursor: zoom-in;
+}
+button:focus-visible { outline: 2px solid #22665d; outline-offset: -2px; }
+img { display: block; width: 100%; height: 100%; object-fit: contain; }
+button[aria-pressed="true"] { cursor: zoom-out; }
+</style>
+</head>
+<body>
+<main>
+ <button type="button" aria-label="Zoom in on the ExperimentWiki diagram" aria-pressed="false">
+  <img src="system-map.svg" width="2206" height="1175" alt="ExperimentWiki system diagram, from experiment memory to wiki judgment layers and the audit loop.">
+ </button>
+</main>
+<script>
+const viewport = document.querySelector('main');
+const button = document.querySelector('button');
+const aspect = 2206 / 1175;
+function fit() {
+  button.style.removeProperty('width');
+  button.style.removeProperty('height');
+  button.setAttribute('aria-pressed', 'false');
+  button.setAttribute('aria-label', 'Zoom in on the ExperimentWiki diagram');
+  viewport.scrollTo(0, 0);
+}
+button.addEventListener('click', event => {
+  if (button.getAttribute('aria-pressed') === 'true') {
+    fit();
+    return;
+  }
+  const width = viewport.clientWidth;
+  const height = viewport.clientHeight;
+  const fittedWidth = Math.min(width, height * aspect);
+  const fittedHeight = fittedWidth / aspect;
+  const x = event.detail ? event.clientX : width / 2;
+  const y = event.detail ? event.clientY : height / 2;
+  const fraction = (value, space, size) => Math.max(0, Math.min(1, (value - (space - size) / 2) / size));
+  const zoomWidth = Math.max(3088, fittedWidth * 2);
+  const zoomHeight = zoomWidth / aspect;
+  button.style.width = zoomWidth + 'px';
+  button.style.height = zoomHeight + 'px';
+  button.setAttribute('aria-pressed', 'true');
+  button.setAttribute('aria-label', 'Fit the entire ExperimentWiki diagram');
+  viewport.scrollTo(fraction(x, width, fittedWidth) * zoomWidth - viewport.clientWidth / 2,
+                    fraction(y, height, fittedHeight) * zoomHeight - viewport.clientHeight / 2);
+});
+document.addEventListener('keydown', event => { if (event.key === 'Escape') fit(); });
+</script>
+</body>
+</html>
