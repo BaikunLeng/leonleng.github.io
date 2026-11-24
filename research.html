@@ -273,29 +273,21 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 
   <article class="research-item" data-topic="social-economics" id="causal-bench">
    <figure class="research-figure">
-    <a href="images/research/causal-bench-mit-slides.gif" target="_blank" rel="noopener" aria-label="View the Causal Bench slides at full size">
+    <a href="images/research/causal-benchmark-posttraining-20261124.html" target="_blank" rel="noopener" aria-label="View the integrated Causal Benchmark and Post-training presentation">
      <picture>
-      <source media="(prefers-reduced-motion: reduce)" srcset="images/research/causal-bench-mit-slides.png" />
-      <img src="images/research/causal-bench-mit-slides.gif" width="1440" height="810" alt="Research question and the Causal Bench workflow, from questions and model testing to programmatic scoring and ranking." loading="lazy" />
+      <source media="(prefers-reduced-motion: reduce)" srcset="images/research/causal-benchmark-posttraining-20261124.png" />
+      <img src="images/research/causal-benchmark-posttraining-20261124.gif" width="1440" height="810" alt="An integrated research story: benchmark causal analysis, post-train an open model, diagnose skill regressions, and test targeted training-data repairs." loading="lazy" />
      </picture>
     </a>
    </figure>
-   <figure class="research-figure">
-    <a href="images/research/causal-post-training-mit-slides.gif" target="_blank" rel="noopener" aria-label="View the Causal Post-training slides at full size">
-     <picture>
-      <source media="(prefers-reduced-motion: reduce)" srcset="images/research/causal-post-training-mit-slides.png" />
-      <img src="images/research/causal-post-training-mit-slides.gif" width="1440" height="810" alt="Research question and the continued pretraining, supervised fine-tuning, and reinforcement learning stages." loading="lazy" />
-     </picture>
-    </a>
-   </figure>
-  <div class="research-caption">
-   <span id="causal-ai"></span>
-   <h3>Causal Benchmark and Post-training</h3>
-   <p class="research-topic-label">2026 · AI for social science, economics and finance</p>
-   <p class="research-tldr"><strong>TL;DR:</strong> Causal Bench tests models on realistic causal-inference tasks with known answers. Programs score the responses. In a blind test, the top models passed 93–95% of v1 tasks. At those pass rates, v1 no longer distinguishes the top models. Harder versions are in development.</p>
-   <p class="research-tldr"><strong>Post-training:</strong> Can post-training improve causal analysis while preserving a model’s other skills? We compare two training runs on a 27B open model. Both use LoRA through continued pretraining, supervised fine-tuning, and reinforcement learning with GRPO. A fixed rule drops a version if performance on two or more held-out skills falls beyond a preset threshold.</p>
-   <p class="research-meta"><em>From Scientists to Agents</em> · CODE@MIT 2026 talk</p>
-   <p class="research-byline">Talk authors: <strong>Leon Leng</strong>, Shichao Han, Daimin Tang, Yong Wang, Shi Chen · University of Washington · Tencent</p>
+   <div class="research-caption">
+    <span id="causal-ai"></span>
+    <h3>Causal Benchmark and Post-training</h3>
+    <p class="research-byline"><strong>Leon Leng</strong>, Shichao Han, Daimin Tang, Yong Wang, Shi Chen</p>
+    <p class="research-topic-label">2026 · AI for social science, economics and finance <span class="research-tag">Causal Inference</span> <span class="research-tag">Benchmarking</span> <span class="research-tag">Post-training</span> <span class="research-tag">Industry</span></p>
+    <p class="research-collaboration">Working with <a href="https://www.tencent.com/en-us/" target="_blank" rel="noopener noreferrer">Tencent</a></p>
+    <p class="research-tldr"><strong>TL;DR:</strong> Can language models carry out causal analysis reliably, and can post-training improve open models without damaging other skills? We combine Causal Bench, which checks answers and analysis code on causal tasks with known ground truth, with two post-training runs on a 27B open model. The benchmark exposes gaps between frontier and open models. Training raises accuracy on our in-domain test, but also harms tool use and performance on an external causal test. We trace a tool-use failure to training examples that always make exactly one call. Targeted examples for zero-call and multi-call cases recover much of the lost tool performance while preserving the in-domain gain. The lesson is to judge training by both what improves and what it preserves: broader benchmark gains remain unestablished, and RL adds no measurable in-domain improvement in these runs.</p>
+    <p class="research-status"><span>Presented at CODE@MIT 2026</span> <span class="research-link-separator" aria-hidden="true">/</span> <a href="images/research/causal-benchmark-posttraining-20261124.html" target="_blank" rel="noopener">Slides</a></p>
    </div>
   </article>
 
