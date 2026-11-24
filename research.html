@@ -103,11 +103,12 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 #optimal-capping .research-collaboration { margin: 0 0 10px; color: #1d4ed8; font-size: .875rem; font-weight: 600; line-height: 1.6; }
 #optimal-capping .research-collaboration a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
 #experiment-knowledge .film-player { position: relative; }
+#experiment-knowledge .research-demo-video { border-radius: 0; background: white; }
 #experiment-knowledge .wiki-motion-cover { display: none; }
 @media (prefers-reduced-motion: no-preference) {
  #experiment-knowledge video[role="button"] + .wiki-motion-cover {
    display: block; position: absolute; inset: 0 0 auto; width: 100%; height: auto;
-   border-radius: 8px 8px 0 0; pointer-events: none;
+   pointer-events: none;
  }
 }
 </style>
@@ -249,10 +250,10 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 
   <article class="research-item" data-topic="knowledge" id="experiment-knowledge">
    <figure class="research-figure film-player">
-    <video class="research-demo-video" width="1920" height="1248" controls playsinline preload="metadata" poster="images/research/experimentwiki-mit/poster.jpg" aria-label="ExperimentWiki, CODE@MIT slides 3 through 8 with English narration and captions">
-     <source src="images/research/experimentwiki-mit/talk.mp4" type="video/mp4" />
-     <track kind="captions" src="images/research/experimentwiki-mit/captions.vtt" srclang="en" label="English" />
-     <a href="images/research/experimentwiki-mit/talk.mp4">Watch the ExperimentWiki research film</a>
+    <video class="research-demo-video" width="1920" height="1080" controls playsinline preload="metadata" poster="images/research/experimentwiki-mit/page-4.webp" aria-label="ExperimentWiki, CODE@MIT slides 3 through 8 with English narration and captions">
+     <source src="images/research/experimentwiki-mit/talk.mp4?v=slides-only" type="video/mp4" />
+     <track kind="captions" src="images/research/experimentwiki-mit/captions.vtt" srclang="en" label="English" default />
+     <a href="images/research/experimentwiki-mit/talk.mp4?v=slides-only">Watch the ExperimentWiki research film</a>
     </video>
     <img class="wiki-motion-cover" src="images/research/experimentwiki-mit/overview.svg" width="1920" height="1080" alt="" aria-hidden="true" />
    </figure>
