@@ -332,11 +332,25 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
   <div class="research-grid">
 
   <article class="research-item" data-topic="agents" id="agent-organizations">
+   <figure class="research-figure film-player">
+    <video class="research-demo-video" width="1280" height="720" controls playsinline preload="metadata" poster="images/research/officetown/cover.png" aria-label="OfficeTown research overview with English narration">
+     <source src="images/research/officetown/research-overview.mp4" type="video/mp4" />
+     <track kind="captions" src="images/research/officetown/captions.vtt" srclang="en" label="English" />
+     <a href="images/research/officetown/research-overview.mp4">Watch the OfficeTown research overview</a>
+    </video>
+   </figure>
    <div class="research-caption">
-   <h3>Organizational Design and Compute Allocation for AI Agents</h3>
-   <p class="research-meta">Microsoft Research Asia</p>
-   <p class="research-topic-label">2026 · AI agent systems design</p>
-   <p class="research-status">Ongoing research</p>
+    <h3>Organizational Design and Compute Allocation for AI Agents</h3>
+    <p class="research-meta">Microsoft Research Asia</p>
+    <p class="research-topic-label">2026 · AI agent systems design <span class="research-tag">Multi-agent systems</span> <span class="research-tag">Organizational design</span> <span class="research-tag">Compute allocation</span></p>
+    <p class="research-tldr"><strong>TL;DR:</strong> When should an AI team ask a manager for advice, and when should the manager have the final say? In the OfficeTown Playground, we give agents the same task and change who can share information or make a binding decision. Their messages and actions show where a team reaches agreement and whether it can still deliver on time.</p>
+    <details class="research-tldr-details">
+     <summary><span class="tldr-see-more">See more</span><span class="tldr-see-less">See less</span></summary>
+     <p class="research-tldr"><strong>A scheduling pilot.</strong> Two sites needed the same engineering shift. Only the manager knew which contract had priority. In four model-driven runs, the manager awarded the shift to the higher-priority site every time. With standing authority, both sites filed on time in both runs. When employees first had to request arbitration, the other site filed its corrected plan one round late in both runs. The action logs show where the two rounds went. This small pilot leaves open how often the same pattern occurs on other tasks.</p>
+     <p class="research-tldr"><strong>Choosing with distributed evidence.</strong> In a second case, product, sales and compliance agents propose ways to test a customer need. Each holds one fact about the cost of a demo. Each alone would choose an interview, yet pooling all three facts can make the demo the better choice. Scripted checks cover independent choice, nonbinding advice and a binding managerial decision. Model-driven trials of this case are pending.</p>
+     <p class="research-tldr"><strong>Allocating compute.</strong> A companion simulation distributes a fixed token budget across tasks. It tests when estimates of task value are accurate enough for targeted spending to improve on an equal split. With sufficiently noisy estimates, targeting can perform worse. These estimates come from synthetic tasks.</p>
+    </details>
+    <p class="research-status">Ongoing research</p>
    </div>
   </article>
 

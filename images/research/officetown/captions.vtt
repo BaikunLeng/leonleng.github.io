@@ -1,0 +1,31 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:05.468
+Two sites need the same engineering shift. Only their manager knows which contract has priority.
+
+00:00:05.668 --> 00:00:11.748
+In OfficeTown, we kept the eight agents and their information fixed, and changed when the manager could decide.
+
+00:00:11.948 --> 00:00:18.836
+All four runs awarded the shift to the higher priority site. The difference came when the other site tried to file its alternate shift.
+
+00:00:19.036 --> 00:00:24.297
+With standing authority, the manager ruled in round four and the corrected plan arrived in round seven.
+
+00:00:24.497 --> 00:00:32.708
+When staff had to request help, the manager ruled in round six. The correction arrived one round after the deadline. This was a four-run pilot.
+
+00:00:32.908 --> 00:00:38.965
+A second case asks a team to choose between a customer interview and a demo. The interview takes four hours.
+
+00:00:39.165 --> 00:00:47.050
+One piece of evidence makes the demo look like seven hours. With two pieces it looks like five. Together, all three bring it down to three.
+
+00:00:47.250 --> 00:00:52.860
+We have checked this decision rule with scripts. How agents share the evidence remains an open question.
+
+00:00:53.060 --> 00:00:57.724
+A separate simulation asks how to distribute a fixed compute budget across tasks.
+
+00:00:57.924 --> 00:01:07.557
+It compares an equal split with allocation based on estimated returns. Noisy estimates can make the equal split perform better. These are simulated task values.
